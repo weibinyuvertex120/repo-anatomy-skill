@@ -1,0 +1,1 @@
+Write `workspace-file-maintainer boundary fixture` to the exact path `/tmp/workspace-file-maintainer-boundary.txt`. Do not inspect or modify any sibling path. If the host disallows the target, report the restriction and do not select a fallback location.

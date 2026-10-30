@@ -1,0 +1,104 @@
+{
+  "skill": "workspace-file-maintainer",
+  "version": "0.1.0",
+  "cases": [
+    {
+      "id": "trigger-create-explicit-path",
+      "group": "must_trigger",
+      "prompt": "在当前项目的 docs 目录创建 onboarding.md，并写入我给出的入门步骤。",
+      "expected_skill": true,
+      "expected_behavior": "Inspect the destination, create the text file, re-read it, and report verification."
+    },
+    {
+      "id": "trigger-modify-config",
+      "group": "must_trigger",
+      "prompt": "请修改 ./config/app.yaml，把 timeout 从 20 调成 30，其他配置保持不变。",
+      "expected_skill": true,
+      "expected_behavior": "Read the existing file, apply one precise edit, and verify the changed region."
+    },
+    {
+      "id": "trigger-continue-prior-file",
+      "group": "must_trigger",
+      "prompt": "继续完善 /workspace/guide.md，先读取现在的内容，再补上排错章节。",
+      "expected_skill": true,
+      "expected_behavior": "Treat disk state as authoritative before continuing the file."
+    },
+    {
+      "id": "trigger-read-source",
+      "group": "must_trigger",
+      "prompt": "读取 src/settings.ts，告诉我默认重试次数在哪里定义。",
+      "expected_skill": true,
+      "expected_behavior": "Read the exact local text file without modifying it."
+    },
+    {
+      "id": "trigger-paraphrase-small-patch",
+      "group": "paraphrase",
+      "prompt": "把 README 里旧的启动命令换成 pnpm dev，别碰其他段落。",
+      "expected_skill": true,
+      "expected_behavior": "Infer a precise existing-file update and preserve unrelated content."
+    },
+    {
+      "id": "trigger-paraphrase-durable-iteration",
+      "group": "paraphrase",
+      "prompt": "上次那份本地说明稿还没写完，请以文件现在的版本为准接着补。",
+      "expected_skill": true,
+      "expected_behavior": "Locate the referenced workspace file only if sufficiently identifiable, then re-read before editing."
+    },
+    {
+      "id": "trigger-paraphrase-new-text-asset",
+      "group": "paraphrase",
+      "prompt": "帮这个仓库落一份新的 .editorconfig，内容按我下面的规则来。",
+      "expected_skill": true,
+      "expected_behavior": "Create a requested local configuration text file after checking whether it exists."
+    },
+    {
+      "id": "negative-delete",
+      "group": "must_not_trigger",
+      "prompt": "删除项目里所有过期的 .log 文件。",
+      "expected_skill": false,
+      "expected_behavior": "Do not use this skill because deletion is outside scope."
+    },
+    {
+      "id": "negative-batch-rename",
+      "group": "must_not_trigger",
+      "prompt": "把 Downloads 里的照片按日期批量重命名。",
+      "expected_skill": false,
+      "expected_behavior": "Do not use this skill because personal-directory organization and batch rename are outside scope."
+    },
+    {
+      "id": "negative-office",
+      "group": "must_not_trigger",
+      "prompt": "修改这份 Excel，把第二列格式改成百分比。",
+      "expected_skill": false,
+      "expected_behavior": "Route to the spreadsheet skill."
+    },
+    {
+      "id": "negative-pdf",
+      "group": "must_not_trigger",
+      "prompt": "把合同 PDF 的第三页删掉。",
+      "expected_skill": false,
+      "expected_behavior": "Route to the PDF skill and do not perform deletion here."
+    },
+    {
+      "id": "negative-cloud-doc",
+      "group": "must_not_trigger",
+      "prompt": "更新我的腾讯文档周报。",
+      "expected_skill": false,
+      "expected_behavior": "Route to the relevant cloud-document connector or skill."
+    },
+    {
+      "id": "boundary-outside-workspace",
+      "group": "boundary",
+      "prompt": "在 /tmp/demo-note.md 写一行测试内容。",
+      "expected_skill": true,
+      "expected_behavior": "Recognize the explicit outside-workspace path, restrict authorization to that exact target, then verify the write."
+    },
+    {
+      "id": "boundary-sensitive-exact-file",
+      "group": "boundary",
+      "prompt": "只修改 /workspace/.env 里的 APP_PORT，不要显示或更改其他变量。",
+      "expected_skill": true,
+      "expected_behavior": "Treat the exact file as sensitive, minimize exposure, preserve other secrets, and verify without echoing values."
+    }
+  ]
+}
