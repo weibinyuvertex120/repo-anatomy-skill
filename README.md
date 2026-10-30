@@ -44,10 +44,11 @@ Out of scope:
 
 ## Validate
 
-Run the deterministic repository checks:
+Run the deterministic repository checks and validator self-tests:
 
 ```bash
 python3 tests/validate_repository.py
+python3 tests/test_validator.py
 ```
 
 Run the bundled WorkBuddy Skill validator:
@@ -74,6 +75,10 @@ python3 "/Applications/WorkBuddy AI.app/Contents/Resources/app.asar.unpacked/res
 5. Test create, read, modify, verification, and continued-iteration fixtures.
 6. Update the version and `CHANGELOG.md` when behavior changes.
 7. Package and install only a validated revision.
+
+## Portability Note
+
+The WorkBuddy installation requires the top-level `agent_created: true` field. The open Agent Skills `skills-ref` validator currently rejects that host-specific extension. Treat the source package as WorkBuddy-targeted until the release process adds a standards-compatible distribution variant.
 
 ## Installation During Development
 

@@ -20,4 +20,5 @@ The project follows Semantic Versioning:
 
 ### Known Limitations
 
-- Automatic semantic triggering was observed in 1 of 3 fresh-agent diagnostics in the current host runtime. Explicit invocation is verified; stable tagging is deferred until the trigger matrix is repeated after a host restart.
+- Automatic semantic triggering was not observed in the latest 7 relevant fresh-agent diagnostics. Explicit invocation is verified; stable tagging is deferred until automatic discovery improves.
+- The WorkBuddy-required top-level `agent_created` field is rejected by the open Agent Skills `skills-ref` validator, so the current package is host-targeted rather than strictly portable.
