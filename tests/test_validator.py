@@ -105,6 +105,25 @@ def empty_functional_cases(repository: Path) -> None:
     (repository / "evals/research-functional-cases.md").write_text("\n", encoding="utf-8")
 
 
+def use_floating_action_tag(repository: Path) -> None:
+    path = repository / ".github/workflows/release.yml"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace(
+            "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+            "actions/checkout@v7",
+            1,
+        ),
+        encoding="utf-8",
+    )
+
+
+def remove_release_environment(repository: Path) -> None:
+    path = repository / ".github/workflows/release.yml"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(text.replace("    environment: release\n", "", 1), encoding="utf-8")
+
+
 def main() -> int:
     baseline = run_validator(ROOT)
     if baseline.returncode != 0:
@@ -123,6 +142,8 @@ def main() -> int:
     expect_failure("duplicate-prompt", duplicate_prompt, "duplicate prompt")
     expect_failure("external-symlink", replace_reference_with_symlink, "symlink is not allowed")
     expect_failure("empty-functional-cases", empty_functional_cases, "missing required section")
+    expect_failure("floating-action-tag", use_floating_action_tag, "action is not pinned to a full commit SHA")
+    expect_failure("missing-release-environment", remove_release_environment, "missing release gate environment: release")
     print("Validator regression tests passed")
     return 0
 

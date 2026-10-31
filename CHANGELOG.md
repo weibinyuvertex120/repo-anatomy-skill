@@ -2,6 +2,21 @@
 
 All notable behavioral changes to the repository's Skills are recorded here.
 
+## Release governance and user onboarding - 2026-10-31
+
+### Added
+
+- Agent-neutral README task contracts for research, file maintenance, and their combined workflow.
+- Deterministic aggregate `SHA256SUMS` generation for the four ZIP and four manifest release assets.
+- Exact-SHA release candidate and signed-tag verification workflows with full-SHA action pins and a protected release environment boundary.
+- GitHub-native failure notification through auditable Issues for failed CI, tag-verification, and release-candidate runs.
+- Repository validation regressions for floating action references and missing release-environment protection.
+
+### Changed
+
+- Release documentation now requires PVR, independent review, signed immutable tags, exact-commit builds, Draft Release review, independent post-release verification, and non-destructive rollback.
+- Security guidance now treats unavailable PVR as a first-preview release stop condition rather than a satisfied fallback state.
+
 ## Repository validation and packaging - 2026-10-30
 
 ### Added
