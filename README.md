@@ -114,6 +114,7 @@ Out of scope includes generic unresearched marketing copy, fabricated commands o
 | [`scripts/install_stable.py`](scripts/install_stable.py) | Manifest-verified versioned installer. |
 | [`.github/`](.github/) | CI, issue forms, pull-request template, and vulnerability report template. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | Development and evidence requirements. |
+| [`COLLABORATION.md`](COLLABORATION.md) | Pull Request, review, approval, merge, branch, and exception rules. |
 | [`SECURITY.md`](SECURITY.md) | Private reporting route and security boundaries. |
 | [`RELEASING.md`](RELEASING.md) | GitHub Flow, versioning, release gates, and rollback. |
 | [`SOURCES.md`](SOURCES.md) | Design references, adopted practices, and non-adopted patterns. |
