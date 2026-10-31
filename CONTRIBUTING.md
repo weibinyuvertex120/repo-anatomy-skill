@@ -58,7 +58,9 @@ Do not report automatic trigger precision, recall, or stability without auditabl
 
 ## Pull Requests
 
-Follow `RELEASING.md` and use a short-lived topic branch. A pull request should include:
+Follow [`COLLABORATION.md`](COLLABORATION.md) for the complete Pull Request, review, approval, merge, branch, automation, and exception workflow. Follow `RELEASING.md` for versioning and publication-specific gates.
+
+Use a short-lived topic branch. A pull request should include:
 
 - the problem and intended behavior;
 - files and Skill versions affected;

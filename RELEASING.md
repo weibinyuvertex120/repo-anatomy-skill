@@ -11,6 +11,8 @@ This repository follows GitHub Flow with a protected `main` branch and short-liv
 
 ## Commits And Pull Requests
 
+See [`COLLABORATION.md`](COLLABORATION.md) for the complete project collaboration standard, including PR creation, review, approval, branch protection, exception handling, and automation rules.
+
 - Keep each commit focused and independently understandable.
 - Use descriptive imperative commit subjects such as `feat: add open specification package`.
 - A pull request must explain the problem, behavioral or documentation changes, verification commands, compatibility impact, and remaining risks.
