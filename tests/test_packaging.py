@@ -37,6 +37,7 @@ def main() -> int:
             raise AssertionError("external symlink must be rejected")
 
         output = temp_root / "packages"
+        rebuilt_output = temp_root / "rebuilt-packages"
         expected = (
             ("workspace-file-maintainer", "0.1.0", 5),
             ("research-material-writer", "0.2.0-preview.1", 9),
@@ -49,17 +50,28 @@ def main() -> int:
                 if manifest["variant"] != variant:
                     raise AssertionError(f"{skill_name}: unexpected variant {manifest['variant']}")
                 with zipfile.ZipFile(archive) as package:
-                    names = package.namelist()
+                    infos = package.infolist()
+                    names = [info.filename for info in infos]
                     skill_md = package.read(f"{skill_name}/SKILL.md").decode("utf-8")
                     if len(names) != expected_count:
                         raise AssertionError(f"{skill_name}: expected {expected_count} files, got {len(names)}")
                     if any(name.startswith("../") or "/../" in name for name in names):
                         raise AssertionError(f"{skill_name}: archive contains traversal path")
+                    if any(info.date_time != MODULE.ZIP_TIMESTAMP for info in infos):
+                        raise AssertionError(f"{skill_name}: archive contains variable timestamps")
+                    if any(info.create_system != 3 or info.external_attr >> 16 != MODULE.ZIP_FILE_MODE for info in infos):
+                        raise AssertionError(f"{skill_name}: archive contains variable file metadata")
                     if variant == "workbuddy" and "agent_created: true" not in skill_md:
                         raise AssertionError(f"{skill_name}: WorkBuddy field missing")
                     if variant == "open-spec" and "agent_created:" in skill_md:
                         raise AssertionError(f"{skill_name}: host field leaked into open-spec package")
+                rebuilt_archive, rebuilt_manifest = MODULE.package_skill(skill_name, rebuilt_output, variant)
+                if archive.read_bytes() != rebuilt_archive.read_bytes():
+                    raise AssertionError(f"{skill_name}: repeated build changed ZIP bytes")
+                if manifest != rebuilt_manifest:
+                    raise AssertionError(f"{skill_name}: repeated build changed manifest")
                 print(f"PASS packages-{skill_name}-{variant}")
+                print(f"PASS reproducible-{skill_name}-{variant}")
     print("Packaging regression tests passed")
     return 0
 

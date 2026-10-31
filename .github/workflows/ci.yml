@@ -92,10 +92,15 @@ jobs:
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.13"
-      - name: Build packages
+      - name: Build packages twice
         env:
           PYTHONDONTWRITEBYTECODE: "1"
-        run: python3 scripts/package_skills.py dist --require-clean
+        run: |
+          python3 scripts/package_skills.py dist --require-clean
+          python3 scripts/package_skills.py /tmp/rebuilt-skills --require-clean
+          for artifact in dist/*; do
+            cmp "$artifact" "/tmp/rebuilt-skills/$(basename "$artifact")"
+          done
       - name: Verify manifests
         env:
           PYTHONDONTWRITEBYTECODE: "1"

@@ -16,6 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ("workspace-file-maintainer", "research-material-writer")
 VARIANTS = ("workbuddy", "open-spec")
+ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
+ZIP_FILE_MODE = 0o100644
 
 
 class PackageError(Exception):
@@ -96,7 +98,12 @@ def package_skill(skill_name: str, output_dir: Path, variant: str = "workbuddy")
             content = path.read_bytes()
             if relative == "SKILL.md":
                 content = transform_skill_md(content, variant)
-            package.writestr(f"{skill_name}/{relative}", content)
+            archive_path = f"{skill_name}/{relative}"
+            info = zipfile.ZipInfo(archive_path, date_time=ZIP_TIMESTAMP)
+            info.create_system = 3
+            info.external_attr = ZIP_FILE_MODE << 16
+            info.compress_type = zipfile.ZIP_DEFLATED
+            package.writestr(info, content)
     digest = hashlib.sha256(archive.read_bytes()).hexdigest()
     commit, dirty = source_state()
     manifest: dict[str, object] = {
