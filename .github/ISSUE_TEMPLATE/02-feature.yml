@@ -1,0 +1,54 @@
+name: Feature request
+description: Propose a scoped Skill, evaluation, compatibility, or workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the user task or maintenance problem, not only the proposed implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the smallest useful change and observable result.
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Affected scope
+      multiple: true
+      options:
+        - workspace-file-maintainer
+        - research-material-writer
+        - evaluations and tests
+        - packaging and releases
+        - WorkBuddy compatibility
+        - open Agent Skills compatibility
+        - documentation
+    validations:
+      required: true
+  - type: textarea
+    id: boundaries
+    attributes:
+      label: Security, compatibility, or permission impact
+      description: Identify changes to tools, paths, network access, triggering, package format, or supported clients.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and pull requests.
+          required: true
+        - label: I understand that permission, destructive-operation, or automatic-trigger changes require prior discussion.
+          required: true

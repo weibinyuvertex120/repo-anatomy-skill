@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import shutil
 import subprocess
 import sys
@@ -53,13 +54,55 @@ def remove_reference(repository: Path) -> None:
 
 
 def mismatch_version(repository: Path) -> None:
-    path = repository / "evals/trigger-cases.json"
+    path = repository / "evals/research-trigger-cases.json"
     text = path.read_text(encoding="utf-8")
-    path.write_text(text.replace('"version": "0.1.0"', '"version": "9.9.9"', 1), encoding="utf-8")
+    path.write_text(text.replace('"version": "0.2.0-preview.1"', '"version": "9.9.9"', 1), encoding="utf-8")
 
 
 def corrupt_json(repository: Path) -> None:
     (repository / "evals/trigger-cases.json").write_text("{invalid json\n", encoding="utf-8")
+
+
+def mutate_case(repository: Path, **changes: object) -> None:
+    path = repository / "evals/research-trigger-cases.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["cases"][0].update(changes)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def empty_prompt(repository: Path) -> None:
+    mutate_case(repository, prompt="   ")
+
+
+def wrong_expected_skill_type(repository: Path) -> None:
+    mutate_case(repository, expected_skill="yes")
+
+
+def unknown_group(repository: Path) -> None:
+    mutate_case(repository, group="typo")
+
+
+def empty_expected_behavior(repository: Path) -> None:
+    mutate_case(repository, expected_behavior="")
+
+
+def duplicate_prompt(repository: Path) -> None:
+    path = repository / "evals/research-trigger-cases.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data["cases"][1]["prompt"] = data["cases"][0]["prompt"]
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def replace_reference_with_symlink(repository: Path) -> None:
+    outside = repository.parent / "external-reference.md"
+    outside.write_text("external marker", encoding="utf-8")
+    reference = repository / "skills/research-material-writer/references/quality-checklist.md"
+    reference.unlink()
+    reference.symlink_to(outside)
+
+
+def empty_functional_cases(repository: Path) -> None:
+    (repository / "evals/research-functional-cases.md").write_text("\n", encoding="utf-8")
 
 
 def main() -> int:
@@ -70,9 +113,16 @@ def main() -> int:
         raise AssertionError("baseline repository must pass before mutation tests")
     print("PASS baseline")
 
-    expect_failure("missing-reference", remove_reference, "Missing skill reference")
+    expect_failure("missing-reference", remove_reference, "Missing skill resource")
     expect_failure("version-mismatch", mismatch_version, "version does not match")
     expect_failure("invalid-json", corrupt_json, "invalid JSON")
+    expect_failure("empty-prompt", empty_prompt, "prompt must be a non-empty string")
+    expect_failure("wrong-expected-skill-type", wrong_expected_skill_type, "expected_skill must be a boolean")
+    expect_failure("unknown-group", unknown_group, "unknown group")
+    expect_failure("empty-expected-behavior", empty_expected_behavior, "expected_behavior must be a non-empty string")
+    expect_failure("duplicate-prompt", duplicate_prompt, "duplicate prompt")
+    expect_failure("external-symlink", replace_reference_with_symlink, "symlink is not allowed")
+    expect_failure("empty-functional-cases", empty_functional_cases, "missing required section")
     print("Validator regression tests passed")
     return 0
 

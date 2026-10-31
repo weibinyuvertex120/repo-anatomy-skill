@@ -1,0 +1,118 @@
+{
+  "skill": "research-material-writer",
+  "version": "0.2.0-preview.1",
+  "cases": [
+    {
+      "id": "research-tutorial-github-project",
+      "group": "must_trigger",
+      "prompt": "详细研究这个 GitHub 项目，核验最新安装方法，然后写一篇小白能照着完成的中文教程。",
+      "expected_skill": true,
+      "expected_behavior": "Research current primary sources, choose a beginner main path, write verification and limitations, then quality-check the draft."
+    },
+    {
+      "id": "research-project-analysis",
+      "group": "must_trigger",
+      "prompt": "分析这个开源项目现在是否值得采用，重点看维护状态、许可证、能力边界和生产风险。",
+      "expected_skill": true,
+      "expected_behavior": "Produce a dated, decision-oriented project analysis that separates facts from recommendations."
+    },
+    {
+      "id": "research-open-source-first-use",
+      "group": "must_trigger",
+      "prompt": "我刚拿到这个 GitHub 开源项目，第一次使用前需要准备什么？请从仓库首页带我判断风险并完成第一次运行。",
+      "expected_skill": true,
+      "expected_behavior": "Verify project identity, license, release source, prerequisites, shortest success path, observable verification, risks, and stop conditions."
+    },
+    {
+      "id": "research-agent-repository-onboarding",
+      "group": "must_trigger",
+      "prompt": "这个项目接入 Claude Code 或 Codex 前要检查哪些仓库指令文件、权限和 MCP 配置？帮我写成新手 onboarding 指南。",
+      "expected_skill": true,
+      "expected_behavior": "Research client-specific instruction files and separately assess actual tool, shell, network, MCP, hooks, and approval boundaries."
+    },
+    {
+      "id": "research-comparison",
+      "group": "must_trigger",
+      "prompt": "对比这三个 Agent 记忆方案，帮我写一份选型资料，不要只列功能。",
+      "expected_skill": true,
+      "expected_behavior": "Define comparable scope and decision dimensions, verify evidence, and recommend by scenario."
+    },
+    {
+      "id": "research-continue-series",
+      "group": "must_trigger",
+      "prompt": "参考前面 context-mode 教程的手感，研究新项目后继续写下一篇，保持系列风格但先核验事实。",
+      "expected_skill": true,
+      "expected_behavior": "Inspect the style baseline, research the new subject, preserve voice, and correct rather than copy prior defects."
+    },
+    {
+      "id": "research-paraphrase-source-restructure",
+      "group": "paraphrase",
+      "prompt": "别翻译 README，帮我把官方资料重组成一篇读者能真正操作成功的指南。",
+      "expected_skill": true,
+      "expected_behavior": "Reorganize source material around reader tasks and observable success."
+    },
+    {
+      "id": "research-paraphrase-fact-check",
+      "group": "paraphrase",
+      "prompt": "把这份技术稿补完整，尤其复核版本、命令、平台差异和安全限制。",
+      "expected_skill": true,
+      "expected_behavior": "Treat the draft as a researched material and run factual plus editorial review."
+    },
+    {
+      "id": "research-paraphrase-resource-map",
+      "group": "paraphrase",
+      "prompt": "梳理这个开发者资源清单，按实际工作流程分类并给出采用建议和风险。",
+      "expected_skill": true,
+      "expected_behavior": "Build a capability map and decision-oriented resource analysis rather than restating entries."
+    },
+    {
+      "id": "negative-simple-file",
+      "group": "must_not_trigger",
+      "prompt": "在 docs 目录创建 notes.md，写入我下面给出的三行文字。",
+      "expected_skill": false,
+      "expected_behavior": "Use the file-maintenance workflow because no research or material design is needed."
+    },
+    {
+      "id": "negative-config-edit",
+      "group": "must_not_trigger",
+      "prompt": "把 config.yaml 的 timeout 从 20 改成 30。",
+      "expected_skill": false,
+      "expected_behavior": "Use precise file editing, not the research-writing skill."
+    },
+    {
+      "id": "negative-fiction",
+      "group": "must_not_trigger",
+      "prompt": "写一个发生在火星上的短篇科幻故事。",
+      "expected_skill": false,
+      "expected_behavior": "Do not use an evidence-led technical material workflow for fiction."
+    },
+    {
+      "id": "negative-marketing-copy",
+      "group": "must_not_trigger",
+      "prompt": "给我的咖啡店写五条轻松活泼的广告文案。",
+      "expected_skill": false,
+      "expected_behavior": "Do not trigger because the task is generic creative copywriting without research."
+    },
+    {
+      "id": "negative-office",
+      "group": "must_not_trigger",
+      "prompt": "把这篇内容排版成一份 Word 文档。",
+      "expected_skill": false,
+      "expected_behavior": "Route document generation or formatting to the dedicated Word workflow."
+    },
+    {
+      "id": "boundary-user-supplied-sources",
+      "group": "boundary",
+      "prompt": "只根据我提供的三份官方文档写教程，不要额外搜索，并明确资料的日期限制。",
+      "expected_skill": true,
+      "expected_behavior": "Use supplied evidence, respect the no-search constraint, and disclose time-scope limitations."
+    },
+    {
+      "id": "boundary-unverified-execution",
+      "group": "boundary",
+      "prompt": "当前环境无法运行这个沙箱工具，请基于官方文档和源码写教程，但不要假装已经实测成功。",
+      "expected_skill": true,
+      "expected_behavior": "Separate documentation verification from runtime execution and disclose the blocked test."
+    }
+  ]
+}

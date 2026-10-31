@@ -1,0 +1,72 @@
+name: Bug report
+description: Report reproducible incorrect Skill, validator, or packaging behavior.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report security boundary failures or secrets here. Follow SECURITY.md and use private vulnerability reporting.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - workspace-file-maintainer
+        - research-material-writer
+        - repository validator
+        - draft checker
+        - packaging or manifests
+        - documentation or installation
+        - other
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.2.0-preview.1 or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Agent host and environment
+      description: Include client, operating system, and relevant versions.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Use a disposable workspace and non-sensitive fixtures.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result and evidence
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation commands
+      description: Include relevant test commands and output with personal data removed.
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: I searched existing issues and pull requests.
+          required: true
+        - label: This report contains no secrets, private files, or third-party personal data.
+          required: true
+        - label: This is not a security vulnerability report.
+          required: true
