@@ -1,0 +1,54 @@
+name: Failure Notification
+
+on:
+  workflow_run:
+    workflows:
+      - CI
+      - Release Candidate
+      - Verify Release Tags
+    types:
+      - completed
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+jobs:
+  notify:
+    name: Record failed workflow
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Create or update auditable failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          RUN_NAME: ${{ github.event.workflow_run.name }}
+          RUN_NUMBER: ${{ github.event.workflow_run.run_number }}
+          RUN_URL: ${{ github.event.workflow_run.html_url }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          title="workflow failure: ${RUN_NAME} #${RUN_NUMBER}"
+          body="$(cat <<EOF
+          Automated GitHub-native failure notification.
+
+          - workflow: ${RUN_NAME}
+          - run: ${RUN_URL}
+          - run_id: ${RUN_ID}
+          - head_sha: ${HEAD_SHA}
+          - conclusion: failure
+
+          A maintainer must acknowledge this issue and link the corrective run before release gates can treat notification reachability as verified.
+          EOF
+          )"
+          existing="$(
+            gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "${title} in:title" --json number --jq '.[0].number // empty'
+          )"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$title" --body "$body"
+          fi

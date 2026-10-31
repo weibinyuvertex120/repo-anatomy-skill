@@ -74,6 +74,18 @@ def transform_skill_md(content: bytes, variant: str) -> bytes:
     return transformed.encode("utf-8")
 
 
+def write_checksum_file(output_dir: Path, asset_paths: list[Path]) -> Path:
+    checksum_path = output_dir / "SHA256SUMS"
+    lines: list[str] = []
+    for path in sorted(asset_paths, key=lambda item: item.name):
+        if path.parent != output_dir or path.name != Path(path.name).name:
+            raise PackageError(f"checksum asset must use a flat release filename: {path}")
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+        lines.append(f"{digest}  {path.name}")
+    checksum_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return checksum_path
+
+
 def package_skill(skill_name: str, output_dir: Path, variant: str = "workbuddy") -> tuple[Path, dict[str, object]]:
     if skill_name not in SKILLS:
         raise PackageError(f"unknown Skill: {skill_name}")
@@ -131,12 +143,17 @@ def main() -> int:
     try:
         if args.require_clean and source_state()[1]:
             raise PackageError("release packaging requires a clean Git working tree")
+        output_dir = args.output_dir.resolve()
+        release_assets: list[Path] = []
         for skill_name in args.skills or SKILLS:
             for variant in variants:
-                archive, manifest = package_skill(skill_name, args.output_dir.resolve(), variant)
+                archive, manifest = package_skill(skill_name, output_dir, variant)
                 manifest_path = archive.with_suffix(".manifest.json")
                 manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                release_assets.extend((archive, manifest_path))
                 print(f"Packaged {skill_name} ({variant}): {archive} (sha256={manifest['sha256']})")
+        checksum_path = write_checksum_file(output_dir, release_assets)
+        print(f"Wrote aggregate checksums: {checksum_path}")
     except (OSError, PackageError, zipfile.BadZipFile) as exc:
         print(f"Package failed: {exc}", file=sys.stderr)
         return 1

@@ -14,7 +14,7 @@ This project is preparing its first public preview. No public release has been p
 
 Do not open a public issue for a suspected vulnerability, secret exposure, or exploit proof of concept.
 
-After repository administrators enable GitHub private vulnerability reporting, use the **Report a vulnerability** button on the repository Security page. This setting is configured on GitHub and is separate from this file. Include:
+GitHub private vulnerability reporting (PVR) is the required primary channel for the first public preview. Until the repository Security page exposes an active **Report a vulnerability** button, the release remains blocked. After PVR is enabled, use that button to open a private security advisory. This setting is configured on GitHub and is separate from this file. Include:
 
 - the affected Skill, version, source commit, host, and operating system;
 - a concise summary and expected security boundary;
@@ -24,7 +24,7 @@ After repository administrators enable GitHub private vulnerability reporting, u
 - logs or screenshots with secrets, personal paths, and user data removed;
 - any known mitigation or safe workaround.
 
-If private vulnerability reporting is not available, do not publish exploit details. Email `binyu120@outlook.com` with the subject `repo-anatomy-skill private security report` and state only that a private reporting channel is needed. Wait for a secure response before sending exploit details or sensitive attachments.
+Before the first public release, an unavailable PVR channel is a release stop condition. Do not publish exploit details. Email `binyu120@outlook.com` with the subject `repo-anatomy-skill private security report` and state only that a private reporting channel is needed. Wait for a secure response before sending exploit details or sensitive attachments. The fallback email does not satisfy the release gate by itself.
 
 Never include real API keys, tokens, SSH keys, `.env` contents, private documents, or third-party personal data in a report. Use temporary marker files and disposable workspaces.
 

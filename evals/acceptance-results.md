@@ -83,7 +83,7 @@ These results test instruction-following behavior and disk state; they do not tu
 |---|---|---|
 | WorkBuddy source/package | Pass in the recorded host-specific validation | Retains `agent_created: true`; other WorkBuddy builds are not implied |
 | Open-spec package | Pass with pinned `skills-ref` structural validation | Removes only `agent_created`; client runtime behavior is not implied |
-| Reproducibility | Pass | Same clean commit produces byte-identical ZIP and manifest files |
+| Reproducibility | Pass | Same clean commit produces byte-identical ZIP, manifest, and aggregate `SHA256SUMS` files |
 | Stable installation | Pass | Installer verifies SHA-256 and exact entries; activation remains host-specific |
 
 The `allowed-tools` field remains experimental in the open Agent Skills specification. Structural validation does not guarantee tool pre-approval or identical runtime behavior across clients.
@@ -120,11 +120,12 @@ The repository is suitable for a public preview pull request, not yet for a publ
 
 A `v0.2.0-preview.1` release remains blocked until:
 
-1. the release changes are reviewed and merged into `main`;
-2. hosted CI passes on the publishing repository;
-3. branch protection and private vulnerability reporting are configured and verified;
-4. both distribution variants are regenerated from the clean tagged commit;
-5. each ZIP and manifest is compared with that tagged source;
-6. no unresolved P0 or P1 release-path issue remains.
+1. the release changes are reviewed by an independent write collaborator and merged into `main`;
+2. hosted CI and GitHub-native failure-notification reachability pass on the publishing repository;
+3. PVR, CODEOWNERS, the protected release environment, and the `main` and `v*` rulesets are configured and verified;
+4. a clean 40-character `RELEASE_SHA` is frozen and the exact-SHA CI and commit verification are green;
+5. a signed annotated tag is verified locally, in CI, and on GitHub and resolves exactly to `RELEASE_SHA`;
+6. both distribution variants are regenerated from that exact tag commit and all four ZIP files, four manifests, and `SHA256SUMS` agree;
+7. an independent verifier rechecks the public assets and no unresolved P0 or P1 release-path issue remains.
 
 Automatic semantic routing is explicitly not a release guarantee for this preview.

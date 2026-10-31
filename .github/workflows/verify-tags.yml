@@ -1,0 +1,35 @@
+name: Verify Release Tags
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  verify-tag:
+    name: Verify signed release tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout tag with history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Verify tag object and signature
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          test "$(git cat-file -t "$RELEASE_TAG")" = "tag"
+          RELEASE_SHA="$(git rev-list -n 1 "$RELEASE_TAG")"
+          [[ "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          if [ -f .github/release-signers ]; then
+            git config gpg.ssh.allowedSignersFile "$PWD/.github/release-signers"
+          fi
+          git verify-tag "$RELEASE_TAG"
+          printf 'verified %s -> %s\n' "$RELEASE_TAG" "$RELEASE_SHA"

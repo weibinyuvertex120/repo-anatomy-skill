@@ -28,6 +28,13 @@ Verification date: 2026-10-30.
 - Adopted: a navigable README; explicit license, contribution, code-of-conduct, and security files; pull-request-based changes; required checks for the protected default branch; private vulnerability reporting for a public repository.
 - Not adopted yet: repository-host settings that cannot be represented in Git, such as branch protection and private vulnerability reporting. They remain publication gates and must be configured on GitHub.
 
+### img2threejs README
+
+- Source: [img2threejs/img2threejs](https://github.com/img2threejs/img2threejs)
+- Consulted material: repository README structure and ordering.
+- Adopted: a short opening position, a real result near the top, followed by capability, usage, installation, and explicit limits.
+- Not adopted: upstream wording, badges, showcase data, sponsorship content, roadmap, scripts catalog, project structure, or implementation details.
+
 ## Mature Project Comparisons
 
 ### Microsoft Agent Framework

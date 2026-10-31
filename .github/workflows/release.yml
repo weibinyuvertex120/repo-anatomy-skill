@@ -1,0 +1,184 @@
+name: Release Candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_sha:
+        description: Exact 40-character commit ID referenced by the signed tag
+        required: true
+        type: string
+      tag:
+        description: Existing signed release tag, for example v0.2.0-preview.1
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build exact tagged release
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      release_sha: ${{ steps.verify.outputs.release_sha }}
+      tag: ${{ steps.verify.outputs.tag }}
+    steps:
+      - name: Validate immutable inputs
+        id: verify
+        env:
+          RELEASE_SHA: ${{ inputs.release_sha }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]
+          printf 'release_sha=%s\n' "$RELEASE_SHA" >> "$GITHUB_OUTPUT"
+          printf 'tag=%s\n' "$RELEASE_TAG" >> "$GITHUB_OUTPUT"
+      - name: Checkout exact candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.release_sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Fetch and verify signed tag
+        env:
+          RELEASE_SHA: ${{ inputs.release_sha }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          set -euo pipefail
+          git fetch --force origin "refs/tags/${RELEASE_TAG}:refs/tags/${RELEASE_TAG}"
+          test "$(git rev-parse HEAD)" = "$RELEASE_SHA"
+          test "$(git rev-list -n 1 "$RELEASE_TAG")" = "$RELEASE_SHA"
+          if [ -f .github/release-signers ]; then
+            git config gpg.ssh.allowedSignersFile "$PWD/.github/release-signers"
+          fi
+          git verify-tag "$RELEASE_TAG"
+          test -z "$(git status --porcelain)"
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Run deterministic validation
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          set -euo pipefail
+          python3 tests/validate_repository.py
+          python3 tests/test_validator.py
+          python3 tests/test_draft_checker.py
+          python3 tests/test_packaging.py
+          python3 tests/test_installation.py
+          git diff --check
+      - name: Build release assets from exact commit
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          RELEASE_SHA: ${{ inputs.release_sha }}
+        run: |
+          set -euo pipefail
+          python3 scripts/package_skills.py dist --require-clean
+          test "$(find dist -maxdepth 1 -type f -name '*.zip' | wc -l | tr -d ' ')" = "4"
+          test "$(find dist -maxdepth 1 -type f -name '*.manifest.json' | wc -l | tr -d ' ')" = "4"
+          test -f dist/SHA256SUMS
+          (
+            cd dist
+            sha256sum -c SHA256SUMS --strict
+          )
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          release_sha = os.environ["RELEASE_SHA"]
+          manifests = sorted(Path("dist").glob("*.manifest.json"))
+          assert len(manifests) == 4
+          for path in manifests:
+              data = json.loads(path.read_text(encoding="utf-8"))
+              assert data["source_commit"] == release_sha
+              assert data["source_dirty"] is False
+              assert data["archive"] == Path(data["archive"]).name
+          print("manifest source binding verified")
+          PY
+      - name: Upload verified candidate artifact
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-${{ inputs.tag }}-${{ inputs.release_sha }}
+          path: dist/*
+          if-no-files-found: error
+          retention-days: 7
+
+  publish-draft:
+    name: Upload assets to Draft Pre-release
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment: release
+    permissions:
+      contents: write
+    steps:
+      - name: Download verified candidate artifact
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-${{ needs.build.outputs.tag }}-${{ needs.build.outputs.release_sha }}
+          path: dist
+      - name: Recheck downloaded assets
+        run: |
+          set -euo pipefail
+          test "$(find dist -maxdepth 1 -type f -name '*.zip' | wc -l | tr -d ' ')" = "4"
+          test "$(find dist -maxdepth 1 -type f -name '*.manifest.json' | wc -l | tr -d ' ')" = "4"
+          test -f dist/SHA256SUMS
+          (
+            cd dist
+            sha256sum -c SHA256SUMS --strict
+          )
+      - name: Require matching Draft Pre-release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_SHA: ${{ needs.build.outputs.release_sha }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+        run: |
+          set -euo pipefail
+          release_json="$(
+            gh api --paginate "repos/${GITHUB_REPOSITORY}/releases?per_page=100" |
+              jq -s --arg tag "$RELEASE_TAG" '[add[] | select(.tag_name == $tag)]'
+          )"
+          test "$(jq 'length' <<<"$release_json")" = "1"
+          test "$(jq -r '.[0].draft' <<<"$release_json")" = "true"
+          test "$(jq -r '.[0].prerelease' <<<"$release_json")" = "true"
+          test "$(git ls-remote "https://github.com/${GITHUB_REPOSITORY}.git" "refs/tags/${RELEASE_TAG}^{}" | cut -f1)" = "$RELEASE_SHA"
+          test "$(jq '.[0].assets | length' <<<"$release_json")" = "0"
+      - name: Upload assets without replacement
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+        run: gh release upload "$RELEASE_TAG" dist/* --repo "$GITHUB_REPOSITORY"
+      - name: Compare GitHub asset digests
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+        run: |
+          set -euo pipefail
+          release_id="$(
+            gh api --paginate "repos/${GITHUB_REPOSITORY}/releases?per_page=100" |
+              jq -rs --arg tag "$RELEASE_TAG" '[add[] | select(.tag_name == $tag)][0].id'
+          )"
+          test "$release_id" != "null"
+          gh api --paginate "repos/${GITHUB_REPOSITORY}/releases/${release_id}/assets?per_page=100" > /tmp/release-assets.json
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          local_assets = sorted(path for path in Path("dist").iterdir() if path.is_file())
+          remote_assets = json.loads(Path("/tmp/release-assets.json").read_text(encoding="utf-8"))
+          remote_digests = {asset["name"]: asset.get("digest") for asset in remote_assets}
+          assert sorted(remote_digests) == [path.name for path in local_assets]
+          for path in local_assets:
+              expected = f"sha256:{hashlib.sha256(path.read_bytes()).hexdigest()}"
+              assert remote_digests[path.name] == expected, (path.name, remote_digests[path.name], expected)
+          print("GitHub release asset digests verified")
+          PY

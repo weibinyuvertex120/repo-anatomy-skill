@@ -104,6 +104,10 @@ jobs:
           for artifact in dist/*; do
             cmp "$artifact" "/tmp/rebuilt-skills/$(basename "$artifact")"
           done
+          (
+            cd dist
+            sha256sum -c SHA256SUMS --strict
+          )
       - name: Verify manifests
         env:
           PYTHONDONTWRITEBYTECODE: "1"

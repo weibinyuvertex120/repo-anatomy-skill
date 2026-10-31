@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import importlib.util
 import tempfile
 import zipfile
@@ -42,9 +43,14 @@ def main() -> int:
             ("workspace-file-maintainer", "0.1.0", 5),
             ("research-material-writer", "0.2.0-preview.1", 9),
         )
+        release_assets: list[Path] = []
+        rebuilt_assets: list[Path] = []
         for skill_name, expected_version, expected_count in expected:
             for variant in MODULE.VARIANTS:
                 archive, manifest = MODULE.package_skill(skill_name, output, variant)
+                manifest_path = archive.with_suffix(".manifest.json")
+                manifest_path.write_text(MODULE.json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                release_assets.extend((archive, manifest_path))
                 if manifest["version"] != expected_version:
                     raise AssertionError(f"{skill_name}: unexpected version {manifest['version']}")
                 if manifest["variant"] != variant:
@@ -66,12 +72,38 @@ def main() -> int:
                     if variant == "open-spec" and "agent_created:" in skill_md:
                         raise AssertionError(f"{skill_name}: host field leaked into open-spec package")
                 rebuilt_archive, rebuilt_manifest = MODULE.package_skill(skill_name, rebuilt_output, variant)
+                rebuilt_manifest_path = rebuilt_archive.with_suffix(".manifest.json")
+                rebuilt_manifest_path.write_text(
+                    MODULE.json.dumps(rebuilt_manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                )
+                rebuilt_assets.extend((rebuilt_archive, rebuilt_manifest_path))
                 if archive.read_bytes() != rebuilt_archive.read_bytes():
                     raise AssertionError(f"{skill_name}: repeated build changed ZIP bytes")
                 if manifest != rebuilt_manifest:
                     raise AssertionError(f"{skill_name}: repeated build changed manifest")
                 print(f"PASS packages-{skill_name}-{variant}")
                 print(f"PASS reproducible-{skill_name}-{variant}")
+
+        checksum_path = MODULE.write_checksum_file(output, release_assets)
+        rebuilt_checksum_path = MODULE.write_checksum_file(rebuilt_output, rebuilt_assets)
+        expected_asset_names = sorted(path.name for path in release_assets)
+        checksum_lines = checksum_path.read_text(encoding="utf-8").splitlines()
+        if len(checksum_lines) != 8:
+            raise AssertionError(f"SHA256SUMS: expected 8 entries, got {len(checksum_lines)}")
+        actual_asset_names: list[str] = []
+        for line in checksum_lines:
+            digest, name = line.split("  ", 1)
+            asset = output / name
+            if Path(name).name != name:
+                raise AssertionError(f"SHA256SUMS: non-flat asset name {name}")
+            if digest != hashlib.sha256(asset.read_bytes()).hexdigest():
+                raise AssertionError(f"SHA256SUMS: digest mismatch for {name}")
+            actual_asset_names.append(name)
+        if actual_asset_names != expected_asset_names:
+            raise AssertionError("SHA256SUMS: entries are incomplete or not sorted")
+        if checksum_path.read_bytes() != rebuilt_checksum_path.read_bytes():
+            raise AssertionError("SHA256SUMS: repeated build changed aggregate checksums")
+        print("PASS aggregate-sha256sums")
     print("Packaging regression tests passed")
     return 0
 

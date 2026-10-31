@@ -13,6 +13,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 CHANGELOG = ROOT / "CHANGELOG.md"
 LICENSE = ROOT / "LICENSE"
+RELEASE_WORKFLOW = ROOT / ".github/workflows/release.yml"
+TAG_WORKFLOW = ROOT / ".github/workflows/verify-tags.yml"
+FAILURE_WORKFLOW = ROOT / ".github/workflows/failure-notification.yml"
 
 
 @dataclass(frozen=True)
@@ -317,6 +320,53 @@ def validate_shared_files(errors: list[str]) -> None:
             fail(errors, f"Missing repository file: {relative}")
 
 
+def validate_release_workflows(errors: list[str]) -> None:
+    for path in (RELEASE_WORKFLOW, TAG_WORKFLOW, FAILURE_WORKFLOW):
+        if not path.is_file():
+            fail(errors, f"Missing {path.relative_to(ROOT)}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for line in text.splitlines():
+            stripped = line.strip()
+            if not stripped.startswith("uses:"):
+                continue
+            value = stripped.split(":", 1)[1].strip()
+            if value.startswith("./"):
+                continue
+            if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+@[0-9a-f]{40}(?:\s+#.*)?", value):
+                fail(errors, f"{path.relative_to(ROOT)}: action is not pinned to a full commit SHA: {value}")
+
+    if RELEASE_WORKFLOW.is_file():
+        release_text = RELEASE_WORKFLOW.read_text(encoding="utf-8")
+        required = (
+            "workflow_dispatch:",
+            "release_sha:",
+            "tag:",
+            "environment: release",
+            "permissions:\n      contents: write",
+            "sha256sum -c SHA256SUMS --strict",
+            "git verify-tag",
+            "GitHub release asset digests verified",
+            'test "$(git rev-parse HEAD)" = "$RELEASE_SHA"',
+        )
+        for marker in required:
+            if marker not in release_text:
+                fail(errors, f".github/workflows/release.yml: missing release gate {marker}")
+
+    if TAG_WORKFLOW.is_file():
+        tag_text = TAG_WORKFLOW.read_text(encoding="utf-8")
+        for marker in ('tags:\n      - "v*"', "git verify-tag", 'test "$(git cat-file -t "$RELEASE_TAG")" = "tag"'):
+            if marker not in tag_text:
+                fail(errors, f".github/workflows/verify-tags.yml: missing tag gate {marker}")
+
+    if FAILURE_WORKFLOW.is_file():
+        failure_text = FAILURE_WORKFLOW.read_text(encoding="utf-8")
+        required = ("workflow_run:", "issues: write", "github.event.workflow_run.conclusion == 'failure'", "gh issue create")
+        for marker in required:
+            if marker not in failure_text:
+                fail(errors, f".github/workflows/failure-notification.yml: missing notification gate {marker}")
+
+
 def validate_repository_hygiene(errors: list[str]) -> None:
     forbidden_names = {".DS_Store", "__pycache__"}
     for path in ROOT.rglob("*"):
@@ -343,6 +393,7 @@ def main() -> int:
     validate_changelog(versions, errors)
     validate_shared_files(errors)
     validate_acceptance_manifest(errors)
+    validate_release_workflows(errors)
     validate_repository_hygiene(errors)
 
     if errors:
