@@ -1,12 +1,12 @@
-# v0.2.0-preview.1
+# Draft: v0.2.0-preview.1
 
-This is the first public preview of the research-writing and conservative file-maintenance Skill repository.
+This document is the draft release note for the first public preview of the research-writing and conservative file-maintenance Skill repository. It does not indicate that the tag or GitHub release already exists.
 
 ## Release Level
 
-- Git tag: `v0.2.0-preview.1`
+- Planned Git tag: `v0.2.0-preview.1`
 - Semantic version: `0.2.0-preview.1`
-- GitHub release type: pre-release
+- Planned GitHub release type: pre-release
 - Stability: public evaluation; not a stable production release
 
 Do not replace assets under this version after publication. Any correction must use a new version such as `0.2.0-preview.2`.
@@ -59,5 +59,5 @@ Do not publish when any of the following is true:
 - a P0 or P1 security issue affects the release path;
 - WorkBuddy and open-spec packages have not been independently validated;
 - ZIP content, version, source commit, or SHA-256 does not match its manifest;
-- private vulnerability reporting or the Code of Conduct private contact channel is unavailable;
+- GitHub private vulnerability reporting is not enabled and the fallback Code of Conduct private contact channel is unavailable;
 - licensing, third-party ownership, or compatibility claims are unresolved.

@@ -36,7 +36,7 @@ This Code of Conduct applies within all community spaces and when an individual 
 
 ## Enforcement
 
-Report abusive, harassing, or otherwise unacceptable behavior privately through the repository owner's private contact method published on their GitHub profile. Do not use a public issue. Public release is blocked until the repository owner's profile provides a working private contact method.
+Report abusive, harassing, or otherwise unacceptable behavior privately to `binyu120@outlook.com`. Do not use a public issue. Include only the information needed to investigate the report, and do not send credentials, unrelated personal data, or public accusations through this channel.
 
 All complaints will be reviewed and investigated promptly and fairly. Community leaders must respect the privacy and security of reporters.
 

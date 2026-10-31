@@ -11,13 +11,15 @@ Thank you for helping improve these Skills. Contributions should preserve the se
 
 ## Development Setup
 
-Use Python 3.11 or later and run commands from the repository root. The deterministic checks use only the Python standard library.
+Python 3.11 and 3.13 are exercised in CI. Run commands from the repository root. The deterministic checks use only the Python standard library.
 
 ```bash
 python3 tests/validate_repository.py
 python3 tests/test_validator.py
 python3 tests/test_draft_checker.py
 python3 tests/test_packaging.py
+python3 tests/test_installation.py
+git diff --check
 ```
 
 WorkBuddy's bundled validator is an additional host-specific check:
@@ -39,6 +41,7 @@ Contributors without WorkBuddy can still run the repository tests and the open-s
 - Do not add generated ZIP files, caches, or local installation links to Git.
 - Update the Skill version and `CHANGELOG.md` when behavior or package contracts change.
 - Preserve WorkBuddy and open-spec compatibility rules defined by the release process.
+- Cite primary external sources when a change adopts a standard, workflow, or compatibility claim; update `SOURCES.md` for material design influences.
 
 ## Trigger And Functional Evaluations
 

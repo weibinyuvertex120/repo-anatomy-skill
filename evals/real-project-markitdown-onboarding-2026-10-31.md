@@ -1,6 +1,6 @@
 # 真实项目验收：MarkItDown 开源项目首次使用
 
-Date: 2026-10-31
+Verification date (UTC): 2026-10-31
 Skill: `research-material-writer` 0.2.0
 Invocation: explicit
 Automatic semantic trigger matrix: deferred until after open-source publication

@@ -298,11 +298,13 @@ def validate_acceptance_manifest(errors: list[str]) -> None:
         return
     text = path.read_text(encoding="utf-8")
     required = (
-        "## Verification Record: 2026-10-30 to 2026-10-31",
+        "## Verification Record",
         "- skill_versions:",
         "- host:",
         "- evidence_scope:",
         "- source_revision:",
+        "- package_scope:",
+        "- routing_scope:",
     )
     for marker in required:
         if marker not in text:

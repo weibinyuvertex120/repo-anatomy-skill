@@ -37,7 +37,7 @@ The project follows Semantic Versioning:
 ### Known Limitations
 
 - Automatic semantic triggering remains deferred until after open-source publication by user decision; only explicit invocation is in scope for this revision.
-- The WorkBuddy-required top-level `agent_created` field remains incompatible with strict open-schema validators.
+- At the time of this entry, the WorkBuddy-required top-level `agent_created` field was incompatible with strict open-schema validators. Later packaging work adds a separate open-spec archive that removes this field; see the current compatibility matrix in `README.md`.
 
 ## research-material-writer 0.1.0 - 2026-10-30
 
@@ -55,7 +55,7 @@ The project follows Semantic Versioning:
 
 - The structural checker cannot validate factual accuracy, source quality, or whether a tutorial genuinely succeeds in the target environment.
 - Automatic semantic triggering has not yet been measured in a fresh host matrix; explicit invocation should be used during development.
-- The WorkBuddy-required top-level `agent_created` field remains incompatible with strict open-schema validators.
+- At the time of this entry, the WorkBuddy-required top-level `agent_created` field was incompatible with strict open-schema validators. Later packaging work adds a separate open-spec archive that removes this field; see the current compatibility matrix in `README.md`.
 
 ## workspace-file-maintainer 0.1.0 - 2026-10-30
 
@@ -70,4 +70,4 @@ The project follows Semantic Versioning:
 ### Known Limitations
 
 - Automatic semantic triggering was not observed in the latest 7 relevant fresh-agent diagnostics. Explicit invocation is verified; stable tagging is deferred until automatic discovery improves.
-- The WorkBuddy-required top-level `agent_created` field is rejected by the open Agent Skills `skills-ref` validator, so the current package is host-targeted rather than strictly portable.
+- At the time of this entry, the only package retained `agent_created: true` and was rejected by strict open-schema validation. Later packaging work adds a separate open-spec archive; see the current compatibility matrix in `README.md`.

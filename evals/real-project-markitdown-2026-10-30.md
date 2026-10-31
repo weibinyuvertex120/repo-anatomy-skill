@@ -11,11 +11,7 @@ Research an unfamiliar active open-source project and produce a beginner Chinese
 
 Selected project: `microsoft/markitdown`
 
-Output:
-
-```text
-/Users/veretex/WorkBuddy AI/2026-10-30-00-24-46/outputs/markitdown-tutorial-real-eval.md
-```
+Output: a local tutorial artifact outside this repository. The generated tutorial was intentionally not committed; this file records the evaluation method and result.
 
 ## Primary Evidence
 
@@ -75,8 +71,8 @@ Not verified:
 Command:
 
 ```bash
-python3 ~/.workbuddy-ai/skills/research-material-writer/scripts/check_draft.py \
-  "/Users/veretex/WorkBuddy AI/2026-10-30-00-24-46/outputs/markitdown-tutorial-real-eval.md"
+python3 skills/research-material-writer/scripts/check_draft.py \
+  /path/to/markitdown-tutorial-real-eval.md
 ```
 
 Result: pass.

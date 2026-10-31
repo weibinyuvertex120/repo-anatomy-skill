@@ -29,18 +29,22 @@ def main() -> int:
         root = Path(temporary)
         packages = root / "packages"
         installs = root / "installs"
-        archive, manifest = PACKAGER.package_skill("research-material-writer", packages, "workbuddy")
-        manifest_path = archive.with_suffix(".manifest.json")
-        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        candidates: dict[str, tuple[Path, Path, dict[str, object]]] = {}
+        for variant in PACKAGER.VARIANTS:
+            archive, manifest = PACKAGER.package_skill("research-material-writer", packages, variant)
+            manifest_path = archive.with_suffix(".manifest.json")
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            candidates[variant] = (archive, manifest_path, manifest)
 
-        installed = INSTALLER.install(archive, manifest_path, installs, "workbuddy")
-        if installed.is_symlink() or not (installed / "SKILL.md").is_file():
-            raise AssertionError("stable installation was not copied correctly")
-        receipt = json.loads((installed / ".install-receipt.json").read_text(encoding="utf-8"))
-        if receipt["sha256"] != manifest["sha256"]:
-            raise AssertionError("installation receipt does not match package")
-        print("PASS installs-versioned-copy")
+            installed = INSTALLER.install(archive, manifest_path, installs, variant)
+            if installed.is_symlink() or not (installed / "SKILL.md").is_file():
+                raise AssertionError(f"{variant}: stable installation was not copied correctly")
+            receipt = json.loads((installed / ".install-receipt.json").read_text(encoding="utf-8"))
+            if receipt["sha256"] != manifest["sha256"] or receipt["variant"] != variant:
+                raise AssertionError(f"{variant}: installation receipt does not match package")
+            print(f"PASS installs-versioned-copy-{variant}")
 
+        archive, manifest_path, manifest = candidates["workbuddy"]
         try:
             INSTALLER.install(archive, manifest_path, installs, "workbuddy")
         except INSTALLER.InstallError as exc:

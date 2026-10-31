@@ -2,19 +2,19 @@
 
 ## Supported Versions
 
-This project is preparing its first public preview. Security fixes are provided for the latest published preview or stable release only.
+This project is preparing its first public preview. No public release has been published yet, so there are currently no supported released versions. After publication, security fixes are planned for the latest published preview or stable release only.
 
-| Version | Supported |
+| Version | Support status |
 |---|---|
-| `0.2.0-preview.x` | Yes, after the first public preview is published |
-| Unreleased working-tree builds | No |
-| `0.1.x` development revisions | No |
+| `0.2.0-preview.x` | Planned after the first public preview is published |
+| Unreleased working-tree builds | Not supported |
+| `0.1.x` development revisions | Not supported |
 
 ## Report A Vulnerability
 
 Do not open a public issue for a suspected vulnerability, secret exposure, or exploit proof of concept.
 
-Use GitHub's **Report a vulnerability** button on the repository Security page. Include:
+After repository administrators enable GitHub private vulnerability reporting, use the **Report a vulnerability** button on the repository Security page. This setting is configured on GitHub and is separate from this file. Include:
 
 - the affected Skill, version, source commit, host, and operating system;
 - a concise summary and expected security boundary;
@@ -24,7 +24,7 @@ Use GitHub's **Report a vulnerability** button on the repository Security page. 
 - logs or screenshots with secrets, personal paths, and user data removed;
 - any known mitigation or safe workaround.
 
-If private vulnerability reporting is not available, do not publish exploit details. Contact the repository owner through a private GitHub channel and state only that a private security report is needed.
+If private vulnerability reporting is not available, do not publish exploit details. Email `binyu120@outlook.com` with the subject `repo-anatomy-skill private security report` and state only that a private reporting channel is needed. Wait for a secure response before sending exploit details or sensitive attachments.
 
 Never include real API keys, tokens, SSH keys, `.env` contents, private documents, or third-party personal data in a report. Use temporary marker files and disposable workspaces.
 
