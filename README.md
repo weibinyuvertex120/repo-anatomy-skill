@@ -11,6 +11,18 @@ The repository contains two cooperating Skills rather than one oversized workflo
 
 The project name describes the primary workflow: understand the anatomy of an unfamiliar repository before recommending, documenting, or changing it. File persistence remains a separate safety layer.
 
+## Task Example
+
+Start with a repository and the result you need. For example:
+
+```text
+Research [GitHub repository URL] for [intended reader]. Help me [goal or decision].
+I need a [project analysis, first-use guide, or technical tutorial].
+Make important claims traceable to available project evidence, and mark anything you could not verify.
+```
+
+Replace the bracketed parts with your project and task. Choose the deliverable that fits your goal; the example is a starting point, not a fixed prompt or required output format.
+
 ## Status And Evidence Boundary
 
 This repository is preparing its first public preview. The current candidate validates explicit Skill invocation, deterministic repository checks, safe packaging, and WorkBuddy/open-spec distribution. It does not claim stable automatic semantic routing.
