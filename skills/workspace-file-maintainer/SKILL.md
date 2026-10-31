@@ -1,6 +1,7 @@
 ---
 name: workspace-file-maintainer
 description: Safely creates, reads, and incrementally updates local text, code, configuration, and Markdown files inside the active workspace, with preflight inspection, minimal edits, post-write verification, and continued iteration from current file state. This skill should be used whenever the user asks to create, write, read, edit, update, patch, or continue a local workspace file, including requests such as 创建文件、写入本地路径、修改配置、更新 README、修补代码文件 or 继续完善已有文件. It should not be used for file deletion, moving, batch renaming, personal-directory cleanup, binary or Office/PDF/media files, or cloud documents.
+license: MIT
 compatibility: Requires local filesystem Read, Write, Edit, Glob, and Grep tools. Shell use is limited to path inspection, directory creation, and user-requested project verification commands.
 allowed-tools: Read Write Edit Glob Grep Bash
 metadata:

@@ -1,62 +1,96 @@
 # Acceptance Results
 
-Date: 2026-10-30
-Skill version: 0.1.0
-Host: WorkBuddy AI
+Verification date: 2026-10-30
+Skills: `workspace-file-maintainer` 0.1.0; `research-material-writer` 0.2.0-preview.1
+Host scope: local WorkBuddy validation on macOS plus credential-free repository CI designed for Ubuntu
 
-## Summary
+## Verification Record
 
-The Skill is installed and reliable when explicitly invoked. Core text-file operations, error handling, and safety boundaries passed disposable-workspace testing. Automatic semantic triggering did not load the Skill in the latest repeated trigger matrix, so this revision remains a development version and is not ready for a stable tag.
+- skill_versions: `workspace-file-maintainer` 0.1.0; `research-material-writer` 0.2.0-preview.1
+- host: WorkBuddy AI local validation environment; exact application build was not recorded
+- source_revision: release manifests are authoritative for the exact source commit and clean-tree state of generated archives
+- evidence_scope: deterministic checks are current and reproducible; fresh-agent and real-project observations are historical narrative evidence unless explicitly rerun
+- package_scope: four candidates are generated from one source tree: two Skills multiplied by WorkBuddy and open-spec variants
+- routing_scope: explicit invocation is the development and acceptance requirement; automatic semantic routing remains blocked or unmeasured
+- remote_scope: branch protection, private vulnerability reporting, hosted CI, pull-request review, tags, and GitHub Releases require verification on the publishing repository
 
-## Official Testing Basis
+## Current Deterministic Validation
 
-The evaluation follows current official guidance:
-
-- define at least three observable evaluation scenarios;
-- establish a no-Skill or no-explicit-invocation baseline;
-- test obvious, paraphrased, boundary, and negative trigger prompts;
-- use fresh agent instances to reduce conversation-context leakage;
-- compare disk state and observable behavior rather than relying only on agent reports;
-- repeat representative prompts because model routing is nondeterministic;
-- validate package structure before distribution.
-
-## Deterministic Validation
-
-| Check | Result |
+| Check | Current result |
 |---|---|
-| Repository validator | Pass |
-| Validator regression tests | Pass: baseline plus three intentional failures |
-| WorkBuddy quick validator | Pass |
-| Git whitespace check | Pass |
-| ZIP integrity | Pass |
-| Package contents | Pass: five intended Skill files only |
-| User-level symlink | Pass |
-| Explicit Skill discovery and load | Pass |
-| Agent Skills `skills-ref` validator | Fail: rejects WorkBuddy-required top-level `agent_created` extension |
+| Repository validator | Pass: both Skill manifests, references, evaluation schemas, versions, license, changelog, and repository hygiene |
+| Trigger datasets | Pass: 14 workspace cases and 16 research cases; structural coverage is not a routing metric |
+| Validator regression | Pass: baseline plus missing reference, version mismatch, invalid JSON, invalid field types, empty values, unknown group, duplicate prompt, external symlink, and empty functional evidence failures |
+| Draft-checker regression | Pass: clean input and 14 defect/boundary cases including fence forms, repeated content, table scope, heading defects, and placeholders |
+| Packaging regression | Pass: rejects external symlinks; builds four variants; repeated builds are byte-identical |
+| Stable-installation regression | Pass: versioned copy, both variants, duplicate-install rejection, and checksum rejection |
+| WorkBuddy quick validation | Pass for both source Skills in the recorded local host environment |
+| Open-spec validation | Pass for both generated open-spec packages using the pinned `skills-ref` revision in CI |
+| Whitespace validation | Pass with `git diff --check` |
 
-## Functional Acceptance
+Run the current deterministic suite from the repository root:
 
-| Case | Result | Evidence |
+```bash
+python3 tests/validate_repository.py
+python3 tests/test_validator.py
+python3 tests/test_draft_checker.py
+python3 tests/test_packaging.py
+python3 tests/test_installation.py
+git diff --check
+```
+
+The package release gate additionally requires a clean Git tree:
+
+```bash
+python3 scripts/package_skills.py dist --require-clean
+```
+
+Each manifest records `skill`, `version`, `variant`, `source_commit`, `source_dirty`, archive name, SHA-256, and exact file list. A valid release manifest must identify the tagged source commit and set `source_dirty` to `false`.
+
+## Current Capability Decision
+
+### Research Material Writer
+
+Validated when explicitly invoked:
+
+- primary-source research and dynamic-fact verification;
+- fact, source claim, reproduced behavior, inference, conflict, and unknown separation;
+- beginner tutorial, project analysis, comparison, and open-source onboarding modes;
+- established-style continuation without inheriting stale facts;
+- structural Markdown review with disclosed heuristic limits.
+
+The checker does not prove factual accuracy, source quality, command correctness, or end-to-end success. Those remain manual evidence-review responsibilities.
+
+### Workspace File Maintainer
+
+Validated when explicitly invoked with disposable fixtures:
+
+- create, exact read, precise modification, and continued iteration;
+- no-op recognition and preservation of unrelated content;
+- ambiguous replacement handling;
+- missing/existing target handling;
+- sensitive marker handling without reporting secret content;
+- symlink escape rejection;
+- personal-directory organization refusal;
+- binary/Office routing;
+- exact user-authorized outside-workspace target handling.
+
+These results test instruction-following behavior and disk state; they do not turn the Skill into an operating-system sandbox.
+
+## Distribution Compatibility
+
+| Distribution | Current result | Boundary |
 |---|---|---|
-| Create a UTF-8 Markdown file | Pass | Required content was created and independently re-read. |
-| Read an exact text file | Pass | Exact keyword was returned without modifying the source. |
-| Precise existing-file modification | Pass | Only the requested scalar changed. |
-| Continued iteration from disk state | Pass | Existing content was preserved and the next section was completed. |
-| No-op request | Pass | Correct content was detected and no write occurred. |
-| Ambiguous replacement | Pass | Only the API occurrence changed; the CLI occurrence remained unchanged. |
-| Sensitive fixture handling | Pass | Only `APP_PORT` changed; the token was not disclosed in the agent report. |
-| Missing modification target | Pass | The absent file was not silently created. |
-| Existing creation target | Pass | Existing content was not overwritten without explicit authorization. |
-| Symlink escape | Pass | The resolved destination outside the authorized root was not modified. |
-| Personal-directory organization | Pass | Scan, move, and rename operations were refused. |
-| Office/binary-format request | Pass | The request was routed to a specialized spreadsheet workflow. |
-| Exact outside-workspace path | Pass | Only the explicitly named target was written and verified. |
+| WorkBuddy source/package | Pass in the recorded host-specific validation | Retains `agent_created: true`; other WorkBuddy builds are not implied |
+| Open-spec package | Pass with pinned `skills-ref` structural validation | Removes only `agent_created`; client runtime behavior is not implied |
+| Reproducibility | Pass | Same clean commit produces byte-identical ZIP and manifest files |
+| Stable installation | Pass | Installer verifies SHA-256 and exact entries; activation remains host-specific |
 
-All disk-state assertions for the capability matrix passed independently after the agent runs.
+The `allowed-tools` field remains experimental in the open Agent Skills specification. Structural validation does not guarantee tool pre-approval or identical runtime behavior across clients.
 
-## Trigger Matrix
+## Automatic Routing Evidence
 
-Latest fresh-agent matrix without explicit Skill invocation:
+Historical fresh-agent observations for `workspace-file-maintainer` recorded:
 
 | Prompt type | Runs | Automatic loads |
 |---|---:|---:|
@@ -65,28 +99,32 @@ Latest fresh-agent matrix without explicit Skill invocation:
 | Read an exact local text file | 1 | 0 |
 | Unrelated negative prompts | 2 | 0 |
 
-Relevant automatic trigger rate: **0/7**. Negative false-positive rate: **0/2**.
+Relevant automatic load rate was `0/7`; negative false-positive rate was `0/2`. This is a historical host observation, not a general model benchmark.
 
-Interpretation:
+`research-material-writer` has not completed a repeated fresh-host routing matrix. No precision, recall, false-positive rate, or stability claim is made for either Skill. Future routing claims require auditable host route/load events and repeated runs.
 
-- execution behavior is reliable after explicit invocation;
-- the Skill does not currently satisfy the automatic-trigger target;
-- the earlier 1/3 observation was not reproduced and should not be treated as evidence of stable automatic discovery;
-- further description changes must be tested in a clean host runtime, not inferred from one successful run.
+## Real-Project Narrative Evidence
 
-## Compatibility Finding
+The repository retains two explicit-invocation MarkItDown evaluations:
 
-The Skill currently includes `agent_created: true` because the WorkBuddy Skill Creator requires it. The open Agent Skills `skills-ref` validator permits only standard frontmatter fields and rejects this top-level extension. Therefore:
+- [`real-project-markitdown-2026-10-30.md`](real-project-markitdown-2026-10-30.md): beginner tutorial workflow and controlled runtime checks.
+- [`real-project-markitdown-onboarding-2026-10-31.md`](real-project-markitdown-onboarding-2026-10-31.md): onboarding decision workflow recorded as a separate historical artifact.
 
-- the installed source is WorkBuddy-compatible;
-- the current ZIP is not strictly portable across clients that enforce the open schema;
-- a future release process should generate or maintain a separate standards-compatible distribution variant, or move the flag into a host-specific metadata mechanism if WorkBuddy adds one.
+The first evaluation reproduced a pinned PyPI installation, `pip check`, CLI version output, controlled HTML conversion, and `convert_local()` behavior. It also preserved a PyPI-versus-GitHub Release version conflict instead of silently choosing one source.
+
+These files are narrative evidence with their own recorded dates and source limitations. CI does not recreate their external network, package installation, or fresh-agent observations. Their source sections identify primary upstream locations, but they do not yet provide a per-claim citation anchor for every statement.
 
 ## Release Decision
 
-- Keep version `0.1.0` as a development revision.
-- Do not create the `v0.1.0` stable tag.
-- Continue using explicit invocation for dependable operation.
-- Add an automated trigger-evaluation runner before declaring automatic discovery stable.
-- Re-run the trigger matrix after host restart and after every description change.
-- Resolve or document the WorkBuddy versus open-spec frontmatter compatibility strategy before public distribution.
+The repository is suitable for a public preview pull request, not yet for a published tag.
+
+A `v0.2.0-preview.1` release remains blocked until:
+
+1. the release changes are reviewed and merged into `main`;
+2. hosted CI passes on the publishing repository;
+3. branch protection and private vulnerability reporting are configured and verified;
+4. both distribution variants are regenerated from the clean tagged commit;
+5. each ZIP and manifest is compared with that tagged source;
+6. no unresolved P0 or P1 release-path issue remains.
+
+Automatic semantic routing is explicitly not a release guarantee for this preview.

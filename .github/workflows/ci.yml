@@ -1,0 +1,137 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - "release/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate repository
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/validate_repository.py
+      - name: Run validator regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_validator.py
+      - name: Run draft-checker regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_draft_checker.py
+      - name: Run packaging regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_packaging.py
+      - name: Run stable-installation regression tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_installation.py
+      - name: Check whitespace
+        run: git diff --check
+
+  open-spec:
+    name: Open Agent Skills compatibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Install pinned skills-ref
+        run: python3 -m pip install "git+https://github.com/agentskills/agentskills.git@69ef37e9424c0a7ea9dd2293b559e43ec8176379#subdirectory=skills-ref"
+      - name: Build open-spec packages
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 scripts/package_skills.py dist --variant open-spec --require-clean
+      - name: Validate open-spec packages
+        run: |
+          mkdir -p /tmp/open-spec
+          for archive in dist/*-open-spec.zip; do unzip -q "$archive" -d /tmp/open-spec; done
+          skills-ref validate /tmp/open-spec/workspace-file-maintainer
+          skills-ref validate /tmp/open-spec/research-material-writer
+
+  package:
+    name: Reproducible package check
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - name: Build packages twice
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python3 scripts/package_skills.py dist --require-clean
+          python3 scripts/package_skills.py /tmp/rebuilt-skills --require-clean
+          for artifact in dist/*; do
+            cmp "$artifact" "/tmp/rebuilt-skills/$(basename "$artifact")"
+          done
+      - name: Verify manifests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import zipfile
+          from pathlib import Path
+
+          root = Path("dist")
+          expected = {
+              "workspace-file-maintainer": ("0.1.0", 5),
+              "research-material-writer": ("0.2.0-preview.1", 9),
+          }
+          for name, (version, count) in expected.items():
+              for variant in ("workbuddy", "open-spec"):
+                  archive = root / f"{name}-{variant}.zip"
+                  manifest = json.loads((root / f"{name}-{variant}.manifest.json").read_text(encoding="utf-8"))
+                  with zipfile.ZipFile(archive) as package:
+                      names = package.namelist()
+                      skill_md = package.read(f"{name}/SKILL.md").decode("utf-8")
+                  assert manifest["skill"] == name
+                  assert manifest["version"] == version
+                  assert manifest["variant"] == variant
+                  assert len(names) == count
+                  assert manifest["sha256"] == hashlib.sha256(archive.read_bytes()).hexdigest()
+                  assert not any(part == ".." for entry in names for part in Path(entry).parts)
+                  assert ("agent_created: true" in skill_md) == (variant == "workbuddy")
+                  print(name, version, variant, count, manifest["sha256"])
+          PY
