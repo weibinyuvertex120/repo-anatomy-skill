@@ -28,15 +28,15 @@ Automatic semantic triggering remains `blocked / unmeasured` and is not a releas
 
 ## Roles And Separation
 
-The first public preview requires an independent collaborator with repository write access.
+The repository is currently operated by one maintainer together with an Agent. This mode is the reachable development and preview baseline: it must not introduce an approval rule that the current account cannot satisfy. An independent collaborator with repository write access remains the target before a release is promoted beyond solo-maintainer operation.
 
 - **Release owner:** proposes the candidate, records `RELEASE_SHA`, initiates the tag and release workflow, and makes the Go/No-Go request.
-- **Code owner reviewer:** reviews repository and workflow changes and must not be the PR author.
-- **Environment reviewer:** approves the release job and must not be the workflow trigger actor.
-- **Post-release verifier:** downloads published assets and independently verifies tag, checksums, provenance evidence when present, and rollback conditions.
+- **Code owner reviewer:** reviews repository and workflow changes when an eligible independent reviewer is available; otherwise the solo-maintainer limitation is recorded as release evidence.
+- **Environment reviewer:** approves the release job when the protected environment has an eligible reviewer; self-review is prohibited whenever reviewer protection is enabled.
+- **Post-release verifier:** downloads published assets and verifies tag, checksums, provenance evidence when present, and rollback conditions. For the current solo mode, this verification must be performed as a separate, recorded verification pass.
 - **Rollback decision owner:** decides whether an observation requires warning, marking the release as pre-release, or publishing a corrected version.
 
-One person may hold more than one role only when the separation requirement is still met. The release owner cannot approve their own PR or environment deployment, and the artifact builder cannot be the only post-release verifier. A solo-maintainer mode does not satisfy the first-preview Go criteria.
+The release owner must not claim independent review or environment separation that has not occurred. One person may hold more than one role in the current preview mode only when the limitation is recorded and no stronger governance claim is made. Promotion to a multi-person release process requires an eligible independent reviewer and environment separation before publication.
 
 ## Governance Gate
 
@@ -44,12 +44,12 @@ Do not create or push a release tag until all of these conditions are true:
 
 1. GitHub private vulnerability reporting is enabled and [`SECURITY.md`](SECURITY.md) directs reporters to the active PVR channel.
 2. GitHub-native test and release-failure notifications have been demonstrated with an auditable Actions run or issue record and acknowledged by the responsible recipient.
-3. A `main` ruleset requires pull requests, code-owner review, conversation resolution, successful required checks, and an up-to-date branch; it blocks force pushes and deletion and requires signed commits from the governance baseline forward.
+3. The active `main` ruleset requires pull requests, conversation resolution, successful required checks, and an up-to-date branch; it blocks force pushes and deletion. Code-owner review and signed-commit enforcement are enabled only after an eligible reviewer and signing identity are available and verified; their absence must remain an explicit current limitation, not an implied guarantee.
 4. The required check names were added only after each check completed successfully in the repository.
 5. A `v*` tag ruleset blocks tag updates, deletion, and force pushes without an ordinary maintainer bypass.
-6. A release environment requires an independent reviewer, prevents self-review, restricts deployments to approved tags, and does not permit administrator bypass during the release path.
+6. The `release` environment restricts deployments to approved `v*` tags. Independent review and self-review prevention are required for multi-person publication; the current solo mode must not claim that this separation exists.
 7. Release workflow permissions are minimal and every third-party action is pinned to a full commit SHA.
-8. `CODEOWNERS` names an eligible independent reviewer and protects its own file and release workflow paths.
+8. `CODEOWNERS` is added only when it can name an eligible independent reviewer; until then, its absence is recorded as a governance limitation rather than replaced with an unreachable owner rule.
 
 Do not rewrite existing history merely to add signatures. Signed-commit enforcement applies from the approved governance baseline forward. Existing release-scope commits must show a valid GitHub verification state before the candidate is frozen.
 
@@ -128,9 +128,9 @@ GitHub artifact attestations may be added later. For this preview, exact signed-
 1. Create or reuse the GitHub Draft Pre-release for the exact tag.
 2. Upload all nine release assets only after local and CI verification pass.
 3. Compare each uploaded GitHub asset digest with `SHA256SUMS` and the locally recorded digest.
-4. Have the independent reviewer inspect the draft title, tag, target commit, notes, asset names, digests, installation guidance, limitations, and rollback plan.
-5. Run the publish job through the protected `release` environment. The trigger actor cannot approve the deployment.
-6. Publish only when every required gate reports Go. Recommended items may be deferred only with a recorded technical-debt issue.
+4. Have an independent reviewer inspect the draft title, tag, target commit, notes, asset names, digests, installation guidance, limitations, and rollback plan when multi-person publication is enabled. In solo mode, perform and record a separate verification pass and do not label it independent review.
+5. Run the publish job through the protected `release` environment. When self-review prevention is enabled, the trigger actor cannot approve the deployment; solo publication must stop if the environment requires an unavailable reviewer.
+6. Publish only when every active required gate reports Go and the current governance limitations are explicitly recorded. Recommended items may be deferred only with a recorded technical-debt issue.
 
 The publish job receives only the permissions needed for release mutation. Build and validation jobs remain read-only.
 

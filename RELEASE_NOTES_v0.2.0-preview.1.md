@@ -72,15 +72,15 @@ Keep the previous known-good ZIP and manifest. Do not point a stable installatio
 
 ## Publication Roles
 
-Before publication, record these people in the Draft Release review record:
+Before publication, record these roles in the Draft Release review record:
 
 - release owner and workflow trigger actor;
-- independent code owner and environment reviewer;
+- code owner and environment reviewer, when an eligible independent collaborator is available;
 - artifact builder;
-- independent post-release verifier;
+- post-release verifier;
 - rollback decision owner and executor.
 
-The trigger actor cannot approve the release environment, and the artifact builder cannot be the only post-release verifier.
+In the current solo-maintainer preview mode, record the unavailable independent reviewer and environment separation as explicit limitations, perform a separate verification pass, and do not describe it as independent approval. The trigger actor cannot approve the release environment whenever self-review prevention is enabled, and the artifact builder cannot be the only post-release verifier once an independent verifier is available.
 
 ## Release Stop Conditions
 
@@ -88,7 +88,7 @@ Do not create the tag or publish when any of the following is true:
 
 - PVR is disabled or `SECURITY.md` does not direct reporters to the active private channel;
 - GitHub-native test or release-failure notification reachability is unverified;
-- required `main` or `v*` rulesets, CODEOWNERS review, or the protected release environment is missing;
+- an active required `main` or `v*` ruleset is missing, or the `release` environment does not restrict deployment to approved tags; for solo preview, unavailable independent review or CODEOWNERS is a disclosed limitation, not a claimed control;
 - the 40-character `RELEASE_SHA` is not locked, the local tree or stash is not clean, or the exact-SHA CI is not green;
 - release-scope commit verification is invalid or the signed annotated tag cannot be verified locally, in CI, and on GitHub;
 - repository version declarations do not agree with `v0.2.0-preview.1`;

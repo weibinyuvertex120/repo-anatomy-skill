@@ -8,6 +8,8 @@ The document is normative unless a section is explicitly marked as a recommendat
 
 This standard applies to changes to Skills, references, evaluations, tests, scripts, CI, documentation, package contracts, and repository governance.
 
+The repository is currently maintained by one person with Agent assistance. The workflow must remain executable in that mode and must not imply that an Agent is a second GitHub reviewer or an independent approver. Independent human review remains the target when an eligible collaborator becomes available.
+
 The project uses these principles:
 
 - Keep `main` releasable.
@@ -100,6 +102,8 @@ Before opening a PR:
 Open a draft PR when discussion is needed. Convert it to ready for review only after the PR template is complete and the verification evidence is reproducible.
 
 A ready PR must contain:
+
+In the current solo-maintainer mode, the author performs the implementation checks and records a separate self-review pass. This is not an independent approval and must not be reported as one. When a required reviewer becomes available, the PR must return to the ordinary approval path before any rule requiring that reviewer is enabled.
 
 - **Problem:** the user, maintainer, or project problem;
 - **Scope:** intended behavior and explicitly excluded behavior;
@@ -260,7 +264,19 @@ The following is the target configuration for `main`; repository administrators 
 - prevent bypass of the rules for administrators unless an emergency exception is recorded;
 - allow the repository's selected merge method and keep the rule consistent with the linear-history policy if that policy is enabled.
 
-The target configuration is a governance requirement, not proof that every setting is already enabled on the remote repository. Administrators must verify the effective rules in repository settings and avoid overlapping rules that make enforcement ambiguous.
+The target configuration is not the current enforcement baseline. The current `Protect main` ruleset requires a PR, conversation resolution, designated CI checks, an up-to-date branch, linear history, and blocks deletion and force-push; it currently requires zero approving reviews because no eligible independent reviewer is configured. Required signatures and CODEOWNERS review are also not enabled. Keep this reachable solo baseline until an eligible reviewer and a verified local signing identity are available; then review and enable those gates deliberately. Administrators must verify effective settings in repository configuration and avoid overlapping rules that make enforcement ambiguous.
+
+## Solo-Maintainer Operation
+
+Until an independent collaborator with the required repository permission is available:
+
+- use the PR workflow and deterministic checks, but do not describe the Agent or the author's self-review as independent approval;
+- keep required approving reviews at zero so the owner can merge after the configured checks pass;
+- do not enable CODEOWNERS review, last-pusher approval, or environment reviewer requirements that the current account cannot satisfy;
+- record the absence of independent review as a limitation for changes and releases, and stop if a configured GitHub environment or other hard gate requires an unavailable approver;
+- re-evaluate the ruleset and this section when a qualified collaborator is added.
+
+This operating mode does not waive CI, security checks, private vulnerability handling, signed-tag verification, or the requirement to disclose unknowns. It only avoids asserting unavailable separation of duties.
 
 ## Exceptions And Incidents
 
