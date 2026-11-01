@@ -1,0 +1,9 @@
+captured_at=2026-11-01T05:30:33-0800
+repository=/Users/veretex/Developer/repo-anatomy-copilot-live-test
+head=350d501b4f5c1d5ce026a6b7d79f9134f41c8496
+status_short_begin
+status_short_end
+repository_mode=dr-xr-xr-x path=/Users/veretex/Developer/repo-anatomy-copilot-live-test
+skill_mode=-r--r--r-- path=/Users/veretex/Developer/repo-anatomy-copilot-live-test/.github/skills/research-material-writer/SKILL.md
+docs_result_exists=false
+notes_exists=false
