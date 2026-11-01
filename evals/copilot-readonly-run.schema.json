@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/weibinyuvertex120/repo-anatomy-skill/evals/copilot-readonly-run.schema.json",
+  "title": "Copilot read-only portable evaluation run",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "suite_id",
+    "suite_version",
+    "evidence_contract_version",
+    "case_id",
+    "run_number",
+    "run_id",
+    "recorded_at",
+    "environment",
+    "input",
+    "expected_trajectory",
+    "actual_trajectory",
+    "tool_evidence",
+    "evidence_records",
+    "claim_records",
+    "final_response",
+    "verdict"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "suite_id": {"type": "string", "minLength": 1},
+    "suite_version": {"type": "string", "minLength": 1},
+    "evidence_contract_version": {"type": "string", "minLength": 1},
+    "case_id": {"type": "string", "minLength": 1},
+    "run_number": {"type": "integer", "minimum": 1},
+    "run_id": {"type": "string", "minLength": 1},
+    "recorded_at": {"type": "string", "minLength": 1},
+    "environment": {"$ref": "#/$defs/environment"},
+    "input": {"$ref": "#/$defs/input"},
+    "expected_trajectory": {"$ref": "#/$defs/expectedTrajectory"},
+    "actual_trajectory": {"$ref": "#/$defs/actualTrajectory"},
+    "tool_evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/toolEvidence"}
+    },
+    "evidence_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidenceRecord"}
+    },
+    "claim_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/claimRecord"}
+    },
+    "final_response": {"type": "string"},
+    "verdict": {"$ref": "#/$defs/verdict"}
+  },
+  "$defs": {
+    "nullableString": {
+      "type": ["string", "null"]
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host",
+        "surface",
+        "host_version",
+        "model",
+        "adapter_version",
+        "core_version",
+        "permission_profile",
+        "installed_tools",
+        "notes"
+      ],
+      "properties": {
+        "host": {"type": "string", "minLength": 1},
+        "surface": {"type": "string", "minLength": 1},
+        "host_version": {"$ref": "#/$defs/nullableString"},
+        "model": {"$ref": "#/$defs/nullableString"},
+        "adapter_version": {"type": "string", "minLength": 1},
+        "core_version": {"type": "string", "minLength": 1},
+        "permission_profile": {"const": "read-only"},
+        "installed_tools": {"$ref": "#/$defs/stringArray"},
+        "notes": {"type": "string"}
+      }
+    },
+    "input": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt", "provided_materials"],
+      "properties": {
+        "prompt": {"type": "string", "minLength": 1},
+        "provided_materials": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "expectedTrajectory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required_sequence", "matching_mode"],
+      "properties": {
+        "required_sequence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "matching_mode": {"enum": ["exact", "in_order", "any_order"]}
+      }
+    },
+    "checkpointResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checkpoint_id", "status", "observation_refs", "notes"],
+      "properties": {
+        "checkpoint_id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["pass", "fail", "not_applicable", "not_observable"]},
+        "observation_refs": {"$ref": "#/$defs/stringArray"},
+        "notes": {"type": "string"}
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "event_type",
+        "capability",
+        "native_tool",
+        "call_id",
+        "input",
+        "status",
+        "output_ref",
+        "error"
+      ],
+      "properties": {
+        "sequence": {"type": "integer", "minimum": 1},
+        "event_type": {
+          "enum": [
+            "capability_call",
+            "capability_result",
+            "clarification",
+            "assistant_message",
+            "final_response"
+          ]
+        },
+        "capability": {"type": "string", "minLength": 1},
+        "native_tool": {"$ref": "#/$defs/nullableString"},
+        "call_id": {"$ref": "#/$defs/nullableString"},
+        "input": {},
+        "status": {
+          "enum": ["success", "error", "denied", "unavailable", "cancelled", "not_applicable"]
+        },
+        "output_ref": {"$ref": "#/$defs/nullableString"},
+        "error": {"$ref": "#/$defs/nullableString"}
+      }
+    },
+    "actualTrajectory": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["events", "checkpoint_results"],
+      "properties": {
+        "events": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/event"}
+        },
+        "checkpoint_results": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/checkpointResult"}
+        }
+      }
+    },
+    "dimensionStatus": {
+      "enum": ["pass", "fail", "blocked", "warning", "not_applicable", "not_observable"]
+    },
+    "toolEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_sequence",
+        "capability",
+        "native_tool",
+        "call_id",
+        "selection",
+        "input",
+        "success",
+        "output_utilization",
+        "efficiency",
+        "evidence_refs"
+      ],
+      "properties": {
+        "event_sequence": {"type": "integer", "minimum": 1},
+        "capability": {"type": "string", "minLength": 1},
+        "native_tool": {"$ref": "#/$defs/nullableString"},
+        "call_id": {"$ref": "#/$defs/nullableString"},
+        "selection": {"$ref": "#/$defs/dimensionStatus"},
+        "input": {"$ref": "#/$defs/dimensionStatus"},
+        "success": {"$ref": "#/$defs/dimensionStatus"},
+        "output_utilization": {"$ref": "#/$defs/dimensionStatus"},
+        "efficiency": {"$ref": "#/$defs/dimensionStatus"},
+        "evidence_refs": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "evidenceRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_id",
+        "source_type",
+        "locator",
+        "title",
+        "publisher_or_owner",
+        "retrieved_at",
+        "content_date",
+        "authority",
+        "access_status",
+        "content_digest",
+        "notes"
+      ],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "source_type": {
+          "enum": [
+            "official_documentation",
+            "official_repository",
+            "official_release",
+            "standard",
+            "maintainer_statement",
+            "provided_material",
+            "repository_content",
+            "secondary_source",
+            "tool_error"
+          ]
+        },
+        "locator": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "publisher_or_owner": {"$ref": "#/$defs/nullableString"},
+        "retrieved_at": {"$ref": "#/$defs/nullableString"},
+        "content_date": {"$ref": "#/$defs/nullableString"},
+        "authority": {"enum": ["primary", "maintainer", "secondary", "unknown"]},
+        "access_status": {"enum": ["retrieved", "partial", "blocked", "not_found", "error"]},
+        "content_digest": {"$ref": "#/$defs/nullableString"},
+        "notes": {"type": "string"}
+      }
+    },
+    "claimRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim_id", "claim_text", "classification", "evidence_refs", "support_status", "materiality"],
+      "properties": {
+        "claim_id": {"type": "string", "minLength": 1},
+        "claim_text": {"type": "string", "minLength": 1},
+        "classification": {
+          "enum": [
+            "verified_fact",
+            "source_claim",
+            "reproduced_behavior",
+            "inference",
+            "recommendation",
+            "conflict",
+            "unknown"
+          ]
+        },
+        "evidence_refs": {"$ref": "#/$defs/stringArray"},
+        "support_status": {"enum": ["supported", "unsupported", "contradictory", "disputed", "not_applicable"]},
+        "materiality": {"enum": ["material", "non_material"]}
+      }
+    },
+    "verdict": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "primary_reason",
+        "secondary_reasons",
+        "trajectory_match",
+        "grounding_status",
+        "boundary_status",
+        "task_completion",
+        "evidence_complete",
+        "evaluator_notes"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "pass",
+            "blocked",
+            "task_failure",
+            "process_failure",
+            "response_failure",
+            "grounding_failure",
+            "boundary_failure",
+            "evaluation_failure"
+          ]
+        },
+        "primary_reason": {"type": ["string", "null"]},
+        "secondary_reasons": {"$ref": "#/$defs/stringArray"},
+        "trajectory_match": {"enum": ["pass", "fail", "not_applicable", "not_observable"]},
+        "grounding_status": {"enum": ["pass", "fail", "not_applicable", "not_observable"]},
+        "boundary_status": {"enum": ["pass", "fail", "not_observable"]},
+        "task_completion": {"enum": ["complete", "blocked", "incomplete", "failed", "not_observable"]},
+        "evidence_complete": {"type": "boolean"},
+        "evaluator_notes": {"type": "string"}
+      }
+    }
+  }
+}

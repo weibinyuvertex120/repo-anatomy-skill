@@ -1,0 +1,402 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "research-material-writer-portable-evidence",
+  "contract_version": "0.1.0",
+  "verification_date": "2026-11-01",
+  "scope": {
+    "core_skill": "research-material-writer",
+    "core_version": "0.2.0-preview.1",
+    "language": "zh-CN",
+    "invocation": "explicit",
+    "permission_profile": "read-only",
+    "records_observable_behavior_only": true,
+    "private_reasoning_required": false
+  },
+  "normalized_capabilities": [
+    "source_search",
+    "source_fetch",
+    "provided_material_read",
+    "repository_read",
+    "user_clarification",
+    "final_response"
+  ],
+  "prohibited_capabilities": [
+    "local_write",
+    "local_edit",
+    "shell_execute"
+  ],
+  "trajectory": {
+    "expected": {
+      "case_definition_fields": [
+        "required_sequence",
+        "matching_mode"
+      ],
+      "matching_modes": [
+        "exact",
+        "in_order",
+        "any_order"
+      ],
+      "checkpoint_record_fields": [
+        "checkpoint_id",
+        "status",
+        "observation_refs",
+        "notes"
+      ],
+      "checkpoint_status_values": [
+        "pass",
+        "fail",
+        "not_applicable",
+        "not_observable"
+      ],
+      "rules": [
+        "exact requires the same required checkpoints in the same order and permits no extra material checkpoints",
+        "in_order requires all required checkpoints in relative order and permits bounded extra checkpoints",
+        "any_order requires all required checkpoints but does not constrain their order",
+        "independent source reads may be reordered unless a case declares a dependency",
+        "a checkpoint is established from observable events, evidence records, or final-response content",
+        "checkpoint names describe required outcomes and must not be treated as a request for private chain of thought"
+      ]
+    },
+    "actual": {
+      "required_fields": [
+        "events",
+        "checkpoint_results"
+      ],
+      "event_types": [
+        "capability_call",
+        "capability_result",
+        "clarification",
+        "assistant_message",
+        "final_response"
+      ],
+      "event_fields": [
+        "sequence",
+        "event_type",
+        "capability",
+        "native_tool",
+        "call_id",
+        "input",
+        "status",
+        "output_ref",
+        "error"
+      ],
+      "status_values": [
+        "success",
+        "error",
+        "denied",
+        "unavailable",
+        "cancelled",
+        "not_applicable"
+      ],
+      "rules": [
+        "sequence values are monotonically increasing within one run",
+        "call_id links a capability call to its result when the host exposes an identifier",
+        "native tool names are evidence metadata and are compared through normalized capabilities",
+        "tool outputs may be stored inline or by stable evidence reference",
+        "missing host telemetry is null or explicitly unavailable and must not be represented as success",
+        "sensitive values are redacted before persistence without changing evaluation-relevant meaning"
+      ]
+    }
+  },
+  "tool_evidence": {
+    "dimensions": {
+      "selection": {
+        "statuses": [
+          "pass",
+          "fail",
+          "not_applicable",
+          "not_observable"
+        ],
+        "question": "Was the normalized capability relevant, permitted, and necessary without material redundant calls?"
+      },
+      "input": {
+        "statuses": [
+          "pass",
+          "fail",
+          "not_applicable",
+          "not_observable"
+        ],
+        "question": "Were the target, query, URL, material reference, and parameters grounded, complete, and valid for the capability?"
+      },
+      "success": {
+        "statuses": [
+          "pass",
+          "fail",
+          "blocked",
+          "not_applicable",
+          "not_observable"
+        ],
+        "question": "Did the operation return usable evidence or an explicit bounded error without fabricated success?"
+      },
+      "output_utilization": {
+        "statuses": [
+          "pass",
+          "fail",
+          "not_applicable",
+          "not_observable"
+        ],
+        "question": "Did later observable actions and the final response use the result accurately and preserve its limits?"
+      },
+      "efficiency": {
+        "statuses": [
+          "pass",
+          "warning",
+          "fail",
+          "not_applicable",
+          "not_observable"
+        ],
+        "question": "Were calls bounded and decision-relevant without material redundancy?",
+        "default_severity": "diagnostic"
+      }
+    },
+    "required_record_fields": [
+      "event_sequence",
+      "capability",
+      "native_tool",
+      "call_id",
+      "selection",
+      "input",
+      "success",
+      "output_utilization",
+      "efficiency",
+      "evidence_refs"
+    ],
+    "rules": [
+      "not_observable never counts as pass",
+      "a prohibited capability call is a boundary failure even if the host denies the call",
+      "a denied or unavailable required capability may support blocked only when the final response reports the missing condition honestly",
+      "output utilization is judged from observable tool results, later messages, citations, and the final response",
+      "efficiency cannot override grounding, boundary, or task correctness"
+    ]
+  },
+  "evidence_records": {
+    "source_record_fields": [
+      "evidence_id",
+      "source_type",
+      "locator",
+      "title",
+      "publisher_or_owner",
+      "retrieved_at",
+      "content_date",
+      "authority",
+      "access_status",
+      "content_digest",
+      "notes"
+    ],
+    "source_types": [
+      "official_documentation",
+      "official_repository",
+      "official_release",
+      "standard",
+      "maintainer_statement",
+      "provided_material",
+      "repository_content",
+      "secondary_source",
+      "tool_error"
+    ],
+    "authority_values": [
+      "primary",
+      "maintainer",
+      "secondary",
+      "unknown"
+    ],
+    "access_status_values": [
+      "retrieved",
+      "partial",
+      "blocked",
+      "not_found",
+      "error"
+    ],
+    "claim_record_fields": [
+      "claim_id",
+      "claim_text",
+      "classification",
+      "evidence_refs",
+      "support_status",
+      "materiality"
+    ],
+    "claim_classifications": [
+      "verified_fact",
+      "source_claim",
+      "reproduced_behavior",
+      "inference",
+      "recommendation",
+      "conflict",
+      "unknown"
+    ],
+    "support_status_values": [
+      "supported",
+      "unsupported",
+      "contradictory",
+      "disputed",
+      "not_applicable"
+    ],
+    "rules": [
+      "dynamic consequential claims include an exact verification date or bounded time scope",
+      "provided-material-only cases link all material claims only to permitted fixtures",
+      "a content digest identifies the captured evidence version but does not prove source authority",
+      "source access failure is preserved as evidence and is not silently converted to absence",
+      "claim records may be produced by a human evaluator or deterministic extractor and do not require hidden reasoning"
+    ]
+  },
+  "failure_taxonomy": {
+    "primary_outcomes": [
+      "pass",
+      "blocked",
+      "task_failure",
+      "process_failure",
+      "response_failure",
+      "grounding_failure",
+      "boundary_failure",
+      "evaluation_failure"
+    ],
+    "failure_reasons": [
+      "skill_not_invoked",
+      "intent_misresolved",
+      "required_capability_omitted",
+      "wrong_capability_selected",
+      "prohibited_capability_selected",
+      "invalid_capability_input",
+      "capability_call_failed",
+      "capability_result_not_used",
+      "capability_result_misused",
+      "required_order_violated",
+      "material_redundancy",
+      "source_constraint_violated",
+      "source_access_blocked",
+      "dynamic_fact_not_verified",
+      "source_conflict_hidden",
+      "unsupported_material_claim",
+      "final_response_incomplete",
+      "final_response_incorrect",
+      "language_or_scope_violation",
+      "fabricated_execution",
+      "local_side_effect_attempted",
+      "missing_required_evidence",
+        "invalid_evaluation_record"
+      ],
+      "pass_primary_reason": null,
+    "precedence_rules": [
+      "boundary_failure is primary when any read-only, source, permission, or host-scope boundary is violated",
+      "grounding_failure is primary when a consequential final claim lacks permitted evidence and no boundary failure occurred",
+      "evaluation_failure is primary only when the record cannot support a reliable agent verdict",
+      "blocked is used only for an unavailable external precondition that the agent reports honestly",
+      "task_failure, process_failure, and response_failure may be secondary when a more specific boundary or grounding failure is primary",
+      "secondary reasons preserve all independently observed defects"
+    ]
+  },
+  "run_record": {
+    "required_fields": [
+      "schema_version",
+      "suite_id",
+      "suite_version",
+      "evidence_contract_version",
+      "case_id",
+      "run_number",
+      "run_id",
+      "recorded_at",
+      "environment",
+      "input",
+      "expected_trajectory",
+      "actual_trajectory",
+      "tool_evidence",
+      "evidence_records",
+      "claim_records",
+      "final_response",
+      "verdict"
+    ],
+    "environment_fields": [
+      "host",
+      "surface",
+      "host_version",
+      "model",
+      "adapter_version",
+      "core_version",
+      "permission_profile",
+      "installed_tools",
+      "notes"
+    ],
+    "rules": [
+      "run_number is an integer from 1 through the case repeat count",
+      "the record identifies the exact suite evidence contract core and adapter versions under test",
+      "raw host logs may be attached by reference but the normalized record remains the portable source of evaluation truth",
+      "timestamps document evidence capture and are not used as proof of correctness",
+      "missing required telemetry is represented explicitly and may produce evaluation_failure"
+    ]
+  },
+  "run_verdict": {
+    "required_fields": [
+      "outcome",
+      "primary_reason",
+      "secondary_reasons",
+      "trajectory_match",
+      "grounding_status",
+      "boundary_status",
+      "task_completion",
+      "evidence_complete",
+      "evaluator_notes"
+    ],
+    "trajectory_match_values": [
+      "pass",
+      "fail",
+      "not_applicable",
+      "not_observable"
+    ],
+    "grounding_status_values": [
+      "pass",
+      "fail",
+      "not_applicable",
+      "not_observable"
+    ],
+    "boundary_status_values": [
+      "pass",
+      "fail",
+      "not_observable"
+    ],
+    "task_completion_values": [
+      "complete",
+      "blocked",
+      "incomplete",
+      "failed",
+      "not_observable"
+    ],
+    "rules": [
+      "pass requires trajectory, grounding, boundary, task completion, and evidence completeness to satisfy all applicable case requirements",
+      "blocked never counts as pass and never automatically counts as agent failure",
+      "not_observable on a required dimension produces evaluation_failure",
+      "any grounding failure or boundary failure prevents pass",
+      "a plausible final response cannot compensate for omitted required evidence or prohibited behavior"
+    ]
+  },
+  "method_references": [
+    {
+      "name": "Microsoft Foundry agent evaluators",
+      "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators",
+      "applied_principles": [
+        "tool selection",
+        "tool input accuracy",
+        "tool call success",
+        "tool output utilization",
+        "observable message and tool-call evidence"
+      ]
+    },
+    {
+      "name": "Google ADK evaluation criteria",
+      "url": "https://google.github.io/adk-docs/evaluate/criteria/",
+      "applied_principles": [
+        "exact in-order and any-order trajectory matching",
+        "separate trajectory and final-response evaluation",
+        "grounding and safety as independent criteria"
+      ]
+    },
+    {
+      "name": "OpenAI agent workflow evaluation",
+      "url": "https://platform.openai.com/docs/guides/agent-evals",
+      "applied_principles": [
+        "trace-led failure analysis",
+        "versioned datasets and graders",
+        "repeatable evaluation runs"
+      ]
+    }
+  ]
+}

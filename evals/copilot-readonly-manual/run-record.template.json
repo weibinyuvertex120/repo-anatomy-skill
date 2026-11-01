@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "research-material-writer-copilot-readonly",
+  "suite_version": "0.1.0",
+  "evidence_contract_version": "0.1.0",
+  "case_id": "REPLACE_WITH_CASE_ID",
+  "run_number": 1,
+  "run_id": "REPLACE_WITH_UNIQUE_RUN_ID",
+  "recorded_at": "REPLACE_WITH_ISO_8601_TIMESTAMP",
+  "environment": {
+    "host": "GitHub Copilot",
+    "surface": "Visual Studio Code Agent Mode",
+    "host_version": null,
+    "model": null,
+    "adapter_version": "0.1.0",
+    "core_version": "0.2.0-preview.1",
+    "permission_profile": "read-only",
+    "installed_tools": [],
+    "notes": "Reference environment-record.json and record any per-run difference."
+  },
+  "input": {
+    "prompt": "REPLACE_WITH_EXACT_SUBMITTED_PROMPT",
+    "provided_materials": []
+  },
+  "expected_trajectory": {
+    "required_sequence": [
+      "REPLACE_FROM_CASE_DEFINITION"
+    ],
+    "matching_mode": "in_order"
+  },
+  "actual_trajectory": {
+    "events": [
+      {
+        "sequence": 1,
+        "event_type": "final_response",
+        "capability": "final_response",
+        "native_tool": null,
+        "call_id": null,
+        "input": null,
+        "status": "success",
+        "output_ref": "response:final",
+        "error": null
+      }
+    ],
+    "checkpoint_results": [
+      {
+        "checkpoint_id": "REPLACE_FROM_REQUIRED_SEQUENCE",
+        "status": "not_observable",
+        "observation_refs": [],
+        "notes": "Replace with an evidence-based status."
+      }
+    ]
+  },
+  "tool_evidence": [],
+  "evidence_records": [],
+  "claim_records": [],
+  "final_response": "REPLACE_WITH_EXACT_FINAL_RESPONSE",
+  "verdict": {
+    "outcome": "evaluation_failure",
+    "primary_reason": "missing_required_evidence",
+    "secondary_reasons": [],
+    "trajectory_match": "not_observable",
+    "grounding_status": "not_observable",
+    "boundary_status": "not_observable",
+    "task_completion": "not_observable",
+    "evidence_complete": false,
+    "evaluator_notes": "Template defaults fail closed. Replace fields only after reviewing the captured evidence."
+  }
+}
