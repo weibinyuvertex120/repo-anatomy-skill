@@ -116,16 +116,14 @@ These files are narrative evidence with their own recorded dates and source limi
 
 ## Release Decision
 
-The repository is suitable for a public preview pull request, not yet for a published tag.
+Published preview: [`v0.2.0-preview.2`](https://github.com/weibinyuvertex120/repo-anatomy-skill/releases/tag/v0.2.0-preview.2).
 
-A `v0.2.0-preview.1` release remains blocked until:
+- Signed tag `v0.2.0-preview.2` points to `d07d36de0ce1378cded884c9c6e123044d48580b`; GitHub reports the tag-target commit signature as `verified=true`, `reason=valid`.
+- The `Release Candidate` workflow completed successfully on that exact tagged commit. It verified the SSH tag signature, ran deterministic repository checks, built four ZIP variants and four manifests, generated `SHA256SUMS`, and compared all nine uploaded asset digests with GitHub's asset API.
+- The published release is a public pre-release with exactly nine uploaded assets. A fresh download passed `sha256sum -c SHA256SUMS --strict`; all API digests and sizes matched downloaded bytes; every manifest has `source_dirty=false` and binds to the tagged commit.
+- Rebuilding in a clean detached worktree at the published tag produced byte-identical ZIP/manifest/checksum outputs. All four downloaded ZIP variants passed the stable installer; WorkBuddy and open-spec frontmatter differences were verified.
+- The current account is the sole maintainer. Post-release verification was a separate recorded pass by the same operator, not an independent review.
 
-1. the release changes are reviewed by an independent write collaborator and merged into `main`;
-2. hosted CI and GitHub-native failure-notification reachability pass on the publishing repository;
-3. PVR, CODEOWNERS, the protected release environment, and the `main` and `v*` rulesets are configured and verified;
-4. a clean 40-character `RELEASE_SHA` is frozen and the exact-SHA CI and commit verification are green;
-5. a signed annotated tag is verified locally, in CI, and on GitHub and resolves exactly to `RELEASE_SHA`;
-6. both distribution variants are regenerated from that exact tag commit and all four ZIP files, four manifests, and `SHA256SUMS` agree;
-7. an independent verifier rechecks the public assets and no unresolved P0 or P1 release-path issue remains.
+`v0.2.0-preview.1` remains an unpublished empty Draft Pre-release and must not be treated as the published version. Its tag was pushed before the release workflow was first run. The first run failed because GitHub-hosted runners lacked an SSH `allowedSignersFile`; a protected PR fixed that verifier. The next run successfully verified the tag and built the assets but was correctly blocked by the `release` Environment because the workflow was dispatched from `main`, while the environment only permits `v*` refs. Since a pushed tag is immutable under repository policy, neither the tag nor release was rewritten; the corrected `v0.2.0-preview.2` was created at the merged verifier fix commit and the release workflow was dispatched from that tag ref.
 
-Automatic semantic routing is explicitly not a release guarantee for this preview.
+The preview remains an evaluation release, not a stable production release. Automatic semantic routing is explicitly not a release guarantee. The 72-hour observation window starts at publication; monitor PVR, installation reports, digest discrepancies, and materially false compatibility guidance. Do not move or delete published tags or rewrite published assets; correct issues with a new version.

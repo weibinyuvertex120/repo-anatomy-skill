@@ -1,11 +1,13 @@
-# Draft: v0.2.0-preview.1
+# Initial candidate record: v0.2.0-preview.1
 
-This is the draft release note for the first public preview of the repository. The Draft Pre-release may exist before publication, but this file does not imply that a signed tag, verified assets, or a public release already exists.
+This file records the initial release candidate, which remains an unpublished empty Draft Pre-release. The public evaluation release is `v0.2.0-preview.2`; the repository release version is distinct from the individual Skill metadata versions.
 
 ## Release Level
 
-- Intended signed tag: `v0.2.0-preview.1`
-- Repository release version: `0.2.0-preview.1`
+- Initial candidate tag: `v0.2.0-preview.1` (pushed and intentionally unpublished)
+- Published signed tag: `v0.2.0-preview.2`
+- Repository release version: `0.2.0-preview.2`
+- Skill metadata versions: `workspace-file-maintainer` `0.1.0`; `research-material-writer` `0.2.0-preview.1`
 - GitHub release type: pre-release
 - Stability: public evaluation; not a stable production release
 - Observation window: 72 hours after publication
@@ -42,9 +44,17 @@ The release is intended to verify:
 - Stable installation must use a versioned ZIP and manifest. Development symlinks expose uncommitted changes immediately.
 - Runtime behavior has not been verified across every Agent client or operating system.
 
+## Published Release Record
+
+The published public pre-release is [`v0.2.0-preview.2`](https://github.com/weibinyuvertex120/repo-anatomy-skill/releases/tag/v0.2.0-preview.2), signed and bound to source commit `d07d36de0ce1378cded884c9c6e123044d48580b`. It contains exactly the nine assets listed below. The initial `v0.2.0-preview.1` candidate remains an empty draft and must not be presented as published.
+
+Post-publication verification downloaded all nine assets to a new temporary directory, passed `sha256sum -c SHA256SUMS --strict`, matched every GitHub API `digest` and `size`, verified every manifest's `source_commit` and `source_dirty=false`, independently rebuilt from a clean detached worktree at the tag with matching outputs, and installed all four Skill/variant ZIPs using the stable installer. The tag signature was verified locally and by the successful `Verify Release Tags` workflow; GitHub reports the target commit as verified.
+
+The first candidate workflow exposed two real gates: the hosted runner had no SSH `allowedSignersFile`, and dispatching the release workflow from `main` did not satisfy the release Environment's `v*` ref policy. The verifier was fixed through PR #9; the corrected workflow was dispatched from `v0.2.0-preview.2`. The pushed `v0.2.0-preview.1` tag was not moved, deleted, or reused.
+
 ## Release Assets
 
-The public pre-release must contain exactly these generated assets:
+The public pre-release contains exactly these generated assets:
 
 - `workspace-file-maintainer-workbuddy.zip`
 - `workspace-file-maintainer-workbuddy.manifest.json`
@@ -91,7 +101,7 @@ Do not create the tag or publish when any of the following is true:
 - an active required `main` or `v*` ruleset is missing, or the `release` environment does not restrict deployment to approved tags; for solo preview, unavailable independent review or CODEOWNERS is a disclosed limitation, not a claimed control;
 - the 40-character `RELEASE_SHA` is not locked, the local tree or stash is not clean, or the exact-SHA CI is not green;
 - release-scope commit verification is invalid or the signed annotated tag cannot be verified locally, in CI, and on GitHub;
-- repository version declarations do not agree with `v0.2.0-preview.1`;
+- repository release notes do not identify `v0.2.0-preview.2` as the published release;
 - WorkBuddy and open-spec packages have not been independently validated;
 - ZIP content, version, source commit, asset name, or SHA-256 does not match its manifest and `SHA256SUMS`;
 - a P0 or P1 security issue affects the release path;
