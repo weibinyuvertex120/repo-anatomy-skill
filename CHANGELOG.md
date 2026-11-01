@@ -2,7 +2,15 @@
 
 All notable behavioral changes to the repository's Skills are recorded here.
 
-## Release governance and user onboarding - 2026-10-31
+## Published preview and release verifier fix - 2026-10-31
+
+### Changed
+
+- Published `v0.2.0-preview.2` as the public evaluation release after a signed-tag, exact-source, nine-asset, and post-download verification pass; `v0.2.0-preview.1` remains an empty unpublished draft because its tag workflow was blocked by a runner verifier configuration gap and then by the protected environment's tag-ref policy.
+- Configured the registered SSH signing identity as an explicit runner `allowedSignersFile` in both release and tag verification workflows, and added a validator regression gate for that configuration.
+- Recorded release asset digests, exact source binding, reproducible output, package installation checks, and the solo-maintainer limitation in `evals/acceptance-results.md`.
+
+## Release governance and user onboarding - 2026-10-30
 
 ### Added
 
@@ -16,7 +24,7 @@ All notable behavioral changes to the repository's Skills are recorded here.
 ### Changed
 
 - README now leads with the repository's position and a real Skill result, while detailed governance and maintainer procedures remain in their dedicated documents.
-- Release documentation now requires PVR, independent review, signed immutable tags, exact-commit builds, Draft Release review, independent post-release verification, and non-destructive rollback.
+- Release documentation requires PVR, signed immutable tags, exact-commit builds, Draft Release review, post-release verification, and non-destructive rollback; solo-maintainer verification is explicitly not described as independent review.
 - Security guidance now treats unavailable PVR as a first-preview release stop condition rather than a satisfied fallback state.
 
 ## Repository validation and packaging - 2026-10-30
