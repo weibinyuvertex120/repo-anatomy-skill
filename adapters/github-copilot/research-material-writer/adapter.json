@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "adapter": "github-copilot-vscode-readonly",
+  "adapter_version": "0.1.0",
+  "core_skill": "research-material-writer",
+  "core_version": "0.2.0-preview.1",
+  "target": {
+    "host": "GitHub Copilot",
+    "surface": "Visual Studio Code Agent Mode",
+    "invocation": "explicit",
+    "language": "zh-CN",
+    "permission_profile": "read-only"
+  },
+  "package": {
+    "skill_directory": "research-material-writer",
+    "core_files": [
+      "SKILL.md",
+      "references/comparison-writing.md",
+      "references/open-source-onboarding.md",
+      "references/project-analysis.md",
+      "references/research-workflow.md",
+      "references/source-and-verification.md",
+      "references/tutorial-writing.md"
+    ],
+    "adapter_files": [
+      "references/copilot-readonly-capability-map.md"
+    ],
+    "excluded_core_files": [
+      "references/quality-checklist.md",
+      "scripts/check_draft.py"
+    ]
+  },
+  "frontmatter": {
+    "user-invocable": true,
+    "disable-model-invocation": true
+  },
+  "prohibited_capabilities": [
+    "local_write",
+    "local_edit",
+    "shell_execute"
+  ]
+}

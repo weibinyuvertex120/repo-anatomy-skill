@@ -88,6 +88,11 @@ REQUIRED_SHARED_FILES = {
     "evals/copilot-readonly-manual/environment-record.json",
     "evals/copilot-readonly-manual/run-record.template.json",
     "evals/copilot-readonly-manual/evidence-index.template.md",
+    "adapters/github-copilot/research-material-writer/adapter.json",
+    "adapters/github-copilot/research-material-writer/SKILL.overlay.md",
+    "adapters/github-copilot/research-material-writer/references/copilot-readonly-capability-map.md",
+    "scripts/package_copilot_adapter.py",
+    "tests/test_copilot_adapter.py",
 }
 
 REQUIRED_WFM_FIXTURES = {
@@ -299,6 +304,20 @@ def validate_copilot_evaluations(errors: list[str]) -> None:
         fail(errors, f"Copilot evaluation contract validation failed: {output}")
 
 
+def validate_copilot_adapter(errors: list[str]) -> None:
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "tests/test_copilot_adapter.py")],
+        cwd=ROOT,
+        env={"PYTHONDONTWRITEBYTECODE": "1"},
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        output = (result.stdout + result.stderr).strip()
+        fail(errors, f"Copilot adapter validation failed: {output}")
+
+
 def validate_license(errors: list[str]) -> None:
     if not LICENSE.is_file():
         fail(errors, "Missing LICENSE")
@@ -416,6 +435,7 @@ def main() -> int:
         versions[config.name] = validate_skill(config, errors)
         validate_evaluations(config, versions[config.name], errors)
     validate_copilot_evaluations(errors)
+    validate_copilot_adapter(errors)
     validate_license(errors)
     validate_changelog(versions, errors)
     validate_shared_files(errors)
