@@ -346,6 +346,7 @@ def validate_release_workflows(errors: list[str]) -> None:
             "permissions:\n      contents: write",
             "sha256sum -c SHA256SUMS --strict",
             "git verify-tag",
+            "gpg.ssh.allowedSignersFile",
             "GitHub release asset digests verified",
             'test "$(git rev-parse HEAD)" = "$RELEASE_SHA"',
         )

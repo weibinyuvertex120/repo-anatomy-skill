@@ -28,8 +28,9 @@ jobs:
           test "$(git cat-file -t "$RELEASE_TAG")" = "tag"
           RELEASE_SHA="$(git rev-list -n 1 "$RELEASE_TAG")"
           [[ "$RELEASE_SHA" =~ ^[0-9a-f]{40}$ ]]
-          if [ -f .github/release-signers ]; then
-            git config gpg.ssh.allowedSignersFile "$PWD/.github/release-signers"
-          fi
+          allowed_signers="$RUNNER_TEMP/release-signers"
+          printf '%s\n' 'binyu120@outlook.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGs3+BHva4sYPYcUzJQincbzjU2wmmAzTPiKTdsayO3b binyu120@outlook.com' > "$allowed_signers"
+          chmod 600 "$allowed_signers"
+          git config gpg.ssh.allowedSignersFile "$allowed_signers"
           git verify-tag "$RELEASE_TAG"
           printf 'verified %s -> %s\n' "$RELEASE_TAG" "$RELEASE_SHA"
