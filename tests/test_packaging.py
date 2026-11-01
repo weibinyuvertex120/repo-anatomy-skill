@@ -43,6 +43,12 @@ def main() -> int:
             ("workspace-file-maintainer", "0.1.0", 5),
             ("research-material-writer", "0.2.0-preview.1", 9),
         )
+        expected_legacy_digests = {
+            ("workspace-file-maintainer", "workbuddy"): "e71626a4df0e31c6e21203c1c16e6f957e032e8421bbe915f81f1fba80ca8e12",
+            ("workspace-file-maintainer", "open-spec"): "82f73216f964582fb3637106d795635506f789b9808ba156114ffec25ccaef73",
+            ("research-material-writer", "workbuddy"): "96434cad5f1db11cc9f7493c42e8624c73422647487af5ffa142496c6ba30db2",
+            ("research-material-writer", "open-spec"): "a891e74f70d936d3baea2767e49735576382e5cc32317aa93f20e77bf59a71b5",
+        }
         release_assets: list[Path] = []
         rebuilt_assets: list[Path] = []
         for skill_name, expected_version, expected_count in expected:
@@ -55,6 +61,11 @@ def main() -> int:
                     raise AssertionError(f"{skill_name}: unexpected version {manifest['version']}")
                 if manifest["variant"] != variant:
                     raise AssertionError(f"{skill_name}: unexpected variant {manifest['variant']}")
+                expected_digest = expected_legacy_digests[(skill_name, variant)]
+                if manifest["sha256"] != expected_digest:
+                    raise AssertionError(
+                        f"{skill_name}-{variant}: legacy ZIP digest changed from {expected_digest} to {manifest['sha256']}"
+                    )
                 with zipfile.ZipFile(archive) as package:
                     infos = package.infolist()
                     names = [info.filename for info in infos]

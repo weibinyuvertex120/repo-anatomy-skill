@@ -45,6 +45,10 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: python3 tests/test_copilot_evals.py
+      - name: Run Copilot adapter packaging tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_copilot_adapter.py
       - name: Run draft-checker regression tests
         env:
           PYTHONDONTWRITEBYTECODE: "1"
@@ -85,6 +89,22 @@ jobs:
           for archive in dist/*-open-spec.zip; do unzip -q "$archive" -d /tmp/open-spec; done
           skills-ref validate /tmp/open-spec/workspace-file-maintainer
           skills-ref validate /tmp/open-spec/research-material-writer
+      - name: Validate Copilot standard projection
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: |
+          python3 scripts/package_copilot_adapter.py /tmp/copilot-adapter
+          mkdir -p /tmp/copilot-adapter/unpacked
+          unzip -q /tmp/copilot-adapter/research-material-writer-github-copilot-vscode-readonly.zip -d /tmp/copilot-adapter/unpacked
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("/tmp/copilot-adapter/unpacked/research-material-writer/SKILL.md")
+          host_fields = ("argument-hint:", "user-invocable:", "disable-model-invocation:")
+          lines = [line for line in path.read_text(encoding="utf-8").splitlines() if not line.startswith(host_fields)]
+          path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+          skills-ref validate /tmp/copilot-adapter/unpacked/research-material-writer
 
   package:
     name: Reproducible package check
