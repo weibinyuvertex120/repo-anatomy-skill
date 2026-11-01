@@ -1,0 +1,60 @@
+{
+  "record_version": "1.0.0",
+  "recorded_at": null,
+  "operator": null,
+  "workspace": {
+    "repository": "weibinyuvertex120/repo-anatomy-skill",
+    "baseline_commit": null,
+    "clean_status_before": null,
+    "clean_status_after": null,
+    "notes": ""
+  },
+  "host": {
+    "name": "GitHub Copilot",
+    "surface": "Visual Studio Code Agent Mode",
+    "operating_system": null,
+    "vscode_version": null,
+    "vscode_commit": null,
+    "copilot_extension_version": null,
+    "harness": null,
+    "model": null,
+    "organization_policy_notes": ""
+  },
+  "skill": {
+    "name": "research-material-writer",
+    "core_version": "0.2.0-preview.1",
+    "adapter_version": "0.1.0",
+    "adapter_source_revision": null,
+    "installation_scope": null,
+    "installation_path": null,
+    "explicit_menu_entry_visible": null
+  },
+  "permissions": {
+    "level": "Manual permissions",
+    "allow_all": false,
+    "autopilot": false,
+    "global_auto_approve": false,
+    "tool_confirmations_reset": null,
+    "terminal_auto_approve_enabled": false,
+    "external_tool_post_approval_enabled": false,
+    "url_request_reviewed": true,
+    "url_response_reviewed": true,
+    "collapsed_tools_setting": "off",
+    "notes": ""
+  },
+  "tools": {
+    "visible_tools": [],
+    "enabled_read_only_tools": [],
+    "disabled_or_denied_tools": [],
+    "built_in_tools_not_configurable": [],
+    "notes": ""
+  },
+  "evidence": {
+    "skill_discovery_screenshot": null,
+    "tool_configuration_screenshot": null,
+    "permission_configuration_screenshot": null,
+    "baseline_status_capture": null,
+    "final_status_capture": null,
+    "notes": ""
+  }
+}

@@ -77,6 +77,17 @@ REQUIRED_SHARED_FILES = {
     "evals/real-project-markitdown-onboarding-2026-10-31.md",
     "tests/test_validator.py",
     "tests/test_draft_checker.py",
+    "tests/validate_copilot_evals.py",
+    "tests/test_copilot_evals.py",
+    "evals/copilot-readonly-cases.json",
+    "evals/copilot-readonly-evidence-contract.json",
+    "evals/copilot-readonly-run.schema.json",
+    "evals/copilot-readonly-manual/README.md",
+    "evals/copilot-readonly-manual/operator-checklist.md",
+    "evals/copilot-readonly-manual/prompts.md",
+    "evals/copilot-readonly-manual/environment-record.json",
+    "evals/copilot-readonly-manual/run-record.template.json",
+    "evals/copilot-readonly-manual/evidence-index.template.md",
 }
 
 REQUIRED_WFM_FIXTURES = {
@@ -274,6 +285,20 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
             fail(errors, f"{config.trigger_file}: group '{group}' needs at least {minimum} cases")
 
 
+def validate_copilot_evaluations(errors: list[str]) -> None:
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "tests/validate_copilot_evals.py")],
+        cwd=ROOT,
+        env={"PYTHONDONTWRITEBYTECODE": "1"},
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        output = (result.stdout + result.stderr).strip()
+        fail(errors, f"Copilot evaluation contract validation failed: {output}")
+
+
 def validate_license(errors: list[str]) -> None:
     if not LICENSE.is_file():
         fail(errors, "Missing LICENSE")
@@ -390,6 +415,7 @@ def main() -> int:
     for config in SKILLS:
         versions[config.name] = validate_skill(config, errors)
         validate_evaluations(config, versions[config.name], errors)
+    validate_copilot_evaluations(errors)
     validate_license(errors)
     validate_changelog(versions, errors)
     validate_shared_files(errors)

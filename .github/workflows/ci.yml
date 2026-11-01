@@ -41,6 +41,10 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: python3 tests/test_validator.py
+      - name: Run Copilot evaluation contract tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_copilot_evals.py
       - name: Run draft-checker regression tests
         env:
           PYTHONDONTWRITEBYTECODE: "1"
