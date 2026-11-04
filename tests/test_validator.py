@@ -56,7 +56,7 @@ def remove_reference(repository: Path) -> None:
 def mismatch_version(repository: Path) -> None:
     path = repository / "evals/research-trigger-cases.json"
     text = path.read_text(encoding="utf-8")
-    path.write_text(text.replace('"version": "0.2.0-preview.1"', '"version": "9.9.9"', 1), encoding="utf-8")
+    path.write_text(text.replace('"version": "0.3.0-preview.1"', '"version": "9.9.9"', 1), encoding="utf-8")
 
 
 def corrupt_json(repository: Path) -> None:

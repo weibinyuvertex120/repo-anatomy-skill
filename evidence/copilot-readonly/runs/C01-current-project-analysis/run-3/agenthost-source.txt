@@ -1,0 +1,1 @@
+/tmp/repo-anatomy-vscode-user-data-final-2/logs/20261101T212053/agenthost.log

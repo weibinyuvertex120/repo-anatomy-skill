@@ -15,7 +15,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILLS = ("workspace-file-maintainer", "research-material-writer")
+DEFAULT_RELEASE_SKILLS = ("research-material-writer",)
 VARIANTS = ("workbuddy", "open-spec")
+PORTABLE_CORE_SKILLS = frozenset({"research-material-writer"})
 ZIP_TIMESTAMP = (1980, 1, 1, 0, 0, 0)
 ZIP_FILE_MODE = 0o100644
 
@@ -64,10 +66,14 @@ def source_state() -> tuple[str, bool]:
     return commit, dirty
 
 
-def transform_skill_md(content: bytes, variant: str) -> bytes:
+def transform_skill_md(content: bytes, variant: str, skill_name: str) -> bytes:
+    text = content.decode("utf-8")
+    if skill_name in PORTABLE_CORE_SKILLS:
+        if "agent_created:" in text or "allowed-tools:" in text:
+            raise PackageError(f"portable core contains host-specific frontmatter: {skill_name}")
+        return text.encode("utf-8")
     if variant == "workbuddy":
         return content
-    text = content.decode("utf-8")
     transformed, count = re.subn(r"^agent_created:\s*true\s*\n", "", text, count=1, flags=re.MULTILINE)
     if count != 1:
         raise PackageError("open-spec package expected exactly one agent_created: true field")
@@ -109,7 +115,7 @@ def package_skill(skill_name: str, output_dir: Path, variant: str = "workbuddy")
             relative = path.relative_to(skill_root).as_posix()
             content = path.read_bytes()
             if relative == "SKILL.md":
-                content = transform_skill_md(content, variant)
+                content = transform_skill_md(content, variant, skill_name)
             archive_path = f"{skill_name}/{relative}"
             info = zipfile.ZipInfo(archive_path, date_time=ZIP_TIMESTAMP)
             info.create_system = 3
@@ -145,7 +151,7 @@ def main() -> int:
             raise PackageError("release packaging requires a clean Git working tree")
         output_dir = args.output_dir.resolve()
         release_assets: list[Path] = []
-        for skill_name in args.skills or SKILLS:
+        for skill_name in args.skills or DEFAULT_RELEASE_SKILLS:
             for variant in variants:
                 archive, manifest = package_skill(skill_name, output_dir, variant)
                 manifest_path = archive.with_suffix(".manifest.json")

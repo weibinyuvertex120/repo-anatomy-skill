@@ -1,0 +1,13 @@
+GitHub.copilot-chat
+github.copilot-github
+vscode.github-authentication
+secret://*
+chat/selectedTools
+chat/autoconfirm*
+chat/servers/autoconfirm*
+chat.cachedLanguageModels.v2
+chat.modelsControl
+chatModelRecentlyUsed
+settings.json
+keybindings.json
+agent-host-config.json

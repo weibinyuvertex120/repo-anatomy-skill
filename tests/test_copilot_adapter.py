@@ -70,12 +70,13 @@ def main() -> int:
             'argument-hint: "[research request or supplied sources]"',
             "disable-model-invocation: true",
             "user-invocable: true",
-            "returns high-quality Chinese technical materials in chat",
-            'repo_anatomy_core_version: "0.2.0-preview.1"',
+            "Returns the researched material in chat",
+            'repo_anatomy_core_version: "0.3.0-preview.1"',
             'repo_anatomy_adapter_version: "0.1.0"',
+            "references/project-research-contract.md",
             "Do not execute shell or terminal commands",
             "Do not create, edit, delete, move, rename, or persist local files",
-            "10. **Return and verify.**",
+            "11. **Return and verify.**",
         )
         for marker in required_markers:
             if marker not in skill_md:

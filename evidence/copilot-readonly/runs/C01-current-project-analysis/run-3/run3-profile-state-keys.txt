@@ -1,0 +1,16 @@
+                                            key                                              bytes
+-------------------------------------------------------------------------------------------  -----
+GitHub.copilot-chat                                                                          17843
+chat.cachedLanguageModels.v2                                                                  6713
+chat.modelsControl                                                                            2156
+chat/autoconfirm                                                                                 2
+chat/autoconfirm-combination                                                                     2
+chat/autoconfirm-post                                                                            2
+chat/selectedTools                                                                            1725
+chat/servers/autoconfirm                                                                         2
+chat/servers/autoconfirm-post                                                                    2
+chatModelRecentlyUsed                                                                           30
+github.copilot-github                                                                           17
+secret://{"extensionId":"vscode.github-authentication","key":"github.auth"}                   1512
+secret://{"extensionId":"vscode.microsoft-authentication","key":"publicClients-AzureCloud"}    206
+vscode.github-authentication                                                                  3614

@@ -1,6 +1,6 @@
 ## GitHub Copilot VS Code Read-Only Adapter
 
-This package is the GitHub Copilot VS Code adapter for core Skill version `0.2.0-preview.1` and adapter version `0.1.0`.
+This package is the GitHub Copilot VS Code adapter for core Skill version `0.3.0-preview.1` and adapter version `0.1.0`.
 
 ### Trial Scope
 

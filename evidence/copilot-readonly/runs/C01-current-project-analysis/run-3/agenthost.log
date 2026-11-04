@@ -1,0 +1,62 @@
+2026-11-02 21:52:50.630 [info] Agent Host process started successfully
+2026-11-02 21:52:50.667 [info] AgentService initialized
+2026-11-02 21:52:50.674 [info] Registering agent provider: copilotcli
+2026-11-02 21:52:50.674 [info] [CopilotDiscovery] Started: maxCandidateWatches=32, maxConcurrentStats=4, coalesceMs=500
+2026-11-02 21:52:50.674 [info] Registering agent provider: claude
+2026-11-02 21:52:50.675 [info] [Copilot] Auto presentation: Auto beside HydraFusion (fallback): CAPI provided no Auto tiers; HydraFusion setting adds [none]
+2026-11-02 21:52:50.675 [info] Registering agent provider: codex
+2026-11-02 21:52:50.676 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 21:52:50.676 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 21:52:50.696 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 21:52:50.703 [info] [ProtocolServer] Initialize: clientId=e084dcb5-538a-4ad9-a15d-63735062a1ea, protocolVersions=[1.0.0, 0.10.0, 0.9.0]
+2026-11-02 21:52:50.739 [info] [Claude] Models refreshed (merged). Count: 0, 
+2026-11-02 21:52:50.755 [info] [Claude] SDK not downloaded yet; deferring the migratable chat list
+2026-11-02 21:52:50.765 [info] [WebSocketProtocol] Server listening on socket /var/folders/yv/2_l203l54rvcdv6jwnwcq5c00000gn/T/vscode-ah-01d25a4c4146/tOKL8yVBYlVlF337-vOlQQ.sock
+2026-11-02 21:52:50.774 [info] [CommandAutoApprover] Tree-sitter initialized (bash=available, powershell=available)
+2026-11-02 21:52:50.776 [info] [CopilotDiscovery] Scan 1 started: initial=true, candidates=9, reasons={"startup":9}, watched=9, pending=9, ignoredHostEvents=0
+2026-11-02 21:52:50.776 [info] [Copilot] Listing discoverable chats...
+2026-11-02 21:52:50.776 [info] [Copilot] Starting CopilotClient...
+2026-11-02 21:52:50.776 [info] [Copilot] Enabled runtime feature flag DYNAMIC_AUTO_TIERS
+2026-11-02 21:52:50.776 [info] [Copilot] Set CLI env: GITHUB_COPILOT_INTEGRATION_ID=vscode-chat
+2026-11-02 21:52:50.776 [info] [Copilot] Enabled repository-size-gated tgrep indexed search
+2026-11-02 21:52:50.778 [info] [Copilot] Using bundled runtime path: /Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar.unpacked/@github/copilot-sdk-darwin-arm64/prebuilds/darwin-arm64/copilot-runtime
+2026-11-02 21:52:50.781 [info] [AgentService] sessions_v2 import for provider copilotcli: 0 synchronized, 0 current, 0 excluded, 0 stale exclusions, 0 incomplete, 0 failed, marker set in 104ms (0 db opens, 0 db stats)
+2026-11-02 21:52:50.788 [info] [node-compile-cache] agent-host: packaged cache enabled (status: enabled, configured: /Applications/Visual Studio Code.app/Contents/Resources/app/node-compile-cache/agent-host, active: /Applications/Visual Studio Code.app/Contents/Resources/app/node-compile-cache/agent-host/v24.22.1-arm64-60e4fe36)
+2026-11-02 21:52:51.650 [info] [AgentService] pruned 0 stale external session row(s) older than 30 days
+2026-11-02 21:52:51.652 [info] [Claude] SDK not downloaded yet; deferring chat discovery
+2026-11-02 21:52:52.139 [info] [Copilot] Auth token updated
+2026-11-02 21:52:52.155 [info] [ClaudeProxyService] listening on http://127.0.0.1:49736
+2026-11-02 21:52:52.156 [info] [Claude] Auth token updated
+2026-11-02 21:52:52.198 [info] [Copilot] CopilotClient started successfully
+2026-11-02 21:52:52.212 [info] [Copilot] Listed 3 SDK session(s) for discoverable chats
+2026-11-02 21:52:52.214 [info] [CopilotDiscovery] Scan 1 catalog: sdkSessions=3, candidates=3, listMs=1437, classifyMs=1, published=0, external=0, legacy=0, known=3, disabledLegacy=0, archivedLegacy=0, missingCwd=0, unsupportedClient=0, stale=0, failed=0
+2026-11-02 21:52:52.214 [info] [CopilotDiscovery] Scan 1 finished: elapsedMs=1438, completed=3, pending=6, watched=6, overflow=0, ignoredHostEvents=0
+2026-11-02 21:52:54.037 [info] [Copilot] Enhanced (restricted) telemetry enabled for this account
+2026-11-02 21:52:54.037 [info] [Codex] Auth token updated
+2026-11-02 21:52:54.040 [info] [Copilot] Listing models...
+2026-11-02 21:52:55.833 [info] [Claude] Models refreshed (merged). Count: 0, 
+2026-11-02 21:52:56.052 [info] [Copilot] Found 0 models: 
+2026-11-02 21:52:56.052 [info] [Copilot] No models listed; offering Auto
+2026-11-02 21:52:56.056 [info] [Copilot] Provider Auto tiers: default 'balance'; balance (auto), hydrafusion (fusion, disabled), hydrafusion-max (fusion, disabled), fast (auto)
+2026-11-02 21:52:56.056 [info] [Copilot] Auto presentation: Auto with CAPI's tiers, no Fusion: CAPI offers no Fusion tier this account can run, so they are shown as unavailable [hydrafusion=disabled (This tier is not available for the user's Copilot plan.), hydrafusion-max=disabled (This tier is not available for the user's Copilot plan.)]
+2026-11-02 21:52:56.563 [info] [Copilot] Creating chat ahp-chat:/87b56339-53de-4282-8884-dc26bc23e12f with a deferred backing... model=auto
+2026-11-02 21:52:56.583 [info] [Copilot] Chat created; its backing stays deferred until the first send: ahp-session:/e13298f8-9b4b-404d-b571-213e63af1905
+2026-11-02 21:52:56.633 [info] [Copilot] Active client e084dcb5-538a-4ad9-a15d-63735062a1ea now contributes to chat ahp-chat:/87b56339-53de-4282-8884-dc26bc23e12f
+2026-11-02 21:52:56.636 [info] [Copilot] Created hidden customization policy session
+2026-11-02 21:52:56.641 [info] [AgentHostPullRequestOperationContribution] Advertised operations changed: session=ahp-session:/e13298f8-9b4b-404d-b571-213e63af1905, primary=none, operations=[none]
+2026-11-02 21:52:57.689 [info] [Claude] Auth token unchanged
+2026-11-02 21:52:57.690 [info] [Codex] Auth token updated
+2026-11-02 21:52:58.194 [info] [AgentPluginManager] Syncing plugin: vscode-synced-customization:/agent-host-copilotcli-66211061 → file:///tmp/repo-anatomy-vscode-user-data-final-2/agentPlugins/vscode-synced-customization-agent-host-copilotcli-66211061/562111282
+2026-11-02 21:56:46.951 [info] [Copilot:e13298f8-9b4b-404d-b571-213e63af1905] removeActiveClient: clientId=e084dcb5-538a-4ad9-a15d-63735062a1ea, chat=ahp-chat:/87b56339-53de-4282-8884-dc26bc23e12f, fullyRemoved=true
+2026-11-02 21:56:47.047 [info] [Copilot] Creating chat ahp-chat:/e354e2ef-c9c1-4129-be00-43f53ff3e832 with a deferred backing... model=auto
+2026-11-02 21:56:47.048 [info] [Copilot] Chat created; its backing stays deferred until the first send: ahp-session:/3588ffdf-6f2d-4d6d-b373-67c3687874ed
+2026-11-02 21:56:47.136 [info] [Copilot] Active client e084dcb5-538a-4ad9-a15d-63735062a1ea now contributes to chat ahp-chat:/e354e2ef-c9c1-4129-be00-43f53ff3e832
+2026-11-02 21:56:47.228 [info] [AgentHostPullRequestOperationContribution] Advertised operations changed: session=ahp-session:/3588ffdf-6f2d-4d6d-b373-67c3687874ed, primary=none, operations=[none]
+2026-11-02 22:01:12.587 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 22:01:12.598 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 22:01:12.601 [info] [ProtocolServer] Initialize: clientId=926d5def-306f-4069-9ef7-1dabb164d412, protocolVersions=[1.0.0, 0.10.0, 0.9.0]
+2026-11-02 22:01:14.990 [info] [Claude] SDK not downloaded yet; deferring the migratable chat list
+2026-11-02 22:01:15.137 [info] [Claude] Auth token unchanged
+2026-11-02 22:01:15.138 [info] [Codex] Auth token updated
+2026-11-02 22:01:17.273 [info] [Claude] Auth token unchanged
+2026-11-02 22:01:17.273 [info] [Codex] Auth token updated

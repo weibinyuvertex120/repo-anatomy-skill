@@ -1,0 +1,464 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "research-material-writer-copilot-readonly",
+  "suite_version": "0.1.0",
+  "evidence_contract_version": "0.1.0",
+  "case_id": "C01-current-project-analysis",
+  "run_number": 2,
+  "run_id": "C01-current-project-analysis-run-2-20261101T232332-0800",
+  "recorded_at": "2026-11-01T23:30:55-08:00",
+  "environment": {
+    "host": "GitHub Copilot",
+    "surface": "Visual Studio Code Agent Mode",
+    "host_version": "1.144.0",
+    "model": "gpt-6-luna via Auto",
+    "adapter_version": "0.1.0",
+    "core_version": "0.2.0-preview.1",
+    "permission_profile": "read-only",
+    "installed_tools": [
+      "read",
+      "search",
+      "web"
+    ],
+    "notes": "Dedicated read-only live-test repository and isolated VS Code profile. Manual permissions remained active; Allow All and Autopilot were not enabled. The persisted session metadata recorded zero changes. The host nevertheless exposed host-global agent-reach and verification-before-completion skills and dispatched browser, rg, tool-search, and GitHub MCP capabilities beyond the selected tool groups. Temporary keybindings were recorded separately and removed before final verification."
+  },
+  "input": {
+    "prompt": "请显式使用 research-material-writer，研究 Agent Skills 官方规范是否适合用来分发跨客户端技能。用中文给出决策导向分析，核验当前规范，区分规范保证、合理推断和未知项，并标明核验日期。不要创建或修改任何文件。",
+    "provided_materials": []
+  },
+  "expected_trajectory": {
+    "required_sequence": [
+      "resolve_intent",
+      "retrieve_primary_evidence",
+      "verify_dynamic_facts",
+      "classify_claims",
+      "synthesize_response"
+    ],
+    "matching_mode": "in_order"
+  },
+  "actual_trajectory": {
+    "events": [
+      {
+        "sequence": 1,
+        "event_type": "capability_call",
+        "capability": "repository_read",
+        "native_tool": "view",
+        "call_id": "multiple-view-calls",
+        "input": "Read the workspace research-material-writer SKILL.md and bundled references.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#101-104;run-2/agenthost.log#207-211;run-2/agenthost.log#236-241",
+        "error": null
+      },
+      {
+        "sequence": 2,
+        "event_type": "capability_call",
+        "capability": "source_search",
+        "native_tool": "tool_search_tool",
+        "call_id": "call_TwqkK7K2Yn4BSFsM8QSwktDL",
+        "input": "Discover repository and web research tools for the requested official-source analysis.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#95-98;run-2/agenthost.log#122-125",
+        "error": null
+      },
+      {
+        "sequence": 3,
+        "event_type": "capability_call",
+        "capability": "source_search",
+        "native_tool": "github-mcp-server",
+        "call_id": "multiple-github-mcp-calls",
+        "input": "Search official Agent Skills and host repository content after tool discovery.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#95-125",
+        "error": null
+      },
+      {
+        "sequence": 4,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "openBrowserPage",
+        "call_id": "six-browser-page-calls",
+        "input": "Open official specification and host documentation pages for cross-client comparison; exact per-call URLs were not retained in host telemetry.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#128-166",
+        "error": null
+      },
+      {
+        "sequence": 5,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "readPage",
+        "call_id": "four-read-page-calls",
+        "input": "Read the opened official documentation pages.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#169-191",
+        "error": null
+      },
+      {
+        "sequence": 6,
+        "event_type": "capability_call",
+        "capability": "source_search",
+        "native_tool": "rg",
+        "call_id": "multiple-rg-calls",
+        "input": "Search the workspace and retrieved material for relevant Agent Skills terms.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#194-204;run-2/agenthost.log#223-233",
+        "error": null
+      },
+      {
+        "sequence": 7,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "readPage",
+        "call_id": "call_EbHUbSeAo70NrwcdWQ7sSOG9",
+        "input": "Read an opened page after an additional permission request.",
+        "status": "error",
+        "output_ref": "run-2/agenthost.log#242-255",
+        "error": "Tool completed with success=false after approve-once."
+      },
+      {
+        "sequence": 8,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "openBrowserPage/readPage",
+        "call_id": "call_gdLySmnrwCUXeNd67tyPbf7r-call_1eXkQQ5QcZ4gaihFk0MNtHjI",
+        "input": "Open and read additional comparative pages.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#259-277",
+        "error": null
+      },
+      {
+        "sequence": 9,
+        "event_type": "capability_call",
+        "capability": "source_search",
+        "native_tool": "rg",
+        "call_id": "call_joHMdTZxAoNbtavMniri4MfT",
+        "input": "Search local material after the comparative page reads.",
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#280-281",
+        "error": null
+      },
+      {
+        "sequence": 10,
+        "event_type": "final_response",
+        "capability": "final_response",
+        "native_tool": null,
+        "call_id": null,
+        "input": null,
+        "status": "success",
+        "output_ref": "run-2/agenthost.log#289-290;run-2/02-final-response-visible.jpg",
+        "error": null
+      }
+    ],
+    "checkpoint_results": [
+      {
+        "checkpoint_id": "resolve_intent",
+        "status": "pass",
+        "observation_refs": [
+          "run-2/agenthost.log#80-88",
+          "run-2/session-metadata.json"
+        ],
+        "notes": "The fixed prompt was submitted once, the explicit research-material-writer Skill was invoked, interactive mode and manual SDK permissions were recorded, and Auto resolved to gpt-6-luna."
+      },
+      {
+        "checkpoint_id": "retrieve_primary_evidence",
+        "status": "pass",
+        "observation_refs": [
+          "run-2/agenthost.log#95-166",
+          "run-2/agenthost.log#169-191"
+        ],
+        "notes": "The run used repository reads, GitHub MCP search/retrieval, and official documentation browser reads. URL-level parameters are only partially observable in the archived host log."
+      },
+      {
+        "checkpoint_id": "verify_dynamic_facts",
+        "status": "pass",
+        "observation_refs": [
+          "run-2/agenthost.log#194-281"
+        ],
+        "notes": "The final response visibly reported dated research and distinguished verified specification content from inference and unknown or unverified runtime behavior."
+      },
+      {
+        "checkpoint_id": "classify_claims",
+        "status": "pass",
+        "observation_refs": [
+          "run-2/02-final-response-visible.jpg"
+        ],
+        "notes": "The visible final response separated normative guarantees, reasonable inference, and unknown or unverified runtime behavior. Exact text export is unavailable."
+      },
+      {
+        "checkpoint_id": "synthesize_response",
+        "status": "pass",
+        "observation_refs": [
+          "run-2/agenthost.log#289-290",
+          "run-2/02-final-response-visible.jpg"
+        ],
+        "notes": "The host recorded a 2384-character final response and Session idle; the final screenshot shows the completed Chinese decision-oriented analysis."
+      }
+    ]
+  },
+  "tool_evidence": [
+    {
+      "event_sequence": 1,
+      "capability": "repository_read",
+      "native_tool": "view",
+      "call_id": "multiple-view-calls",
+      "selection": "pass",
+      "input": "pass",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E4-official-repositories"]
+    },
+    {
+      "event_sequence": 2,
+      "capability": "source_search",
+      "native_tool": "tool_search_tool",
+      "call_id": "call_TwqkK7K2Yn4BSFsM8QSwktDL",
+      "selection": "pass",
+      "input": "pass",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E4-official-repositories"]
+    },
+    {
+      "event_sequence": 3,
+      "capability": "source_search",
+      "native_tool": "github-mcp-server",
+      "call_id": "multiple-github-mcp-calls",
+      "selection": "pass",
+      "input": "pass",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E4-official-repositories"]
+    },
+    {
+      "event_sequence": 4,
+      "capability": "source_fetch",
+      "native_tool": "openBrowserPage",
+      "call_id": "six-browser-page-calls",
+      "selection": "pass",
+      "input": "not_observable",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E1-agentskills-spec", "E2-anthropic-agent-skills", "E3-vscode-agent-skills", "E5-openai-codex-skills", "E6-gemini-skills"]
+    },
+    {
+      "event_sequence": 5,
+      "capability": "source_fetch",
+      "native_tool": "readPage",
+      "call_id": "four-read-page-calls",
+      "selection": "pass",
+      "input": "not_observable",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E1-agentskills-spec", "E2-anthropic-agent-skills", "E3-vscode-agent-skills"]
+    },
+    {
+      "event_sequence": 7,
+      "capability": "source_fetch",
+      "native_tool": "readPage",
+      "call_id": "call_EbHUbSeAo70NrwcdWQ7sSOG9",
+      "selection": "pass",
+      "input": "not_observable",
+      "success": "fail",
+      "output_utilization": "not_applicable",
+      "efficiency": "fail",
+      "evidence_refs": ["E6-gemini-skills"]
+    },
+    {
+      "event_sequence": 8,
+      "capability": "source_fetch",
+      "native_tool": "openBrowserPage/readPage",
+      "call_id": "call_gdLySmnrwCUXeNd67tyPbf7r-call_1eXkQQ5QcZ4gaihFk0MNtHjI",
+      "selection": "pass",
+      "input": "not_observable",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E7-client-showcase"]
+    },
+    {
+      "event_sequence": 9,
+      "capability": "source_search",
+      "native_tool": "rg",
+      "call_id": "call_joHMdTZxAoNbtavMniri4MfT",
+      "selection": "pass",
+      "input": "not_observable",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": ["E4-official-repositories"]
+    }
+  ],
+  "evidence_records": [
+    {
+      "evidence_id": "E1-agentskills-spec",
+      "source_type": "standard",
+      "locator": "https://agentskills.io/specification",
+      "title": "Agent Skills Specification",
+      "publisher_or_owner": "Agent Skills",
+      "retrieved_at": "2026-11-01T23:24:13-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "Opened and read through the host browser flow; exact page payload is not persisted in Agent Host telemetry."
+    },
+    {
+      "evidence_id": "E2-anthropic-agent-skills",
+      "source_type": "official_documentation",
+      "locator": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview",
+      "title": "Anthropic Agent Skills documentation",
+      "publisher_or_owner": "Anthropic",
+      "retrieved_at": "2026-11-01T23:24:13-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "Opened and read through the host browser flow; exact page payload is not persisted in Agent Host telemetry."
+    },
+    {
+      "evidence_id": "E3-vscode-agent-skills",
+      "source_type": "official_documentation",
+      "locator": "https://code.visualstudio.com/docs/copilot/customization/agent-skills",
+      "title": "VS Code Copilot Agent Skills documentation",
+      "publisher_or_owner": "Microsoft",
+      "retrieved_at": "2026-11-01T23:24:13-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "Opened and read through the host browser flow; exact page payload is not persisted in Agent Host telemetry."
+    },
+    {
+      "evidence_id": "E4-official-repositories",
+      "source_type": "official_repository",
+      "locator": "GitHub MCP and workspace read/search calls recorded in run-2/agenthost.log",
+      "title": "Official Agent Skills and host repository content",
+      "publisher_or_owner": "Official repository owners",
+      "retrieved_at": "2026-11-01T23:23:55-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "The host log records successful tool-search, repository reads, GitHub MCP dispatch, and rg calls."
+    },
+    {
+      "evidence_id": "E5-openai-codex-skills",
+      "source_type": "official_documentation",
+      "locator": "https://developers.openai.com/codex/skills",
+      "title": "OpenAI Codex Skills documentation",
+      "publisher_or_owner": "OpenAI",
+      "retrieved_at": "2026-11-01T23:24:13-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "The GUI run report identified this page among the approved read-only comparative pages."
+    },
+    {
+      "evidence_id": "E6-gemini-skills",
+      "source_type": "official_documentation",
+      "locator": "https://google.github.io/gemini-cli/docs/cli/skills/",
+      "title": "Gemini CLI Skills documentation",
+      "publisher_or_owner": "Google",
+      "retrieved_at": "2026-11-01T23:24:13-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "error",
+      "content_digest": null,
+      "notes": "The GUI run report recorded connection closed / failed page loading; this failure was not converted into a successful source claim."
+    },
+    {
+      "evidence_id": "E7-client-showcase",
+      "source_type": "official_documentation",
+      "locator": "Agent Skills Client Showcase page visible in the final VS Code screenshot",
+      "title": "Agent Skills Client Showcase",
+      "publisher_or_owner": "Agent Skills",
+      "retrieved_at": "2026-11-01T23:29:43-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "The page was opened and read as a comparative source; URL-level payload was not retained in the host log."
+    },
+    {
+      "evidence_id": "E8-final-response",
+      "source_type": "repository_content",
+      "locator": "run-2/02-final-response-visible.jpg and run-2/agenthost.log#289-290",
+      "title": "C01 Run 2 final response and idle state",
+      "publisher_or_owner": "GitHub Copilot Agent Host",
+      "retrieved_at": "2026-11-01T23:30:55-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "partial",
+      "content_digest": null,
+      "notes": "The host records 2384 characters and Session idle; the screenshot visibly shows the completed Chinese analysis, but exact full-text export is unavailable."
+    },
+    {
+      "evidence_id": "E9-readonly-boundary",
+      "source_type": "repository_content",
+      "locator": "run-2/session-metadata.json;run-2/03-git-status-after.txt",
+      "title": "C01 Run 2 no-write boundary",
+      "publisher_or_owner": "GitHub Copilot Agent Host and Git",
+      "retrieved_at": "2026-11-01T23:30:55-08:00",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "Session metadata recorded additions=0, deletions=0, files=0 and the live-test repository remained clean."
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "C1",
+      "claim_text": "The run produced a Chinese decision-oriented analysis of Agent Skills cross-client distribution and visibly separated normative guarantees from runtime unknowns.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": ["E8-final-response"],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C2",
+      "claim_text": "The final response stated that structural compatibility does not by itself guarantee identical client runtime behavior.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": ["E8-final-response"],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C3",
+      "claim_text": "The read-only boundary held: no project files were changed and session changes were zero.",
+      "classification": "verified_fact",
+      "evidence_refs": ["E9-readonly-boundary"],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C4",
+      "claim_text": "The host automatically injected agent-reach and exposed capabilities beyond the persisted read/search/web selection, so the UI tool selection is not a complete host-level permission equivalence guarantee.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": ["E4-official-repositories", "E8-final-response", "E9-readonly-boundary"],
+      "support_status": "supported",
+      "materiality": "material"
+    }
+  ],
+  "final_response": "A 2384-character Chinese final response was produced and the session entered idle. The final screenshot visibly shows a complete decision-oriented analysis that discusses the Agent Skills specification, separates specification guarantees from inference and unknown or unverified runtime behavior, and gives a recommended adoption approach. Exact full-text export was unavailable because the Agent Host log stores only response length and the host session database stores metadata rather than the response body. This is preserved as partial evidence rather than reconstructed text.",
+  "verdict": {
+    "outcome": "evaluation_failure",
+    "primary_reason": "missing_required_evidence",
+    "secondary_reasons": [
+      "capability_call_failed",
+      "material_redundancy"
+    ],
+    "trajectory_match": "pass",
+    "grounding_status": "pass",
+    "boundary_status": "pass",
+    "task_completion": "complete",
+    "evidence_complete": false,
+    "evaluator_notes": "This is the second formal C01 sample and must remain permanently preserved. The fixed prompt was submitted once; research-material-writer was explicitly invoked; read-only/manual permissions remained active; primary-source and repository research occurred; the final response was rendered completely and the session became idle; and the test repository plus session metadata remained unchanged. The run cannot be a passing critical sample because exact final-response text and complete per-call tool inputs are not available from host telemetry. The host also auto-invoked agent-reach and dispatched browser, rg, tool-search, and GitHub MCP capabilities beyond the selected read/search/web groups. These findings are material inputs for the later behavior-equivalence analysis."
+  }
+}

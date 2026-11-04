@@ -2,6 +2,26 @@
 
 All notable behavioral changes to the repository's Skills are recorded here.
 
+## research-material-writer 0.3.0-preview.1 - 2026-11-03
+
+### Added
+
+- Host-neutral comprehensive project research contract covering overview, capabilities, scenarios, installation, configuration, workflows, advanced usage, best practices, troubleshooting, risks, comparisons, and evidence gaps.
+- Semantic host capability model that separates source discovery, source retrieval, provided-material reading, repository reading, optional execution, clarification, and response delivery.
+- Explicit guidance for adapting the portable core to Doubao, Codex, and other hosts without assuming vendor-specific tool names or permissions.
+
+### Changed
+
+- Removed WorkBuddy-specific `agent_created` and experimental `allowed-tools` fields from the portable research core.
+- Made local execution, filesystem access, and network access host-declared optional capabilities rather than core assumptions.
+- Expanded the research trigger and functional evaluation contracts with comprehensive arbitrary-project analysis.
+
+### Known Limitations
+
+- Doubao host discovery and execution compatibility remain unverified until a native installation and explicit-load run provides observable evidence.
+- Codex compatibility is limited to the standard open-spec package and still requires host-version-specific discovery and behavior validation.
+- `workspace-file-maintainer` is paused and is not part of this implementation scope.
+
 ## Published preview and release verifier fix - 2026-10-31
 
 ### Changed

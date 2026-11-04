@@ -1,0 +1,6 @@
+[{"key":"agentHost.changes","value":"{\"additions\":0,\"deletions\":0,\"files\":0}"},
+{"key":"agentHost.git","value":"{\"hasGitRemote\":false,\"hasGitHubRemote\":false,\"branchName\":\"main\",\"baseBranchName\":\"main\",\"uncommittedChanges\":0}"},
+{"key":"configValues","value":"{\"mode\":\"interactive\",\"availableApprovalModes\":[\"default\",\"assisted\",\"autoApprove\"],\"autoApprove\":\"default\",\"effectiveApprovalMode\":\"default\",\"isolation\":\"folder\",\"branch\":\"main\",\"vscode.modelConfiguration\":{\"ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446\":{\"models\":{\"auto\":{\"defaults\":{\"tier\":\"balance\"},\"readOnly\":[],\"choices\":{\"tier\":{\"values\":[\"balance\"],\"labels\":[\"Standard\"],\"descriptions\":[\"Prioritizes versatile models for efficient everyday coding.\"]}}}},\"current\":{\"id\":\"auto\",\"config\":{\"tier\":\"balance\",\"vscode.modelConfiguration.tier.source\":\"default\"}},\"owner\":\"3a00139c-0e15-4627-ad03-87e0b99a2c32\"}},\"sandboxEnabled\":\"off\"}"},
+{"key":"copilot.model","value":"{\"id\":\"auto\",\"config\":{\"tier\":\"balance\",\"vscode.modelConfiguration.tier.source\":\"default\"}}"},
+{"key":"customTitle","value":"研究 Agent Skills 官方规范适用性"},
+{"key":"defaultChatProviderData","value":"{\"sdkSessionId\":\"a9089610-6aff-4e96-804d-a5cf17802a42\"}"}]

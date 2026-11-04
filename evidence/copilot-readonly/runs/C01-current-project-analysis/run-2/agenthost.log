@@ -1,0 +1,348 @@
+2026-11-01 21:20:54.864 [info] Agent Host process started successfully
+2026-11-01 21:20:54.914 [info] AgentService initialized
+2026-11-01 21:20:54.920 [info] Registering agent provider: copilotcli
+2026-11-01 21:20:54.920 [info] [CopilotDiscovery] Started: maxCandidateWatches=32, maxConcurrentStats=4, coalesceMs=500
+2026-11-01 21:20:54.920 [info] Registering agent provider: claude
+2026-11-01 21:20:54.921 [info] [Copilot] Auto presentation: Auto beside HydraFusion (fallback): CAPI provided no Auto tiers; HydraFusion setting adds [none]
+2026-11-01 21:20:54.921 [info] Registering agent provider: codex
+2026-11-01 21:20:54.921 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-01 21:20:54.921 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-01 21:20:54.933 [info] [Claude] Models refreshed (merged). Count: 0, 
+2026-11-01 21:20:54.940 [info] [Claude] SDK not downloaded yet; deferring the migratable chat list
+2026-11-01 21:20:54.943 [info] [WebSocketProtocol] Server listening on socket /var/folders/yv/2_l203l54rvcdv6jwnwcq5c00000gn/T/vscode-ah-01d25a4c4146/x8TOJ6N-eQeZJTkZGFsOGA.sock
+2026-11-01 21:20:54.945 [info] [CopilotDiscovery] Scan 1 started: initial=true, candidates=7, reasons={"startup":7}, watched=7, pending=7, ignoredHostEvents=0
+2026-11-01 21:20:54.945 [info] [Copilot] Listing discoverable chats...
+2026-11-01 21:20:54.945 [info] [Copilot] Starting CopilotClient...
+2026-11-01 21:20:54.945 [info] [Copilot] Enabled runtime feature flag DYNAMIC_AUTO_TIERS
+2026-11-01 21:20:54.945 [info] [Copilot] Set CLI env: GITHUB_COPILOT_INTEGRATION_ID=vscode-chat
+2026-11-01 21:20:54.945 [info] [Copilot] Enabled repository-size-gated tgrep indexed search
+2026-11-01 21:20:54.947 [info] [Copilot] Using bundled runtime path: /Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar.unpacked/@github/copilot-sdk-darwin-arm64/prebuilds/darwin-arm64/copilot-runtime
+2026-11-01 21:20:54.954 [info] [CommandAutoApprover] Tree-sitter initialized (bash=available, powershell=available)
+2026-11-01 21:20:54.955 [info] [AgentService] sessions_v2 import for provider copilotcli: 0 synchronized, 0 current, 0 excluded, 0 stale exclusions, 0 incomplete, 0 failed, marker set in 33ms (0 db opens, 0 db stats)
+2026-11-01 21:20:54.963 [info] [node-compile-cache] agent-host: packaged cache enabled (status: enabled, configured: /Applications/Visual Studio Code.app/Contents/Resources/app/node-compile-cache/agent-host, active: /Applications/Visual Studio Code.app/Contents/Resources/app/node-compile-cache/agent-host/v24.22.1-arm64-60e4fe36)
+2026-11-01 21:20:55.067 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-01 21:20:55.078 [info] [ProtocolServer] Initialize: clientId=25638bab-db90-49bd-99ae-705b38c4789d, protocolVersions=[1.0.0, 0.10.0, 0.9.0]
+2026-11-01 21:20:55.230 [info] [Copilot] CopilotClient started successfully
+2026-11-01 21:20:55.236 [info] [Copilot] Listed 2 SDK session(s) for discoverable chats
+2026-11-01 21:20:55.237 [info] [CopilotDiscovery] Scan 1 catalog: sdkSessions=2, candidates=2, listMs=292, classifyMs=0, published=0, external=0, legacy=0, known=2, disabledLegacy=0, archivedLegacy=0, missingCwd=0, unsupportedClient=0, stale=0, failed=0
+2026-11-01 21:20:55.237 [info] [CopilotDiscovery] Scan 1 finished: elapsedMs=293, completed=2, pending=5, watched=5, overflow=0, ignoredHostEvents=0
+2026-11-01 21:20:55.737 [info] [AgentService] pruned 0 stale external session row(s) older than 30 days
+2026-11-01 21:20:55.738 [info] [Claude] SDK not downloaded yet; deferring chat discovery
+2026-11-01 21:20:56.261 [info] [Copilot] Auth token updated
+2026-11-01 21:20:56.276 [info] [ClaudeProxyService] listening on http://127.0.0.1:57034
+2026-11-01 21:20:56.276 [info] [Claude] Auth token updated
+2026-11-01 21:20:57.212 [info] [Copilot] Enhanced (restricted) telemetry enabled for this account
+2026-11-01 21:20:57.212 [info] [Codex] Auth token updated
+2026-11-01 21:20:57.214 [info] [Copilot] Listing models...
+2026-11-01 21:20:58.555 [info] [Claude] Models refreshed (merged). Count: 0, 
+2026-11-01 21:20:58.931 [info] [Claude] Auth token unchanged
+2026-11-01 21:20:58.931 [info] [Codex] Auth token updated
+2026-11-01 21:20:59.529 [info] [Copilot] Found 0 models: 
+2026-11-01 21:20:59.529 [info] [Copilot] No models listed; offering Auto
+2026-11-01 21:20:59.709 [info] [Copilot] Creating chat ahp-chat:/fdcd1f62-bc36-49e1-b108-0d2997c42119 with a deferred backing... 
+2026-11-01 21:20:59.779 [info] [Copilot] Chat created; its backing stays deferred until the first send: ahp-session:/ebf4f8fe-4086-4b93-ba35-fc9d916f510c
+2026-11-01 21:20:59.817 [info] [Copilot] Active client 25638bab-db90-49bd-99ae-705b38c4789d now contributes to chat ahp-chat:/fdcd1f62-bc36-49e1-b108-0d2997c42119
+2026-11-01 21:20:59.822 [info] [AgentHostPullRequestOperationContribution] Advertised operations changed: session=ahp-session:/ebf4f8fe-4086-4b93-ba35-fc9d916f510c, primary=none, operations=[none]
+2026-11-01 21:21:00.056 [info] [Copilot] Provider Auto tiers: default 'balance'; balance (auto), hydrafusion (fusion, disabled), hydrafusion-max (fusion, disabled), fast (auto)
+2026-11-01 21:21:00.056 [info] [Copilot] Auto presentation: Auto with CAPI's tiers, no Fusion: CAPI offers no Fusion tier this account can run, so they are shown as unavailable [hydrafusion=disabled (This tier is not available for the user's Copilot plan.), hydrafusion-max=disabled (This tier is not available for the user's Copilot plan.)]
+2026-11-01 21:21:00.304 [info] [Copilot] Created hidden customization policy session
+2026-11-01 21:21:19.599 [info] [Copilot:ebf4f8fe-4086-4b93-ba35-fc9d916f510c] removeActiveClient: clientId=25638bab-db90-49bd-99ae-705b38c4789d, chat=ahp-chat:/fdcd1f62-bc36-49e1-b108-0d2997c42119, fullyRemoved=true
+2026-11-01 21:21:19.961 [info] [Copilot] Creating chat ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446 with a deferred backing... model=auto
+2026-11-01 21:21:19.961 [info] [Copilot] Chat created; its backing stays deferred until the first send: ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10
+2026-11-01 21:21:20.009 [info] [Copilot] Active client 25638bab-db90-49bd-99ae-705b38c4789d now contributes to chat ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446
+2026-11-01 21:21:20.017 [info] [AgentHostPullRequestOperationContribution] Advertised operations changed: session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, primary=none, operations=[none]
+2026-11-01 21:31:21.874 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-01 22:02:31.745 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-01 23:23:28.148 [info] [AgentHostTurnTiming] {"schemaVersion":1,"sessionId":"ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10","chatId":"ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446","turnId":"request_d0b1c61c-8a9a-4854-a1ff-cac92a1cac7d","provider":"copilotcli","hostRootTurnOrdinal":1,"hostProcessAgeMs":7353589}
+2026-11-01 23:23:28.150 [info] [Copilot] Listing models...
+2026-11-01 23:23:28.210 [info] [AgentHostTurnTiming] {"schemaVersion":1,"sessionId":"ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10","chatId":"ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446","turnId":"request_d0b1c61c-8a9a-4854-a1ff-cac92a1cac7d","provider":"copilotcli","hostRootTurnOrdinal":1,"hostProcessAgeMs":7353589,"titleGenerationStrategy":"utility"}
+2026-11-01 23:23:28.216 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Preparing SDK session: kind=create, configuration=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446
+2026-11-01 23:23:28.299 [warning] [agentHostGitService] > git commit-tree 95379980655436655c802382fa6aa40d23f805d7 -m Agent host session 8669d81b-b438-4182-9a39-14f3a420ef10 - baseline checkpoint failed; full stderr:
+error: insufficient permission for adding an object to repository database .git/objects
+
+2026-11-01 23:23:28.300 [warning] [AgentHostCheckpoint] Failed to capture turn start for ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10/request_d0b1c61c-8a9a-4854-a1ff-cac92a1cac7d in working directory file:///Users/veretex/Developer/repo-anatomy-copilot-live-test git commit-tree exited with code 1: error: insufficient permission for adding an object to repository database .git/objects
+2026-11-01 23:23:29.537 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Resolved system message: mode=customize sections=[identity:replace, tool_instructions:append] +content(length 1178)
+2026-11-01 23:23:29.538 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Granting the runtime 'session' trust for trusted working directory /Users/veretex/Developer/repo-anatomy-copilot-live-test
+2026-11-01 23:23:29.538 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Using Auto "Optimize for" preference 'balance'
+2026-11-01 23:23:30.226 [info] [Copilot] Created hidden customization policy session
+2026-11-01 23:23:30.404 [info] [Copilot] Found 0 models: 
+2026-11-01 23:23:30.405 [info] [Copilot] No models listed; offering Auto
+2026-11-01 23:23:30.803 [info] [Copilot] Provider Auto tiers: default 'balance'; balance (auto), hydrafusion (fusion, disabled), hydrafusion-max (fusion, disabled), fast (auto)
+2026-11-01 23:23:31.226 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Applied SDK sandboxConfig via session.options.update
+2026-11-01 23:23:31.227 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] SDK session attached: instanceId=ec80a973-e570-4316-af04-bb8044356263, disconnectRpc=notStarted, shutdownReceived=false, disposed=false, lifetimeMs=0
+2026-11-01 23:23:31.250 [info] [Copilot] Session materialized: ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446 in ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10
+2026-11-01 23:23:31.260 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] MCP server 'github-mcp-server' not_configured (stopped) {"mcpEvent":"inventory","mcpServer":"github-mcp-server","mcpStatus":"not_configured","mcpState":"stopped","mcpSource":"builtin"}
+2026-11-01 23:23:31.338 [warning] [agentHostGitService] > git commit-tree 95379980655436655c802382fa6aa40d23f805d7 -m Agent host session 8669d81b-b438-4182-9a39-14f3a420ef10 - baseline checkpoint failed; full stderr:
+error: insufficient permission for adding an object to repository database .git/objects
+
+2026-11-01 23:23:31.338 [warning] [AgentHostCheckpoint] Failed to capture baseline for ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10 in working directory file:///Users/veretex/Developer/repo-anatomy-copilot-live-test git commit-tree exited with code 1: error: insufficient permission for adding an object to repository database .git/objects
+2026-11-01 23:23:32.889 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Reconciled 0 connector MCP server(s) through the Copilot runtime
+2026-11-01 23:23:32.891 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] sendMessage called: "/research-material-writer 请显式使用 research-material-writer，研究 Agent Skills 官方规范是否适合用来分发跨客户端技能。用中文给出决策导..." (2 attachments)
+2026-11-01 23:23:32.904 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] rpc.mode.set succeeded: mode=interactive
+2026-11-01 23:23:32.911 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Skill invoked: research-material-writer (/Users/veretex/Developer/repo-anatomy-copilot-live-test/.github/skills/research-material-writer/SKILL.md)
+2026-11-01 23:23:32.913 [info] [AgentHostFirstProgress] {"provider":"copilotcli","turnId":"request_d0b1c61c-8a9a-4854-a1ff-cac92a1cac7d","hostRootTurnOrdinal":1,"timeToFirstProgress":4765,"timeToProviderDispatch":3106,"sendStages":{"workingDirectory":60,"modelSelection":0,"attachments":0,"contributions":1,"providerPreparation":3044,"checkpoint":0},"providerStages":{"queue":1,"refresh":13,"turnPrepare":1645}}
+2026-11-01 23:23:32.914 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=synth-skill-d8ed6bfe-a54a-4fbc-82e0-0a6057419496, success=true
+2026-11-01 23:23:32.916 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Syncing permission mode: source=turn-start, agentMode=interactive, configuredLevel=default, sdkMode=manual, previousSdkMode=unknown, globalAutoApprove=false
+2026-11-01 23:23:32.919 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Enabled SDK experimental mode
+2026-11-01 23:23:32.925 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] session.send() returned
+2026-11-01 23:23:33.488 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Auto mode resolved to gpt-6-luna [routingMethod=auto_v2, fallback=false]
+2026-11-01 23:23:33.496 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] MCP server 'github-mcp-server' pending (starting) {"mcpEvent":"statusChanged","mcpServer":"github-mcp-server","mcpStatus":"pending","mcpState":"starting"}
+2026-11-01 23:23:36.483 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] MCP server 'github-mcp-server' connected (starting) {"mcpEvent":"statusChanged","mcpServer":"github-mcp-server","mcpStatus":"connected","mcpState":"starting"}
+2026-11-01 23:23:47.081 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:23:47.104 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Skill invoked: agent-reach (/Users/veretex/.agents/skills/agent-reach/SKILL.md)
+2026-11-01 23:23:47.105 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=synth-skill-1de2675d-1f77-4426-b449-6461fb93b896, success=true
+2026-11-01 23:23:52.927 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:23:52.929 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: tool_search_tool
+2026-11-01 23:23:55.055 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_TwqkK7K2Yn4BSFsM8QSwktDL, success=true
+2026-11-01 23:23:55.055 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] tool_search override: availableTools=80, deferred=74, clientMatched=[github-mcp-server-get_file_contents, github-mcp-server-pull_request_read, readPage, screenshotPage, github-mcp-server-get_copilot_space] -> toolReferences=[github-mcp-server-get_file_contents, github-mcp-server-pull_request_read, readPage, screenshotPage, github-mcp-server-get_copilot_space]
+2026-11-01 23:23:55.062 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_TwqkK7K2Yn4BSFsM8QSwktDL
+2026-11-01 23:23:55.063 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_TwqkK7K2Yn4BSFsM8QSwktDL, success=true
+2026-11-01 23:23:58.514 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:23:58.516 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:23:58.517 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:23:58.517 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:23:58.517 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:23:58.526 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_O96xsVHk0c89HRSVVukp5PBJ
+2026-11-01 23:23:58.528 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_Djl34KJ0z79T79ulscROUn23
+2026-11-01 23:23:58.528 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_QxHN51tuw7PINBdRJ1C3KImG
+2026-11-01 23:23:58.529 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_O96xsVHk0c89HRSVVukp5PBJ, result=approve-once
+2026-11-01 23:23:58.530 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_Djl34KJ0z79T79ulscROUn23, result=approve-once
+2026-11-01 23:23:58.531 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_QxHN51tuw7PINBdRJ1C3KImG, result=approve-once
+2026-11-01 23:23:58.538 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_NN18XQUoiiDTK0MN2u6nsEm2
+2026-11-01 23:23:58.540 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_NN18XQUoiiDTK0MN2u6nsEm2, result=approve-once
+2026-11-01 23:23:58.557 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_O96xsVHk0c89HRSVVukp5PBJ
+2026-11-01 23:23:58.557 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_O96xsVHk0c89HRSVVukp5PBJ, success=true
+2026-11-01 23:23:58.569 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_QxHN51tuw7PINBdRJ1C3KImG
+2026-11-01 23:23:58.569 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_QxHN51tuw7PINBdRJ1C3KImG, success=true
+2026-11-01 23:23:58.578 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_Djl34KJ0z79T79ulscROUn23
+2026-11-01 23:23:58.578 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_Djl34KJ0z79T79ulscROUn23, success=true
+2026-11-01 23:23:58.586 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_NN18XQUoiiDTK0MN2u6nsEm2
+2026-11-01 23:23:58.586 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_NN18XQUoiiDTK0MN2u6nsEm2, success=true
+2026-11-01 23:24:02.387 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:24:02.391 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: tool_search_tool
+2026-11-01 23:24:03.103 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_LOY7sfSOkh1Rf6js2swpNy9i, success=true
+2026-11-01 23:24:03.103 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] tool_search override: availableTools=80, deferred=74, clientMatched=[readPage, screenshotPage, openBrowserPage, hoverElement, runPlaywrightCode] -> toolReferences=[readPage, screenshotPage, openBrowserPage, hoverElement, runPlaywrightCode]
+2026-11-01 23:24:03.112 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_LOY7sfSOkh1Rf6js2swpNy9i
+2026-11-01 23:24:03.112 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_LOY7sfSOkh1Rf6js2swpNy9i, success=true
+2026-11-01 23:24:13.351 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 71 chars
+2026-11-01 23:24:13.357 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.358 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.358 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.358 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.358 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.359 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:24:13.365 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_NHHT2FE099SBaoxKOy6nUeMl
+2026-11-01 23:24:13.366 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_qxnaQQfzdu1LSPAq0GV177Nf
+2026-11-01 23:24:13.366 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_fVoRh2vxUS1QmPQwJLFsrr2N
+2026-11-01 23:24:13.367 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_Xq9XbaRuByTq3k77KoEhpxUr
+2026-11-01 23:24:13.367 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_79OYWipBl7Tors8oqIyYT4tA
+2026-11-01 23:24:13.367 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_0l6ZSTEAqYFdw7iIXVsroRIV
+2026-11-01 23:24:41.904 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Syncing permission mode: source=config-change, agentMode=interactive, configuredLevel=default, sdkMode=manual, previousSdkMode=manual, globalAutoApprove=false
+2026-11-01 23:24:41.905 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Syncing permission mode: source=config-change, agentMode=interactive, configuredLevel=default, sdkMode=manual, previousSdkMode=manual, globalAutoApprove=false
+2026-11-01 23:24:41.905 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Syncing permission mode: source=config-change, agentMode=interactive, configuredLevel=default, sdkMode=manual, previousSdkMode=manual, globalAutoApprove=false
+2026-11-01 23:24:41.905 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Syncing permission mode: source=config-change, agentMode=interactive, configuredLevel=default, sdkMode=manual, previousSdkMode=manual, globalAutoApprove=false
+2026-11-01 23:24:41.947 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_NHHT2FE099SBaoxKOy6nUeMl, result=approve-once
+2026-11-01 23:24:45.869 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_NHHT2FE099SBaoxKOy6nUeMl, success=true
+2026-11-01 23:24:45.887 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_NHHT2FE099SBaoxKOy6nUeMl
+2026-11-01 23:24:45.887 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_NHHT2FE099SBaoxKOy6nUeMl, success=true
+2026-11-01 23:24:59.576 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_qxnaQQfzdu1LSPAq0GV177Nf, result=approve-once
+2026-11-01 23:24:59.612 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_qxnaQQfzdu1LSPAq0GV177Nf, success=true
+2026-11-01 23:24:59.619 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_qxnaQQfzdu1LSPAq0GV177Nf
+2026-11-01 23:24:59.620 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_qxnaQQfzdu1LSPAq0GV177Nf, success=true
+2026-11-01 23:25:30.837 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_fVoRh2vxUS1QmPQwJLFsrr2N, result=approve-once
+2026-11-01 23:25:33.772 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_fVoRh2vxUS1QmPQwJLFsrr2N, success=true
+2026-11-01 23:25:33.828 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_fVoRh2vxUS1QmPQwJLFsrr2N
+2026-11-01 23:25:33.829 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_fVoRh2vxUS1QmPQwJLFsrr2N, success=true
+2026-11-01 23:26:12.272 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_Xq9XbaRuByTq3k77KoEhpxUr, result=approve-once
+2026-11-01 23:26:31.759 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_79OYWipBl7Tors8oqIyYT4tA, result=approve-once
+2026-11-01 23:26:33.933 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_Xq9XbaRuByTq3k77KoEhpxUr, success=true
+2026-11-01 23:26:33.967 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_Xq9XbaRuByTq3k77KoEhpxUr
+2026-11-01 23:26:33.967 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_Xq9XbaRuByTq3k77KoEhpxUr, success=true
+2026-11-01 23:26:36.072 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_79OYWipBl7Tors8oqIyYT4tA, success=true
+2026-11-01 23:26:36.088 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_79OYWipBl7Tors8oqIyYT4tA
+2026-11-01 23:26:36.088 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_79OYWipBl7Tors8oqIyYT4tA, success=true
+2026-11-01 23:26:51.193 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_0l6ZSTEAqYFdw7iIXVsroRIV, result=approve-once
+2026-11-01 23:26:52.057 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_0l6ZSTEAqYFdw7iIXVsroRIV, success=false
+2026-11-01 23:26:52.066 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_0l6ZSTEAqYFdw7iIXVsroRIV
+2026-11-01 23:26:52.067 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_0l6ZSTEAqYFdw7iIXVsroRIV, success=false
+2026-11-01 23:26:58.015 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:26:58.019 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: readPage
+2026-11-01 23:26:58.020 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: readPage
+2026-11-01 23:26:58.021 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: readPage
+2026-11-01 23:26:58.021 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: readPage
+2026-11-01 23:26:58.036 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_HSMQvi8Le7LMGjaaFsL5JzoT
+2026-11-01 23:26:58.037 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_rOH7QrcEfXhHoGnMPPDYrg53
+2026-11-01 23:26:58.038 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_UOYe400DSaWkGcPThdyg5GHu
+2026-11-01 23:26:58.040 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_joQbCqqlDeWGLh2fMV9YgBMj
+2026-11-01 23:26:58.073 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_HSMQvi8Le7LMGjaaFsL5JzoT, result=approve-once
+2026-11-01 23:26:58.083 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_rOH7QrcEfXhHoGnMPPDYrg53, result=approve-once
+2026-11-01 23:26:58.100 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_UOYe400DSaWkGcPThdyg5GHu, result=approve-once
+2026-11-01 23:26:58.106 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_joQbCqqlDeWGLh2fMV9YgBMj, result=approve-once
+2026-11-01 23:26:58.257 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_joQbCqqlDeWGLh2fMV9YgBMj, success=true
+2026-11-01 23:26:58.398 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_joQbCqqlDeWGLh2fMV9YgBMj
+2026-11-01 23:26:58.398 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_joQbCqqlDeWGLh2fMV9YgBMj, success=true
+2026-11-01 23:26:59.187 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_HSMQvi8Le7LMGjaaFsL5JzoT, success=true
+2026-11-01 23:26:59.203 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_HSMQvi8Le7LMGjaaFsL5JzoT
+2026-11-01 23:26:59.203 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_HSMQvi8Le7LMGjaaFsL5JzoT, success=true
+2026-11-01 23:26:59.310 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_rOH7QrcEfXhHoGnMPPDYrg53, success=true
+2026-11-01 23:26:59.332 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_rOH7QrcEfXhHoGnMPPDYrg53
+2026-11-01 23:26:59.332 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_rOH7QrcEfXhHoGnMPPDYrg53, success=true
+2026-11-01 23:27:01.392 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_UOYe400DSaWkGcPThdyg5GHu, success=true
+2026-11-01 23:27:01.417 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_UOYe400DSaWkGcPThdyg5GHu
+2026-11-01 23:27:01.417 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_UOYe400DSaWkGcPThdyg5GHu, success=true
+2026-11-01 23:27:08.698 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:27:08.704 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:08.705 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:08.705 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:08.706 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:08.903 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_lExApOJZfTr7p1ioQjkt2s9K
+2026-11-01 23:27:08.903 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_lExApOJZfTr7p1ioQjkt2s9K, success=true
+2026-11-01 23:27:08.911 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_fImbUJNhC5NmENF1umRqb83R
+2026-11-01 23:27:08.911 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_fImbUJNhC5NmENF1umRqb83R, success=true
+2026-11-01 23:27:08.918 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_IJwm1kFAKnISxlTCU3wPlGJN
+2026-11-01 23:27:08.918 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_IJwm1kFAKnISxlTCU3wPlGJN, success=true
+2026-11-01 23:27:08.925 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_fcgv9VSjG6Ga06ewPaaiLp4x
+2026-11-01 23:27:08.925 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_fcgv9VSjG6Ga06ewPaaiLp4x, success=true
+2026-11-01 23:27:15.333 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:27:15.336 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:15.338 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:15.342 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:15.343 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:15.346 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:15.394 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_dOy4qmrwYXlNZOrL5St7STZe
+2026-11-01 23:27:15.395 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_dOy4qmrwYXlNZOrL5St7STZe, success=true
+2026-11-01 23:27:15.417 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_t5gQe5FdZhuzeEvuW53KmDEt
+2026-11-01 23:27:15.417 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_t5gQe5FdZhuzeEvuW53KmDEt, success=true
+2026-11-01 23:27:15.427 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_ZmjMGy4XNSVRn7p7OlsNcEFO
+2026-11-01 23:27:15.428 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_ZmjMGy4XNSVRn7p7OlsNcEFO, success=true
+2026-11-01 23:27:15.443 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_Uv3KvSnUWaECO5Na0jRgUVDp
+2026-11-01 23:27:15.443 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_Uv3KvSnUWaECO5Na0jRgUVDp, success=true
+2026-11-01 23:27:15.453 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_nwYBoYtqqzsZWCJpQf5eNs7j
+2026-11-01 23:27:15.453 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_nwYBoYtqqzsZWCJpQf5eNs7j, success=true
+2026-11-01 23:27:25.592 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:27:25.595 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:25.598 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:25.599 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:25.599 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:27:25.678 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_dx0c8bRKrUMh8FJ33k2vT5y1
+2026-11-01 23:27:25.679 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_dx0c8bRKrUMh8FJ33k2vT5y1, success=true
+2026-11-01 23:27:25.687 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_ogoRY3nD3QomwIWoJH4g7GGg
+2026-11-01 23:27:25.688 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_ogoRY3nD3QomwIWoJH4g7GGg, success=true
+2026-11-01 23:27:25.696 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_y154leMBtBRIa99JDzeJyMPE
+2026-11-01 23:27:25.696 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_y154leMBtBRIa99JDzeJyMPE, success=true
+2026-11-01 23:27:25.705 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_EOslPBV4zAsOUl31lgLD7RHc
+2026-11-01 23:27:25.706 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_EOslPBV4zAsOUl31lgLD7RHc, success=true
+2026-11-01 23:27:32.824 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:27:32.830 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.833 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.837 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.839 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.839 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.840 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: view
+2026-11-01 23:27:32.857 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_EbHUbSeAo70NrwcdWQ7sSOG9
+2026-11-01 23:27:32.879 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_EIWw5WRRMTUEKAbFY5z5Ln7C
+2026-11-01 23:27:32.879 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_EIWw5WRRMTUEKAbFY5z5Ln7C, success=true
+2026-11-01 23:27:32.889 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_s5sJRjsLJDVKLSURS3AtEZjm
+2026-11-01 23:27:32.890 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_s5sJRjsLJDVKLSURS3AtEZjm, success=true
+2026-11-01 23:27:32.899 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_iiLMqHnfNsgWEQ1bNMAYmDGg
+2026-11-01 23:27:32.900 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_iiLMqHnfNsgWEQ1bNMAYmDGg, success=true
+2026-11-01 23:27:32.910 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_lIR9tlu8cUVEMJOefWuqPZOR
+2026-11-01 23:27:32.911 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_lIR9tlu8cUVEMJOefWuqPZOR, success=true
+2026-11-01 23:27:32.917 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_4xL0P9qa3fPDI4eFmGcRyEhv
+2026-11-01 23:27:32.917 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_4xL0P9qa3fPDI4eFmGcRyEhv, success=true
+2026-11-01 23:29:27.138 [info] [SessionPermissionManager] Added "view" to the permissions of ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446
+2026-11-01 23:29:27.139 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_EbHUbSeAo70NrwcdWQ7sSOG9, result=approve-once
+2026-11-01 23:29:27.205 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_EbHUbSeAo70NrwcdWQ7sSOG9
+2026-11-01 23:29:27.206 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_EbHUbSeAo70NrwcdWQ7sSOG9, success=false
+2026-11-01 23:29:43.699 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:29:43.706 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 69 chars
+2026-11-01 23:29:43.710 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:29:43.719 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_gdLySmnrwCUXeNd67tyPbf7r
+2026-11-01 23:29:43.759 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_gdLySmnrwCUXeNd67tyPbf7r, result=approve-once
+2026-11-01 23:29:43.815 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_gdLySmnrwCUXeNd67tyPbf7r, success=true
+2026-11-01 23:29:43.821 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_gdLySmnrwCUXeNd67tyPbf7r
+2026-11-01 23:29:43.821 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_gdLySmnrwCUXeNd67tyPbf7r, success=true
+2026-11-01 23:29:48.057 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:29:48.058 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: openBrowserPage
+2026-11-01 23:29:48.061 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_CoDU95yAIG5mSAzzBtdds4gk
+2026-11-01 23:29:48.079 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_CoDU95yAIG5mSAzzBtdds4gk, result=approve-once
+2026-11-01 23:29:48.471 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_CoDU95yAIG5mSAzzBtdds4gk, success=true
+2026-11-01 23:29:48.476 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_CoDU95yAIG5mSAzzBtdds4gk
+2026-11-01 23:29:48.477 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_CoDU95yAIG5mSAzzBtdds4gk, success=true
+2026-11-01 23:29:52.478 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:29:52.480 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: readPage
+2026-11-01 23:29:52.486 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Requesting confirmation for tool call: call_1eXkQQ5QcZ4gaihFk0MNtHjI
+2026-11-01 23:29:52.509 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Permission response: toolCallId=call_1eXkQQ5QcZ4gaihFk0MNtHjI, result=approve-once
+2026-11-01 23:29:52.587 [info] [AgentSideEffects] Forwarding client tool completion: source=client-dispatch, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_1eXkQQ5QcZ4gaihFk0MNtHjI, success=true
+2026-11-01 23:29:52.598 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_1eXkQQ5QcZ4gaihFk0MNtHjI
+2026-11-01 23:29:52.598 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_1eXkQQ5QcZ4gaihFk0MNtHjI, success=true
+2026-11-01 23:29:56.638 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:29:56.639 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool started: rg
+2026-11-01 23:29:56.664 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Tool completed: call_joHMdTZxAoNbtavMniri4MfT
+2026-11-01 23:29:56.664 [info] [AgentSideEffects] Forwarding client tool completion: source=server-envelope, session=ahp-session:/8669d81b-b438-4182-9a39-14f3a420ef10, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, completionChat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, toolCallId=call_joHMdTZxAoNbtavMniri4MfT, success=true
+2026-11-01 23:30:55.719 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.731 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.736 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.744 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.749 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.757 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 0 chars
+2026-11-01 23:30:55.761 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Full message received: 2384 chars
+2026-11-01 23:30:55.798 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Session idle
+2026-11-01 23:40:59.239 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-02 00:23:31.896 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Managed settings resolved: source=client, managedKeys=permissions, bypassPermissionsDisabled=false, failClosed=false
+2026-11-02 00:23:32.159 [info] [Copilot] Created hidden customization policy session
+2026-11-02 00:33:34.934 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-02 01:23:40.189 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Managed settings resolved: source=client, managedKeys=permissions, bypassPermissionsDisabled=false, failClosed=false
+2026-11-02 01:23:43.691 [info] [Copilot] Waiting for runtime managed-settings resolution
+2026-11-02 01:23:57.652 [error] #41: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:24:00.949 [info] [Copilot] Created hidden customization policy session
+2026-11-02 01:24:06.001 [error] #42: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:24:07.866 [error] #43: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:24:08.433 [error] Error: error sending request for url (https://api.individual.githubcopilot.com/meta): client error (Connect): connection closed via error
+    at handleResponse (/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar/vscode-jsonrpc/lib/common/connection.js:565:48)
+    at handleMessage (/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar/vscode-jsonrpc/lib/common/connection.js:345:13)
+    at Object.handleMessage (file:///Applications/Visual%20Studio%20Code.app/Contents/Resources/app/node_modules.asar/@github/copilot-sdk/dist/client.js:63:13)
+    at processMessageQueue (/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar/vscode-jsonrpc/lib/common/connection.js:359:33)
+    at Immediate.<anonymous> (/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar/vscode-jsonrpc/lib/common/connection.js:334:13)
+    at process.processImmediate (node:internal/timers:574:21) [Copilot] Failed to refresh session model configuration
+2026-11-02 01:24:16.487 [error] #44: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:24:31.840 [error] #45: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:24:41.303 [error] #46: https://mobile.events.data.microsoft.com/OneCollector/1.0?<redacted> - error POST fetch failed
+2026-11-02 01:34:10.899 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-02 02:23:32.184 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Managed settings resolved: source=client, managedKeys=permissions, bypassPermissionsDisabled=false, failClosed=false
+2026-11-02 02:23:32.410 [info] [Copilot] Created hidden customization policy session
+2026-11-02 02:33:36.038 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-02 03:23:32.481 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Managed settings resolved: source=client, managedKeys=permissions, bypassPermissionsDisabled=false, failClosed=false
+2026-11-02 03:23:32.608 [info] [Copilot] Created hidden customization policy session
+2026-11-02 03:33:34.191 [warning] [File Watcher (node.js)] Watcher shutdown because watched path got deleted
+2026-11-02 04:23:31.961 [info] [Copilot:a9089610-6aff-4e96-804d-a5cf17802a42] Managed settings resolved: source=client, managedKeys=permissions, bypassPermissionsDisabled=false, failClosed=false
+2026-11-02 04:23:32.026 [info] [Copilot] Created hidden customization policy session
+2026-11-02 04:24:59.473 [info] [ProtocolServer] Client disconnected: 25638bab-db90-49bd-99ae-705b38c4789d, subscriptions=5
+2026-11-02 04:24:59.475 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:01.525 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:01.534 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:01.538 [info] [ProtocolServer] Initialize: clientId=625050c1-8636-40d6-9caa-060c26cc9aab, protocolVersions=[1.0.0, 0.10.0, 0.9.0]
+2026-11-02 04:25:01.764 [info] [Claude] SDK not downloaded yet; deferring the migratable chat list
+2026-11-02 04:25:01.890 [info] [Claude] Auth token unchanged
+2026-11-02 04:25:03.513 [info] [Codex] Auth token updated
+2026-11-02 04:25:07.961 [info] [Claude] Auth token unchanged
+2026-11-02 04:25:07.961 [info] [Codex] Auth token updated
+2026-11-02 04:25:14.023 [info] [ProtocolServer] Client disconnected: 625050c1-8636-40d6-9caa-060c26cc9aab, subscriptions=1
+2026-11-02 04:25:14.024 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:14.371 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:14.444 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:14.531 [info] [ProtocolServer] Initialize: clientId=6d47c7e6-e0fd-4daf-afb9-2a93ecf474f2, protocolVersions=[1.0.0, 0.10.0, 0.9.0]
+2026-11-02 04:25:14.889 [info] [Claude] Auth token unchanged
+2026-11-02 04:25:14.889 [info] [Codex] Auth token updated
+2026-11-02 04:25:15.049 [info] [Claude] SDK not downloaded yet; deferring the migratable chat list
+2026-11-02 04:25:16.333 [info] [Copilot] Creating chat ahp-chat:/9017c448-c74d-41a4-a96d-bff2571c6a91 with a deferred backing... model=auto
+2026-11-02 04:25:16.354 [info] [Copilot] Chat created; its backing stays deferred until the first send: ahp-session:/d596c8b5-98ae-4839-9126-312a6a4c6751
+2026-11-02 04:25:16.419 [info] [AgentHostPullRequestOperationContribution] Advertised operations changed: session=ahp-session:/d596c8b5-98ae-4839-9126-312a6a4c6751, primary=none, operations=[none]
+2026-11-02 04:25:16.953 [info] [Claude] Auth token unchanged
+2026-11-02 04:25:16.954 [info] [Codex] Auth token updated
+2026-11-02 04:25:17.428 [info] [Copilot] Active client 6d47c7e6-e0fd-4daf-afb9-2a93ecf474f2 now contributes to chat ahp-chat:/9017c448-c74d-41a4-a96d-bff2571c6a91
+2026-11-02 04:25:17.429 [info] [AgentPluginManager] Syncing plugin: vscode-synced-customization:/agent-host-copilotcli--1993905614 → file:///tmp/repo-anatomy-vscode-user-data-final-2/agentPlugins/vscode-synced-customization-agent-host-copilotcli-1993905614/1976096259
+2026-11-02 04:25:21.098 [info] [Copilot:d596c8b5-98ae-4839-9126-312a6a4c6751] removeActiveClient: clientId=6d47c7e6-e0fd-4daf-afb9-2a93ecf474f2, chat=ahp-chat:/9017c448-c74d-41a4-a96d-bff2571c6a91, fullyRemoved=true
+2026-11-02 04:25:21.229 [info] [ProtocolServer] Client disconnected: 6d47c7e6-e0fd-4daf-afb9-2a93ecf474f2, subscriptions=1
+2026-11-02 04:25:21.229 [info] [Copilot] BYOK bridge changed; refreshing models
+2026-11-02 04:25:29.474 [info] [Copilot:8669d81b-b438-4182-9a39-14f3a420ef10] removeActiveClient: clientId=25638bab-db90-49bd-99ae-705b38c4789d, chat=ahp-chat:/f01cf700-1815-4c10-946a-9e86e6560446, fullyRemoved=true

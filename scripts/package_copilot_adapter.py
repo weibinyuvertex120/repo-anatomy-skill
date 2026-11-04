@@ -91,11 +91,9 @@ def build_frontmatter(config: dict[str, Any], core_values: dict[str, str]) -> st
     description = core_values.get("description", "")
     if not description:
         raise PackageError("core Skill description is missing")
-    description_prefix = "Researches, verifies, structures, and writes high-quality Chinese technical materials"
-    adapted_prefix = "Researches, verifies, structures, and returns high-quality Chinese technical materials in chat"
-    if description.count(description_prefix) != 1:
-        raise PackageError("core Skill description changed; review the Copilot read-only description transformation")
-    description = description.replace(description_prefix, adapted_prefix, 1)
+    if len(description) > 900:
+        raise PackageError("core Skill description is too long for the Copilot adapter projection")
+    description = description.rstrip(".") + ". Returns the researched material in chat and does not require local file persistence."
     compatibility = (
         "GitHub Copilot in Visual Studio Code Agent Mode. Explicit invocation only. "
         "Requires read-only public-source or user-provided material access. "
@@ -132,56 +130,17 @@ def build_skill_md(config: dict[str, Any]) -> bytes:
         raise PackageError("core SKILL.md must contain exactly one Quality Gate section")
     body = body.split(quality_marker, 1)[0].rstrip() + "\n"
 
-    old_step = (
-        "10. **Persist and verify.** Write the requested file conservatively, re-read it, "
-        "run the bundled draft checker when applicable, and report remaining risks."
-    )
-    new_step = (
-        "10. **Return and verify.** Check the complete chat response against the collected evidence, "
-        "disclose remaining risks, and report that no local file or shell action was performed."
-    )
-    if body.count(old_step) != 1:
-        raise PackageError("core SKILL.md persistence step changed; review the adapter transformation")
-    body = body.replace(old_step, new_step, 1)
-
-    intro = (
-        "# Research Material Writer\n\n"
-        "Produce Chinese technical materials through evidence-led research and task-oriented writing. "
-        "Treat source collection, factual verification, document design, drafting, and file persistence as separate stages.\n"
-    )
-    adapted_intro = (
-        "# Research Material Writer\n\n"
-        "Produce Chinese technical materials through evidence-led research and task-oriented writing. "
-        "Treat source collection, factual verification, document design, drafting, and chat-response delivery as separate stages.\n"
-    )
-    if body.count(intro) != 1:
-        raise PackageError("core SKILL.md introduction changed; review the adapter insertion point")
-    body = body.replace(intro, adapted_intro, 1)
-
-    persistence_boundary = (
-        "- Do not use this skill as a substitute for ordinary file editing. Delegate final persistence to "
-        "`workspace-file-maintainer` or apply its inspect-edit-re-read discipline."
-    )
-    adapted_boundary = (
-        "- Do not use this Skill as a substitute for file maintenance. Return the complete result in chat; "
-        "file persistence requires a separately approved workflow outside this read-only adapter."
-    )
-    if body.count(persistence_boundary) != 1:
-        raise PackageError("core SKILL.md persistence boundary changed; review the adapter transformation")
-    body = body.replace(persistence_boundary, adapted_boundary, 1)
-
     overlay = (ADAPTER_ROOT / "SKILL.overlay.md").read_text(encoding="utf-8").strip()
-    body = body.replace(adapted_intro, f"{adapted_intro}\n{overlay}\n", 1)
+    body = body.replace("# Research Material Writer\n", f"# Research Material Writer\n\n{overlay}\n", 1)
 
     generated = build_frontmatter(config, core_values) + body
     forbidden = (
         "allowed-tools:",
         "agent_created:",
+        "agent_created:",
+        "allowed-tools:",
         "references/quality-checklist.md",
         "scripts/check_draft.py",
-        "**Persist and verify.**",
-        "file persistence as separate stages",
-        "Delegate final persistence",
         "workspace-file-maintainer",
     )
     for marker in forbidden:

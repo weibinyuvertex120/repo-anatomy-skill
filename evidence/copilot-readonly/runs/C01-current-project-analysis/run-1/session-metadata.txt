@@ -1,0 +1,25 @@
+agentHost.changes|{"additions":0,"deletions":0,"files":0}
+agentHost.chatConfigValues|{"chat":"ahp-chat:/8dd2ce3d-2950-45f0-8325-d1abd10e0b6a","values":{"permissions":{"allow":["web_fetch"],"deny":[]}}}
+agentHost.diffBaseBranch|main
+agentHost.git|{"hasGitRemote":false,"hasGitHubRemote":false,"branchName":"main","baseBranchName":"main","uncommittedChanges":0}
+agentHost.workspaceless|false
+configValues|{"sandboxEnabled":"off","autoApprove":"default","mode":"interactive","availableApprovalModes":["default","assisted","autoApprove"],"effectiveApprovalMode":"default","isolation":"folder","branch":"main"}
+copilot.customizationDirectory|file:///Users/veretex/Developer/repo-anatomy-copilot-live-test
+copilot.model|{"id":"auto","config":{"tier":"balance","vscode.modelConfiguration.tier.source":"default"}}
+copilot.project.displayName|repo-anatomy-copilot-live-test
+copilot.project.resolved|true
+copilot.project.uri|file:///Users/veretex/Developer/repo-anatomy-copilot-live-test
+copilot.workingDirectories|["file:///Users/veretex/Developer/repo-anatomy-copilot-live-test"]
+copilot.workingDirectory|file:///Users/veretex/Developer/repo-anatomy-copilot-live-test
+customTitle|研究 Agent Skills 官方规范适用性
+customTitleSource|auto
+defaultChatProviderData|{"sdkSessionId":"75e36cc6-7303-4718-ab6b-91d707fee1ea"}
+isArchived|
+isRead|true
+multiRoot|
+peerChats|[]
+sessionArtifacts|[]
+sessionStorageCatalogHash|["c089723470dc6ab74c7cbacb7d2968689cb983a5f12fc29af83d54f7e849bc46","fc38c739e5c945f40968c141ef1592c9a2ce0ec8cab44835118d2e3538b7b4d1"]
+titleGenerationStrategy|utility
+vscode.folderPicker|
+vscode.session.initiator|{"name":"vscode"}
