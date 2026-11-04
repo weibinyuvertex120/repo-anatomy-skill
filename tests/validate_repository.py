@@ -52,13 +52,14 @@ SKILLS = (
     ),
     SkillConfig(
         name="research-material-writer",
-        tools=frozenset({"Read", "Write", "Edit", "Glob", "Grep", "Bash", "WebSearch", "WebFetch"}),
+        tools=frozenset(),
         references=frozenset(
             {
                 "references/source-and-verification.md",
                 "references/research-workflow.md",
                 "references/tutorial-writing.md",
                 "references/project-analysis.md",
+                "references/project-research-contract.md",
                 "references/comparison-writing.md",
                 "references/open-source-onboarding.md",
                 "references/quality-checklist.md",
@@ -161,12 +162,15 @@ def validate_skill(config: SkillConfig, errors: list[str]) -> str:
         fail(errors, f"{config.name}: description length must be 120-1024 characters, got {len(description)}")
     if frontmatter.get("license") != "MIT":
         fail(errors, f"{config.name}: frontmatter license must be MIT")
-    if frontmatter.get("agent_created") != "true":
-        fail(errors, f"{config.name}: frontmatter must include agent_created: true")
-
-    allowed = frozenset(frontmatter.get("allowed-tools", "").split())
-    if allowed != config.tools:
-        fail(errors, f"{config.name}: allowed-tools mismatch: {sorted(allowed)}")
+    if config.name == "workspace-file-maintainer":
+        if frontmatter.get("agent_created") != "true":
+            fail(errors, f"{config.name}: frontmatter must include agent_created: true")
+        allowed = frozenset(frontmatter.get("allowed-tools", "").split())
+        if allowed != config.tools:
+            fail(errors, f"{config.name}: allowed-tools mismatch: {sorted(allowed)}")
+    else:
+        if "agent_created" in frontmatter or "allowed-tools" in frontmatter:
+            fail(errors, f"{config.name}: portable core must not declare host-specific tool or WorkBuddy fields")
 
     if len(text.splitlines()) >= 500:
         fail(errors, f"{config.name}: SKILL.md must remain below 500 lines")
@@ -222,6 +226,7 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
         functional_text = functional_path.read_text(encoding="utf-8")
         required_sections = (
             "# Research Material Writer Functional Evaluation",
+            "## R00 - Comprehensive Arbitrary Project Analysis",
             "## R01 - Beginner Tutorial From Primary Sources",
             "## R02 - Open-Source Project Onboarding",
             "## R08 - Negative Simple File Task",
@@ -241,6 +246,8 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
 
     if data.get("skill") != config.name:
         fail(errors, f"{config.trigger_file}: skill does not match {config.name}")
+    if config.name == "research-material-writer" and data.get("version") != "0.3.0-preview.1":
+        fail(errors, f"{config.trigger_file}: expected research core version 0.3.0-preview.1")
     if version and data.get("version") != version:
         fail(errors, f"{config.trigger_file}: version does not match {version}")
 

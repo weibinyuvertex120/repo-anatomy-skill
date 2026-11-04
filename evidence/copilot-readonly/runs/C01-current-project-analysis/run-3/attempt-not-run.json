@@ -1,0 +1,49 @@
+{
+  "case_id": "C01-current-project-analysis",
+  "attempt_id": "run-3-attempt-not-started-20261102T2152",
+  "status": "not_started",
+  "counts_as_critical_run": false,
+  "superseded_by_recorded_run": "run-3/run.json",
+  "superseded_note": "A later user-provided response was captured as the formal C01 run-3 record. This earlier GUI attempt remains not started and does not count separately."
+  "reason": "fresh_chat_with_clean_context_not_reliably_creatable",
+  "fixed_prompt_submitted": false,
+  "skill_invoked": false,
+  "tool_calls_observed": false,
+  "final_response_captured": false,
+  "follow_up_attempt": {
+    "attempt_id": "run-3-attempt-not-started-20261103T0147",
+    "status": "not_started",
+    "counts_as_critical_run": false,
+    "window_id": "72591",
+    "gui_task_id": "800de1a111b8",
+    "result": "error",
+    "error": "Final GUI screenshot failed: target VS Code process had no visible window.",
+    "fixed_prompt_submitted": false,
+    "skill_invoked": false,
+    "tool_calls_observed": false,
+    "final_response_captured": false
+  },
+  "environment": {
+    "test_repository": "/Users/veretex/Developer/repo-anatomy-copilot-live-test",
+    "test_repository_status": "clean",
+    "temporary_keybindings": "absent",
+    "isolated_profile": "/tmp/repo-anatomy-vscode-user-data-final-2",
+    "isolated_extensions": "/tmp/repo-anatomy-vscode-extensions-final-2"
+  },
+  "observations": [
+    "Run 3 baseline was prepared in a dedicated evidence directory before attempting GUI actions.",
+    "The isolated VS Code window initially displayed a browser page and a Copilot Chat context chip for Client Showcase - Agent Skills; this was not an acceptable clean context for the fixed case.",
+    "The GUI automation repeatedly failed to create and visually verify a fresh chat. The title-bar plus opened a menu; the task agent's subsequent selection was not reliably reflected in the final screenshot.",
+    "A Command+N attempt did not create a Copilot chat and opened or switched to a separate Welcome Code window; no further action was taken on that window.",
+    "The Agent Host log records two deferred chat creations/removals but contains no sendMessage, research-material-writer invocation, tool call, or final response for this attempt.",
+    "The test repository remained clean and temporary keybindings were absent."
+  ],
+  "evidence_refs": [
+    "agenthost-source.txt",
+    "agenthost-start-offset.txt",
+    "agenthost.log",
+    "01-git-status-before.txt",
+    "02-git-status-after-attempt.txt"
+  ],
+  "decision": "Do not create run.json and do not count this attempt toward the required first three C01 runs. Restore a reliable way to create a fresh isolated Copilot chat without inherited browser/page context before starting C01 run-3."
+}

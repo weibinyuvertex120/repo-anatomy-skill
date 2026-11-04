@@ -1,16 +1,17 @@
 # Acceptance Results
 
-Verification date: 2026-10-30
-Skills: `workspace-file-maintainer` 0.1.0; `research-material-writer` 0.2.0-preview.1
-Host scope: local WorkBuddy validation on macOS plus credential-free repository CI designed for Ubuntu
+Verification date: 2026-11-03
+Current preview scope: `research-material-writer` 0.3.0-preview.1 only
+Historical scope: `workspace-file-maintainer` 0.1.0 and `research-material-writer` 0.2.0-preview.1 were validated in the earlier two-Skill preview
+Host scope: local repository validation on macOS plus credential-free repository CI designed for Ubuntu; Codex and 豆包 runtime acceptance remains pending
 
 ## Verification Record
 
-- skill_versions: `workspace-file-maintainer` 0.1.0; `research-material-writer` 0.2.0-preview.1
-- host: WorkBuddy AI local validation environment; exact application build was not recorded
+- skill_versions: `research-material-writer` 0.3.0-preview.1 (current); historical `workspace-file-maintainer` 0.1.0 and research 0.2.0-preview.1 remain archived
+- host: local WorkBuddy validation environment; exact application build was not recorded; Codex and 豆包 host runs are not yet verified
 - source_revision: release manifests are authoritative for the exact source commit and clean-tree state of generated archives
-- evidence_scope: deterministic checks are current and reproducible; fresh-agent and real-project observations are historical narrative evidence unless explicitly rerun
-- package_scope: four candidates are generated from one source tree: two Skills multiplied by WorkBuddy and open-spec variants
+- evidence_scope: deterministic checks for the current core are reproducible; fresh-agent, Copilot, and real-project observations are historical or separately scoped unless explicitly rerun
+- package_scope: current candidate contains two research Skill packages (WorkBuddy and open-spec) plus two manifests and `SHA256SUMS`; the earlier four-package set is historical
 - routing_scope: explicit invocation is the development and acceptance requirement; automatic semantic routing remains blocked or unmeasured
 - remote_scope: branch protection, private vulnerability reporting, hosted CI, pull-request review, tags, and GitHub Releases require verification on the publishing repository
 
@@ -18,14 +19,14 @@ Host scope: local WorkBuddy validation on macOS plus credential-free repository 
 
 | Check | Current result |
 |---|---|
-| Repository validator | Pass: both Skill manifests, references, evaluation schemas, versions, license, changelog, and repository hygiene |
+| Repository validator | Pass: current research Skill manifest, references, evaluation schemas, versions, license, changelog, and repository hygiene; paused Skill remains covered by legacy regression configuration |
 | Trigger datasets | Pass: 14 workspace cases and 16 research cases; structural coverage is not a routing metric |
 | Validator regression | Pass: baseline plus missing reference, version mismatch, invalid JSON, invalid field types, empty values, unknown group, duplicate prompt, external symlink, and empty functional evidence failures |
 | Draft-checker regression | Pass: clean input and 14 defect/boundary cases including fence forms, repeated content, table scope, heading defects, and placeholders |
-| Packaging regression | Pass: rejects external symlinks; builds four variants; repeated builds are byte-identical |
+| Packaging regression | Pass: rejects external symlinks; explicitly builds both Skills for regression coverage; repeated builds are byte-identical. Default release packaging emits only two research Skill variants |
 | Stable-installation regression | Pass: versioned copy, both variants, duplicate-install rejection, and checksum rejection |
-| WorkBuddy quick validation | Pass for both source Skills in the recorded local host environment |
-| Open-spec validation | Pass for both generated open-spec packages using the pinned `skills-ref` revision in CI |
+| WorkBuddy quick validation | Pass for the historical source Skills in the recorded local host environment; current research core has passed repository-level checks, while Codex and 豆包 runtime behavior remains pending |
+| Open-spec validation | Pass for the historical generated open-spec packages using the pinned `skills-ref` revision in CI; current research-only package structure is covered by the same regression path |
 | Whitespace validation | Pass with `git diff --check` |
 
 Run the current deterministic suite from the repository root:
@@ -61,9 +62,9 @@ Validated when explicitly invoked:
 
 The checker does not prove factual accuracy, source quality, command correctness, or end-to-end success. Those remain manual evidence-review responsibilities.
 
-### Workspace File Maintainer
+### Workspace File Maintainer (historical, paused)
 
-Validated when explicitly invoked with disposable fixtures:
+The following evidence belongs to the earlier two-Skill preview and does not represent current release scope. It was validated when explicitly invoked with disposable fixtures:
 
 - create, exact read, precise modification, and continued iteration;
 - no-op recognition and preservation of unrelated content;

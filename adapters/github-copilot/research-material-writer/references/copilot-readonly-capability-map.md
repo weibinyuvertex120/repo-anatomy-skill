@@ -2,7 +2,7 @@
 
 Verification date: 2026-11-01
 
-This reference maps host-visible actions to the portable capability contract. Native tool names and availability may differ by VS Code and GitHub Copilot version. Select capabilities by observable purpose, not by a guessed tool name.
+This reference maps host-visible actions to the portable capability contract for the read-only Copilot adapter. Native tool names and availability may differ by VS Code and GitHub Copilot version. Select capabilities by observable purpose, not by a guessed tool name. The same portable core can be adapted to another host only after that host's discovery, invocation, permission, and evidence behavior is separately verified.
 
 ## Allowed Capabilities
 

@@ -19,10 +19,12 @@ Skill behavior follows Semantic Versioning:
 - PATCH fixes instructions, validation, packaging, or tests without widening scope.
 - Pre-release identifiers such as `-preview.1` mark public evaluation builds that are not yet stable.
 
-The first public repository release is planned as `v0.2.0-preview.1` and contains:
+The current preview candidate is research-only and contains:
 
-- `workspace-file-maintainer` `0.1.0`;
-- `research-material-writer` `0.2.0-preview.1`.
+- `research-material-writer` `0.3.0-preview.1`;
+- WorkBuddy and open-spec variants of that Skill only.
+
+The historical `v0.2.0-preview.2` release contained both Skills. It remains immutable historical evidence and is not the scope of the current candidate. `workspace-file-maintainer` is paused and must not be added to a new release without an explicit scope decision.
 
 Automatic semantic triggering remains `blocked / unmeasured` and is not a release guarantee.
 
@@ -111,11 +113,13 @@ cd dist
 sha256sum -c SHA256SUMS --strict
 ```
 
-The release asset contract is exactly:
+For the current research-only candidate, the release asset contract is exactly:
 
-- four ZIP files: two Skills times WorkBuddy/open-spec variants;
-- four `.manifest.json` files;
+- two ZIP files: `research-material-writer` WorkBuddy and open-spec variants;
+- two `.manifest.json` files;
 - one aggregate `SHA256SUMS`.
+
+The packaging script can still build the paused Skill when its name is explicitly passed for historical regression checks; the default release command must never include it.
 
 Each manifest uses a flat release asset filename and records the Skill, semantic version, variant, source commit, dirty-tree state, ZIP SHA-256, and exact package file list. It must not contain timestamps, absolute paths, runner names, or mutable branch labels. Each manifest must set `source_dirty` to `false` and `source_commit` to the tag's exact commit.
 
@@ -126,7 +130,7 @@ GitHub artifact attestations may be added later. For this preview, exact signed-
 ## Draft And Publish
 
 1. Create or reuse the GitHub Draft Pre-release for the exact tag.
-2. Upload all nine release assets only after local and CI verification pass.
+2. Upload the five current release assets only after local and CI verification pass.
 3. Compare each uploaded GitHub asset digest with `SHA256SUMS` and the locally recorded digest.
 4. Have an independent reviewer inspect the draft title, tag, target commit, notes, asset names, digests, installation guidance, limitations, and rollback plan when multi-person publication is enabled. In solo mode, perform and record a separate verification pass and do not label it independent review.
 5. Run the publish job through the protected `release` environment. When self-review prevention is enabled, the trigger actor cannot approve the deployment; solo publication must stop if the environment requires an unavailable reviewer.
@@ -143,7 +147,7 @@ A person other than the artifact builder must:
 3. compare each downloaded asset with GitHub's displayed or API-provided digest;
 4. run `git verify-tag` against a fresh fetch and confirm the tag commit equals the recorded `RELEASE_SHA`;
 5. verify manifest source binding and provenance evidence when present;
-6. test one WorkBuddy installation and one open-spec structural validation from downloaded assets;
+6. test one `research-material-writer` WorkBuddy installation and one open-spec structural validation from downloaded assets;
 7. record the result and start the observation window defined in the release notes.
 
 ## Rollback

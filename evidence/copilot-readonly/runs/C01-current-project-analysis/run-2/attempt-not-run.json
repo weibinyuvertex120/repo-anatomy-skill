@@ -1,0 +1,33 @@
+{
+  "case_id": "C01-current-project-analysis",
+  "attempt_id": "run-2-attempt-not-run",
+  "status": "not_started",
+  "counts_as_critical_run": false,
+  "reason": "isolated_vs_code_window_not_observable",
+  "fixed_prompt_submitted": false,
+  "skill_invoked": false,
+  "tool_calls_observed": false,
+  "final_response_captured": false,
+  "environment": {
+    "test_repository": "/Users/veretex/Developer/repo-anatomy-copilot-live-test",
+    "test_repository_status": "clean",
+    "temporary_keybindings": "removed",
+    "isolated_profile": "/tmp/repo-anatomy-vscode-user-data-final-2",
+    "isolated_extensions": "/tmp/repo-anatomy-vscode-extensions-final-2"
+  },
+  "observations": [
+    "The fixed prompt was prepared in the system clipboard but was not submitted.",
+    "The computer-use window id became invalid after the isolated VS Code window disappeared from enumeration.",
+    "The isolated Agent Host log showed only deferred chat creation and removal; it contained no sendMessage, Skill invocation, tool call, or final response for this attempt.",
+    "macOS System Events keyboard injection returned permission violation (-10004).",
+    "A clean restart request did not produce an observable isolated VS Code window or a matching main process."
+  ],
+  "evidence_refs": [
+    "agenthost-source.txt",
+    "agenthost-start-offset.txt",
+    "01-git-status-before.txt",
+    "temporary-keybindings.json",
+    "temporary-keybindings.sha256"
+  ],
+  "decision": "Do not create run.json and do not count this attempt toward the required first three C01 runs. Restore an observable isolated VS Code window before starting C01 run-2."
+}

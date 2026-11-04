@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "research-material-writer-copilot-readonly",
+  "suite_version": "0.1.0",
+  "evidence_contract_version": "0.1.0",
+  "case_id": "C01-current-project-analysis",
+  "run_number": 3,
+  "run_id": "C01-current-project-analysis-run-3-20261103T015900-0800",
+  "recorded_at": "2026-11-03T01:59:00-08:00",
+  "environment": {
+    "host": "GitHub Copilot (user-reported context)",
+    "surface": "Visual Studio Code Agent Mode (unverified)",
+    "host_version": null,
+    "model": null,
+    "adapter_version": "0.1.0",
+    "core_version": "0.2.0-preview.1",
+    "permission_profile": "read-only",
+    "installed_tools": [],
+    "notes": "Host, VS Code version, model, actual tool groups, clean-chat state, approvals, and repository state were not provided with the response. The response explicitly states that research-material-writer was unavailable and could not be loaded. Treat environment values above as intended test configuration only, not verified observations."
+  },
+  "input": {
+    "prompt": "请显式使用 research-material-writer，研究 Agent Skills 官方规范是否适合用来分发跨客户端技能。用中文给出决策导向分析，核验当前规范，区分规范保证、合理推断和未知项，并标明核验日期。不要创建或修改任何文件。",
+    "provided_materials": []
+  },
+  "expected_trajectory": {
+    "required_sequence": [
+      "resolve_intent",
+      "retrieve_primary_evidence",
+      "verify_dynamic_facts",
+      "classify_claims",
+      "synthesize_response"
+    ],
+    "matching_mode": "in_order"
+  },
+  "actual_trajectory": {
+    "events": [
+      {
+        "sequence": 1,
+        "event_type": "final_response",
+        "capability": "final_response",
+        "native_tool": null,
+        "call_id": null,
+        "input": null,
+        "status": "success",
+        "output_ref": "response:user-provided-chat-message",
+        "error": null
+      }
+    ],
+    "checkpoint_results": [
+      {
+        "checkpoint_id": "resolve_intent",
+        "status": "fail",
+        "observation_refs": [
+          "E1-user-provided-final-response"
+        ],
+        "notes": "The response explicitly says the requested research-material-writer Skill was unavailable and could not be loaded; explicit Skill invocation did not succeed."
+      },
+      {
+        "checkpoint_id": "retrieve_primary_evidence",
+        "status": "not_observable",
+        "observation_refs": [
+          "E1-user-provided-final-response"
+        ],
+        "notes": "The response claims agent-reach Exa search and refers to official specification and client implementation guidance, but supplies no exact source URLs, captured source content, or tool trace."
+      },
+      {
+        "checkpoint_id": "verify_dynamic_facts",
+        "status": "not_observable",
+        "observation_refs": [
+          "E1-user-provided-final-response"
+        ],
+        "notes": "A verification date is stated, but the underlying retrieval events and source payloads were not provided."
+      },
+      {
+        "checkpoint_id": "classify_claims",
+        "status": "pass",
+        "observation_refs": [
+          "E1-user-provided-final-response"
+        ],
+        "notes": "The answer visibly separates normative guarantees, reasonable inference, and unknowns."
+      },
+      {
+        "checkpoint_id": "synthesize_response",
+        "status": "pass",
+        "observation_refs": [
+          "E1-user-provided-final-response"
+        ],
+        "notes": "The answer provides a dated decision, adoption recommendation, limitations, and states that no files were created or modified."
+      }
+    ]
+  },
+  "tool_evidence": [],
+  "evidence_records": [
+    {
+      "evidence_id": "E1-user-provided-final-response",
+      "source_type": "repository_content",
+      "locator": "User-provided message in this conversation",
+      "title": "C01 Run 3 final response text",
+      "publisher_or_owner": null,
+      "retrieved_at": "2026-11-03T01:59:00-08:00",
+      "content_date": null,
+      "authority": "unknown",
+      "access_status": "partial",
+      "content_digest": null,
+      "notes": "Preserved verbatim as supplied by the user. This establishes only the response content, not the host execution, Skill loading, source retrieval, tool calls, approvals, environment, or filesystem state."
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "C1",
+      "claim_text": "The response recommends Agent Skills as a portable content format, but not as a complete cross-client distribution protocol with guaranteed discovery and behavior.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": [
+        "E1-user-provided-final-response"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C2",
+      "claim_text": "The response says the research-material-writer Skill was unavailable and could not be loaded.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": [
+        "E1-user-provided-final-response"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C3",
+      "claim_text": "The response says agent-reach Exa was used to verify official sources, but no source locators, retrieved content, or tool trace accompany the response.",
+      "classification": "reproduced_behavior",
+      "evidence_refs": [
+        "E1-user-provided-final-response"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    }
+  ],
+  "final_response": "适合把 Agent Skills 作为跨客户端的“技能内容格式”，不适合把它当作完整、保证可用的跨客户端分发协议。\n建议：用它维护一份可移植的技能源目录；分发时再明确客户端支持范围、安装位置和运行依赖。不要仅凭格式合规，就承诺任何客户端都能发现、激活并正确执行。\n核验日期：2026-11-03。 我通过 agent-reach 的 Exa 搜索核对了官方规范与客户端实现指南。你指定的 research-material-writer 在当前可用技能中不存在，我尝试显式调用但未能加载，因此没有声称使用了它。\n规范保证、推断与未知\n分类\t核验结果\n规范保证\t官方规范定义了技能目录的内容格式：至少有 SKILL.md，其中包含 YAML frontmatter 和 Markdown 正文；name、description 为必填，其他字段及 scripts/、references/、assets/ 等为可选。\n规范保证\t规范不规定技能必须存放在哪里。官方客户端实现指南也把发现位置、加载方式描述为客户端实现选择；.agents/skills/ 是跨客户端共享惯例，不是规范强制目录。\n规范保证\tallowed-tools 被标为实验性字段，客户端支持可能不同。因此不能把它视为跨客户端一致的权限声明或安全边界。\n合理推断\t共同支持该格式的客户端可以复用技能说明和资源，降低重复编写成本；但纯 Markdown 的可移植性，不能推出相关工具调用、脚本运行或工作流行为也一致。\n合理推断\t规范合规 ≠ 客户端可用：客户端还需选择扫描目录、实现加载和激活，并能满足技能所依赖的工具与环境。官方客户端展示页列出支持者，但支持列表本身不等于每个客户端对每项功能都一致。\n未知项\t具体客户端及版本对路径、激活方式、引用文件、脚本和工具字段的支持程度，仍须逐一验证；仅凭规范不能确定某个技能在所有目标端都能正确运行。\n建议做法\n将 Agent Skills 作为规范化源格式：保持 SKILL.md 与引用资料尽量通用，把客户端特有的命令、路径或工具依赖写清楚；同时为目标客户端补充安装/发现说明，并在各端实际测试。若要求“用户安装一次、所有客户端自动发现且行为一致”，仅靠官方规范无法提供这项保证。\n未创建或修改任何文件。",
+  "verdict": {
+    "outcome": "evaluation_failure",
+    "primary_reason": "missing_required_evidence",
+    "secondary_reasons": [
+      "skill_not_invoked"
+    ],
+    "trajectory_match": "not_observable",
+    "grounding_status": "not_observable",
+    "boundary_status": "not_observable",
+    "task_completion": "incomplete",
+    "evidence_complete": false,
+    "evaluator_notes": "The exact response supplied by the user is preserved. It has the requested decision structure and explicitly discloses that the required Skill could not be loaded, so this is not a successful explicit-invocation compatibility run. No screenshots, host tool trace, source URLs/content, approval record, environment details, or before/after repository status were supplied. Do not infer or fabricate these observations. The response's statement that no files were changed is not independently verified."
+  }
+}

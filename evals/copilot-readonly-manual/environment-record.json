@@ -1,60 +1,95 @@
 {
   "record_version": "1.0.0",
-  "recorded_at": null,
-  "operator": null,
+  "recorded_at": "2026-11-01T03:41:41-08:00",
+  "operator": "human operator with WorkBuddy-assisted evidence collection",
   "workspace": {
     "repository": "weibinyuvertex120/repo-anatomy-skill",
-    "baseline_commit": null,
-    "clean_status_before": null,
-    "clean_status_after": null,
-    "notes": ""
+    "baseline_commit": "350d501b4f5c1d5ce026a6b7d79f9134f41c8496",
+    "clean_status_before": true,
+    "clean_status_after": true,
+    "notes": "Dedicated live-test repository at /Users/veretex/Developer/repo-anatomy-copilot-live-test. git status --short produced no output before and after host setup. The repository directory remained dr-xr-xr-x and the installed SKILL.md remained -r--r--r--."
   },
   "host": {
     "name": "GitHub Copilot",
     "surface": "Visual Studio Code Agent Mode",
-    "operating_system": null,
-    "vscode_version": null,
-    "vscode_commit": null,
-    "copilot_extension_version": null,
-    "harness": null,
-    "model": null,
-    "organization_policy_notes": ""
+    "operating_system": "macOS 27.2 (26B123), arm64",
+    "vscode_version": "1.144.0",
+    "vscode_commit": "2c33b50b16c472efe58357d1d2a8a5414bc23fbf",
+    "copilot_extension_version": "0.72.0",
+    "harness": "Interactive local Agent session in a dedicated VS Code profile",
+    "model": "Auto (Standard)",
+    "organization_policy_notes": "No organization-policy restriction was observed in the visible session. The complete built-in tool picker was opened and archived; Marketplace availability was not independently tested because the acceptance suite does not require installing additional tools."
   },
   "skill": {
     "name": "research-material-writer",
     "core_version": "0.2.0-preview.1",
     "adapter_version": "0.1.0",
-    "adapter_source_revision": null,
-    "installation_scope": null,
-    "installation_path": null,
-    "explicit_menu_entry_visible": null
+    "adapter_source_revision": "61f283b0dbc64336e3a31804574a776eb0fa765b",
+    "installation_scope": "workspace",
+    "installation_path": ".github/skills/research-material-writer",
+    "explicit_menu_entry_visible": true
   },
   "permissions": {
     "level": "Manual permissions",
     "allow_all": false,
     "autopilot": false,
     "global_auto_approve": false,
-    "tool_confirmations_reset": null,
+    "tool_confirmations_reset": true,
     "terminal_auto_approve_enabled": false,
     "external_tool_post_approval_enabled": false,
     "url_request_reviewed": true,
     "url_response_reviewed": true,
     "collapsed_tools_setting": "off",
-    "notes": ""
+    "notes": "The active session visibly showed Agent, Interactive, and Manual permissions. Allow all and Autopilot were not enabled. Chat: Reset Tool Confirmations completed with the visible notification 'Tool confirmation preferences have been reset.' The isolated profile sets chat.agent.thinking.collapsedTools to off."
   },
   "tools": {
-    "visible_tools": [],
-    "enabled_read_only_tools": [],
-    "disabled_or_denied_tools": [],
+    "visible_tools": [
+      "agent",
+      "browser",
+      "edit",
+      "execute",
+      "read",
+      "search",
+      "todo",
+      "vscode",
+      "web"
+    ],
+    "enabled_read_only_tools": [
+      "copilot_getNotebookSummary",
+      "get_task_output",
+      "copilot_getErrors",
+      "copilot_readFile",
+      "copilot_readNotebookCellOutput",
+      "terminal_last_command",
+      "terminal_selection",
+      "copilot_viewImage",
+      "copilot_searchCodebase",
+      "copilot_findFiles",
+      "copilot_listDirectory",
+      "search_subagent",
+      "copilot_findTextInFiles",
+      "vscode_listCodeUsages",
+      "copilot_fetchWebPage",
+      "copilot_githubRepo",
+      "copilot_githubTextSearch"
+    ],
+    "disabled_or_denied_tools": [
+      "agent",
+      "browser",
+      "edit",
+      "execute",
+      "todo",
+      "vscode"
+    ],
     "built_in_tools_not_configurable": [],
-    "notes": ""
+    "notes": "The persisted chat/selectedTools state enables only the read, search, and web tool sets: 17 enabled tools and 34 disabled tools. Agent delegation, integrated-browser interaction, workspace edit, local execution, todo management, and VS Code action groups are disabled. terminal_last_command and terminal_selection remain enabled as read-only terminal-state inspection tools; command execution tools including run_in_terminal, send_to_terminal, create_and_run_task, and run_task are disabled."
   },
   "evidence": {
-    "skill_discovery_screenshot": null,
-    "tool_configuration_screenshot": null,
-    "permission_configuration_screenshot": null,
-    "baseline_status_capture": null,
-    "final_status_capture": null,
-    "notes": ""
+    "skill_discovery_screenshot": "evidence/copilot-readonly/environment/skill-discovery-manual-permissions.jpg",
+    "tool_configuration_screenshot": "evidence/copilot-readonly/environment/tool-configuration-readonly.png",
+    "permission_configuration_screenshot": "evidence/copilot-readonly/environment/tool-confirmations-reset.png",
+    "baseline_status_capture": "evidence/copilot-readonly/environment/baseline-status.txt",
+    "final_status_capture": "evidence/copilot-readonly/environment/final-status.txt",
+    "notes": "The Skill discovery screenshot shows the explicit /research-material-writer completion entry, its description, Agent mode, Interactive harness, and Manual permissions in the isolated test repository. The tool configuration screenshot shows 17 Selected with read, search, and web checked and agent, browser, edit, execute, todo, and vscode unchecked. The reset screenshot shows the visible confirmation notification. Baseline and final captures confirm clean status, commit 350d501b4f5c1d5ce026a6b7d79f9134f41c8496, repository mode dr-xr-xr-x, SKILL.md mode -r--r--r--, and absence of docs/result.md and notes.md."
   }
 }

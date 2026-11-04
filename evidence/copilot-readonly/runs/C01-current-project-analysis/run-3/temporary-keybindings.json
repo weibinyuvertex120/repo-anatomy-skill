@@ -1,0 +1,22 @@
+[
+  {
+    "key": "cmd+alt+c",
+    "command": "workbench.action.chat.open"
+  },
+  {
+    "key": "cmd+alt+n",
+    "command": "workbench.action.chat.newChat"
+  },
+  {
+    "key": "cmd+alt+y",
+    "command": "workbench.action.chat.acceptTool"
+  },
+  {
+    "key": "cmd+alt+s",
+    "command": "workbench.action.chat.skipTool"
+  },
+  {
+    "key": "cmd+alt+a",
+    "command": "workbench.action.chat.copyAll"
+  }
+]

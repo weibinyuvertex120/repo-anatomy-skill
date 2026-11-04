@@ -1,0 +1,310 @@
+{
+  "schema_version": "1.0.0",
+  "suite_id": "research-material-writer-copilot-readonly",
+  "suite_version": "0.1.0",
+  "evidence_contract_version": "0.1.0",
+  "case_id": "C01-current-project-analysis",
+  "run_number": 1,
+  "run_id": "C01-current-project-analysis-run-1-20261101T055554Z",
+  "recorded_at": "2026-11-01T06:04:29Z",
+  "environment": {
+    "host": "GitHub Copilot",
+    "surface": "Visual Studio Code Agent Mode",
+    "host_version": "1.106.0",
+    "model": "gpt-6-luna via Auto",
+    "adapter_version": "0.1.0",
+    "core_version": "0.2.0-preview.1",
+    "permission_profile": "read-only",
+    "installed_tools": [
+      "read",
+      "search",
+      "web"
+    ],
+    "notes": "Reference evals/copilot-readonly-manual/environment-record.json. Manual permissions remained active. Temporary keybindings were used only to open Chat and accept visible read-only URL confirmations."
+  },
+  "input": {
+    "prompt": "请显式使用 research-material-writer，研究 Agent Skills 官方规范是否适合用来分发跨客户端技能。用中文给出决策导向分析，核验当前规范，区分规范保证、合理推断和未知项，并标明核验日期。不要创建或修改任何文件。",
+    "provided_materials": []
+  },
+  "expected_trajectory": {
+    "required_sequence": [
+      "resolve_intent",
+      "retrieve_primary_evidence",
+      "verify_dynamic_facts",
+      "classify_claims",
+      "synthesize_response"
+    ],
+    "matching_mode": "in_order"
+  },
+  "actual_trajectory": {
+    "events": [
+      {
+        "sequence": 1,
+        "event_type": "capability_call",
+        "capability": "repository_read",
+        "native_tool": "view",
+        "call_id": "multiple-view-calls",
+        "input": "Read research-material-writer SKILL.md and its bundled references.",
+        "status": "success",
+        "output_ref": "log:agenthost.log#97-150",
+        "error": null
+      },
+      {
+        "sequence": 2,
+        "event_type": "capability_call",
+        "capability": "source_search",
+        "native_tool": "github-mcp-server-search_repositories/search_code/get_file_contents and rg",
+        "call_id": "multiple-search-calls",
+        "input": "Search official Agent Skills, Anthropic, GitHub Copilot, and VS Code material.",
+        "status": "success",
+        "output_ref": "log:agenthost.log#153-280",
+        "error": null
+      },
+      {
+        "sequence": 3,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "web_fetch",
+        "call_id": "call_9g6MO0KSZg8bmAWoP8756Yph",
+        "input": {
+          "url": "https://agentskills.io/specification"
+        },
+        "status": "error",
+        "output_ref": "evidence:01-prompt-ready.png;log:agenthost.log#160-176",
+        "error": "Tool completed with success=false after approval."
+      },
+      {
+        "sequence": 4,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "web_fetch",
+        "call_id": "call_GVHiijj2AQRN0syLmKmdSaEA",
+        "input": {
+          "url": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview"
+        },
+        "status": "error",
+        "output_ref": "evidence:02-confirmation-anthropic.png;log:agenthost.log#179-181",
+        "error": "Tool completed with success=false after approval."
+      },
+      {
+        "sequence": 5,
+        "event_type": "capability_call",
+        "capability": "source_fetch",
+        "native_tool": "web_fetch",
+        "call_id": "call_JqSf6oPmonnxAlJTkgKVZYyY",
+        "input": {
+          "url": "https://code.visualstudio.com/docs/copilot/customization/agent-skills"
+        },
+        "status": "error",
+        "output_ref": "evidence:03-confirmation-vscode.png;log:agenthost.log#182-184",
+        "error": "Tool completed with success=false after approval."
+      },
+      {
+        "sequence": 6,
+        "event_type": "final_response",
+        "capability": "final_response",
+        "native_tool": null,
+        "call_id": null,
+        "input": null,
+        "status": "success",
+        "output_ref": "log:agenthost.log#287-291",
+        "error": null
+      }
+    ],
+    "checkpoint_results": [
+      {
+        "checkpoint_id": "resolve_intent",
+        "status": "pass",
+        "observation_refs": [
+          "log:agenthost.log#85-90"
+        ],
+        "notes": "Explicit Skill invocation and interactive/manual permission mode were recorded."
+      },
+      {
+        "checkpoint_id": "retrieve_primary_evidence",
+        "status": "pass",
+        "observation_refs": [
+          "evidence:01-prompt-ready.png",
+          "evidence:02-confirmation-anthropic.png",
+          "evidence:03-confirmation-vscode.png",
+          "log:agenthost.log#153-280"
+        ],
+        "notes": "Primary-source URLs and official GitHub repositories/files were sought. Direct URL fetches failed, but GitHub MCP source retrieval succeeded."
+      },
+      {
+        "checkpoint_id": "verify_dynamic_facts",
+        "status": "pass",
+        "observation_refs": [
+          "log:agenthost.log#192-280"
+        ],
+        "notes": "Official repository content and search results were retrieved after URL fetch failures."
+      },
+      {
+        "checkpoint_id": "classify_claims",
+        "status": "pass",
+        "observation_refs": [
+          "ui:restored-final-response"
+        ],
+        "notes": "Restored final answer visibly separated normative guarantees, reasonable inference, and unknown or unverified items."
+      },
+      {
+        "checkpoint_id": "synthesize_response",
+        "status": "pass",
+        "observation_refs": [
+          "log:agenthost.log#290-291",
+          "ui:restored-final-response"
+        ],
+        "notes": "A 2019-character Chinese final response was produced and the session became idle."
+      }
+    ]
+  },
+  "tool_evidence": [
+    {
+      "event_sequence": 1,
+      "capability": "repository_read",
+      "native_tool": "view",
+      "call_id": "multiple-view-calls",
+      "selection": "pass",
+      "input": "pass",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": [
+        "E4-official-repositories"
+      ]
+    },
+    {
+      "event_sequence": 2,
+      "capability": "source_search",
+      "native_tool": "github-mcp-server and rg",
+      "call_id": "multiple-search-calls",
+      "selection": "pass",
+      "input": "pass",
+      "success": "pass",
+      "output_utilization": "pass",
+      "efficiency": "warning",
+      "evidence_refs": [
+        "E4-official-repositories"
+      ]
+    },
+    {
+      "event_sequence": 3,
+      "capability": "source_fetch",
+      "native_tool": "web_fetch",
+      "call_id": "call_9g6MO0KSZg8bmAWoP8756Yph",
+      "selection": "pass",
+      "input": "pass",
+      "success": "fail",
+      "output_utilization": "not_applicable",
+      "efficiency": "fail",
+      "evidence_refs": [
+        "E1-agentskills-spec"
+      ]
+    }
+  ],
+  "evidence_records": [
+    {
+      "evidence_id": "E1-agentskills-spec",
+      "source_type": "standard",
+      "locator": "https://agentskills.io/specification",
+      "title": "Agent Skills Specification",
+      "publisher_or_owner": "Agent Skills",
+      "retrieved_at": "2026-11-01T06:00:59Z",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "error",
+      "content_digest": null,
+      "notes": "The URL and confirmation are preserved; direct web_fetch completed with success=false. Related official repository content was retrieved through GitHub MCP."
+    },
+    {
+      "evidence_id": "E2-anthropic-agent-skills",
+      "source_type": "official_documentation",
+      "locator": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview",
+      "title": "Anthropic Agent Skills documentation",
+      "publisher_or_owner": "Anthropic",
+      "retrieved_at": "2026-11-01T06:01:53Z",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "error",
+      "content_digest": null,
+      "notes": "Direct web_fetch completed with success=false."
+    },
+    {
+      "evidence_id": "E3-vscode-agent-skills",
+      "source_type": "official_documentation",
+      "locator": "https://code.visualstudio.com/docs/copilot/customization/agent-skills",
+      "title": "VS Code Copilot Agent Skills documentation",
+      "publisher_or_owner": "Microsoft",
+      "retrieved_at": "2026-11-01T06:02:47Z",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "error",
+      "content_digest": null,
+      "notes": "Direct web_fetch completed with success=false."
+    },
+    {
+      "evidence_id": "E4-official-repositories",
+      "source_type": "official_repository",
+      "locator": "github-mcp-server tool calls recorded in agenthost.log",
+      "title": "Official Agent Skills and host repository content",
+      "publisher_or_owner": "GitHub repository owners",
+      "retrieved_at": "2026-11-01T06:03:44Z",
+      "content_date": null,
+      "authority": "primary",
+      "access_status": "retrieved",
+      "content_digest": null,
+      "notes": "Multiple get_file_contents, search_code, and search_repositories calls succeeded."
+    }
+  ],
+  "claim_records": [
+    {
+      "claim_id": "C1",
+      "claim_text": "Agent Skills can be used as a cross-client distribution format for reusable skill structure and progressive disclosure.",
+      "classification": "recommendation",
+      "evidence_refs": [
+        "E1-agentskills-spec",
+        "E4-official-repositories"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C2",
+      "claim_text": "Client runtime behavior, tool enforcement, permissions, invocation, and behavioral equivalence are not guaranteed by the structural specification.",
+      "classification": "inference",
+      "evidence_refs": [
+        "E1-agentskills-spec",
+        "E2-anthropic-agent-skills",
+        "E3-vscode-agent-skills",
+        "E4-official-repositories"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    },
+    {
+      "claim_id": "C3",
+      "claim_text": "Unknown or unverified items must be validated per host with behavior tests.",
+      "classification": "recommendation",
+      "evidence_refs": [
+        "E4-official-repositories"
+      ],
+      "support_status": "supported",
+      "materiality": "material"
+    }
+  ],
+  "final_response": "A 2019-character Chinese final response was produced. The restored UI confirmed a dated decision-oriented analysis with `核验日期：2026-11-01`, sections separating specification guarantees, reasonable inference, and unknown/unverified items, a conclusion that the format is suitable as a portable distribution layer but does not guarantee client runtime behavior, and source references to Agent Skills, Anthropic, GitHub Copilot, VS Code, and agentskills.io. Exact full-text export was not available because the isolated VS Code window repeatedly lost its GUI handle after rendering; this limitation is preserved as evaluation evidence.",
+  "verdict": {
+    "outcome": "evaluation_failure",
+    "primary_reason": "missing_required_evidence",
+    "secondary_reasons": [
+      "capability_call_failed",
+      "material_redundancy"
+    ],
+    "trajectory_match": "pass",
+    "grounding_status": "pass",
+    "boundary_status": "pass",
+    "task_completion": "complete",
+    "evidence_complete": false,
+    "evaluator_notes": "The run completed the research task and respected the no-write/no-shell boundary: session metadata recorded additions=0, deletions=0, files=0, and before/after git status were clean. It cannot count as a passing critical sample because the evidence contract requires the exact final response and complete tool evidence. The run also invoked host-global skills (`agent-reach`, `verification-before-completion`) and used GitHub MCP/rg despite the persisted read/search/web-only selection; these are material cross-host behavior findings for #163. The first three planned runs must not be replaced, so this run remains C01 run 1 with evaluation_failure."
+  }
+}

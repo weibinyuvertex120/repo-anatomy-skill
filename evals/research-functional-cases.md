@@ -4,7 +4,24 @@ Run each case in a fresh session. Verify the output document independently rathe
 
 ## R00 - Functional Evaluation Scope
 
-This file defines eight executable functional cases, R01-R08. Each run must record the Release Record fields below and distinguish deterministic checks, manual review, and blocked runtime verification.
+This file defines nine executable functional cases, R00-R08. Each run must record the Release Record fields below and distinguish deterministic checks, manual review, and blocked runtime verification.
+
+## R00 - Comprehensive Arbitrary Project Analysis
+
+Prompt:
+
+```text
+请系统研究我指定的任意项目，并输出一份全面、可靠且结构清晰的中文项目分析。覆盖项目概述、核心功能、适用与不适用场景、安装与配置、基础使用、典型工作流、进阶使用、最佳实践、常见问题、限制与风险、同类方案对比及综合结论。核验当前版本和关键事实，优先使用权威来源，区分已核验事实、项目方声明、已复现行为、合理推断、建议、冲突和未知项，并标明核验日期。不要创建或修改文件；如果工具、来源或运行环境不可用，明确说明并给出有边界的结论。
+```
+
+Expected:
+
+- all applicable sections from `references/project-research-contract.md` are present or explicitly marked unavailable;
+- one decision-oriented conclusion and one primary adoption path appear before exhaustive detail;
+- dynamic facts, commands, compatibility, and risks have source and date/version scope;
+- documentation review, source inspection, reproduced behavior, and blocked checks are separate;
+- missing capabilities or inaccessible sources are reported without fabricated execution;
+- the final response is usable on a host that exposes equivalent semantic capabilities without requiring a specific vendor tool name.
 
 ## R01 - Beginner Tutorial From Primary Sources
 
