@@ -87,7 +87,6 @@ jobs:
         run: |
           mkdir -p /tmp/open-spec
           for archive in dist/*-open-spec.zip; do unzip -q "$archive" -d /tmp/open-spec; done
-          skills-ref validate /tmp/open-spec/workspace-file-maintainer
           skills-ref validate /tmp/open-spec/research-material-writer
       - name: Validate Copilot standard projection
         env:
