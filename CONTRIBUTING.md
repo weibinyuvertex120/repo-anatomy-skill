@@ -16,6 +16,7 @@ Python 3.11 and 3.13 are exercised in CI. Run commands from the repository root.
 ```bash
 python3 tests/validate_repository.py
 python3 tests/test_validator.py
+python3 tests/test_readme_languages.py
 python3 tests/test_draft_checker.py
 python3 tests/test_packaging.py
 python3 tests/test_installation.py

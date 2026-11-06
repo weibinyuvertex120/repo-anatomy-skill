@@ -53,6 +53,10 @@ def remove_reference(repository: Path) -> None:
     (repository / "skills/workspace-file-maintainer/references/workflow.md").unlink()
 
 
+def remove_chinese_readme(repository: Path) -> None:
+    (repository / "README.zh-CN.md").unlink()
+
+
 def mismatch_version(repository: Path) -> None:
     path = repository / "evals/research-trigger-cases.json"
     text = path.read_text(encoding="utf-8")
@@ -133,6 +137,7 @@ def main() -> int:
     print("PASS baseline")
 
     expect_failure("missing-reference", remove_reference, "Missing skill resource")
+    expect_failure("missing-chinese-readme", remove_chinese_readme, "Missing repository file: README.zh-CN.md")
     expect_failure("version-mismatch", mismatch_version, "version does not match")
     expect_failure("invalid-json", corrupt_json, "invalid JSON")
     expect_failure("empty-prompt", empty_prompt, "prompt must be a non-empty string")

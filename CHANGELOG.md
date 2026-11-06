@@ -2,6 +2,17 @@
 
 All notable behavioral changes to the repository's Skills are recorded here.
 
+## Documentation - 2026-11-05
+
+### Added
+
+- Separate English and Simplified Chinese README files with language navigation at the document and section levels.
+- Deterministic README language-link validation for paired sections, anchors, and local file targets.
+
+### Changed
+
+- CI and contributor verification now check the bilingual README navigation contract.
+
 ## research-material-writer 0.3.0-preview.1 - 2026-11-03
 
 ### Added
