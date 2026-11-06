@@ -41,6 +41,10 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: python3 tests/test_validator.py
+      - name: Validate bilingual README navigation
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_readme_languages.py
       - name: Run Copilot evaluation contract tests
         env:
           PYTHONDONTWRITEBYTECODE: "1"

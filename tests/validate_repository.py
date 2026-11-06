@@ -73,10 +73,13 @@ SKILLS = (
 )
 
 REQUIRED_SHARED_FILES = {
+    "README.md",
+    "README.zh-CN.md",
     "evals/acceptance-results.md",
     "evals/real-project-markitdown-2026-10-30.md",
     "evals/real-project-markitdown-onboarding-2026-10-31.md",
     "tests/test_validator.py",
+    "tests/test_readme_languages.py",
     "tests/test_draft_checker.py",
     "tests/validate_copilot_evals.py",
     "tests/test_copilot_evals.py",
