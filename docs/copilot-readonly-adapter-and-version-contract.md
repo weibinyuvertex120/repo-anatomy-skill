@@ -1,10 +1,10 @@
 # Copilot Read-Only Adapter And Version Contract
 
-Verification date: 2026-11-01
+Verification date: 2026-11-06
 
-This document defines the responsibilities, version boundaries, compatibility levels, installation assumptions, and change rules for a future GitHub Copilot VS Code Agent adapter for the approved read-only subset of `research-material-writer`.
+This document defines the responsibilities, version boundaries, compatibility levels, installation assumptions, and change rules for the implemented GitHub Copilot VS Code Agent adapter for the approved read-only subset of `research-material-writer`.
 
-It is an architecture contract. It does not define the final package file layout, modify the source Skill, or claim runtime compatibility.
+It is the current architecture and version contract for core `0.4.0-preview.1` and adapter `0.2.0`. The deterministic package layout exists and is covered by repository tests, but the adapter remains `Untested` for real Copilot runtime compatibility.
 
 ## Scope
 
@@ -15,8 +15,8 @@ The adapter is limited to:
 - Chinese research, analysis, planning, and conversational output;
 - public or user-provided evidence;
 - read-only host capabilities;
-- core Skill version `0.2.0-preview.1`;
-- a separately versioned adapter artifact.
+- core Skill version `0.4.0-preview.1`;
+- adapter version `0.2.0` in a separately versioned deterministic artifact.
 
 The adapter does not cover automatic Skill selection, Copilot CLI, cloud agent, code review, the GitHub Copilot app, local writing, shell execution, other languages, other Agent hosts, or `workspace-file-maintainer`.
 
@@ -104,7 +104,7 @@ The implementation phase must add explicit regression checks proving this separa
 
 ## Installation Model
 
-The initial adapter should support a documented manual installation into one Copilot-supported Skill directory. The exact primary path will be selected during implementation after confirming the package layout and test harness.
+The current adapter supports documented manual installation of the generated `research-material-writer/` Skill directory into a Copilot-supported Skill location. Packaging tests verify the deterministic layout; a real host run must still confirm installation and invocation in the recorded Copilot environment.
 
 Requirements:
 
@@ -135,20 +135,20 @@ If Copilot cannot complete the research task without a prohibited capability, th
 
 ### Core Version
 
-`core_version` identifies the behavior contract inherited from `research-material-writer`. The initial value is:
+`core_version` identifies the behavior contract inherited from `research-material-writer`. The current value is:
 
 ```text
-0.2.0-preview.1
+0.4.0-preview.1
 ```
 
 A change to research requirements, boundaries, document modes, evidence classes, or output guarantees requires review as a core behavior change and follows the core Skill's Semantic Versioning policy.
 
 ### Adapter Version
 
-`adapter_version` identifies Copilot-specific installation, mapping, packaging, or compatibility logic. The initial implementation should start at:
+`adapter_version` identifies Copilot-specific installation, mapping, packaging, or compatibility logic. The current implementation is:
 
 ```text
-0.1.0
+0.2.0
 ```
 
 The Agent Skills specification does not define a standard `adapter_version` field. The implementation must store it in a namespaced or project-owned metadata/manifest location that does not conflict with standard fields.
@@ -193,7 +193,7 @@ GitHub CLI may add installation provenance during `gh skill install`, but the re
 
 ### `Untested`
 
-The package or design exists, but no applicable structural or host validation has completed.
+The package or design exists, but applicable real-host validation has not completed. Deterministic structure, projection, packaging, and checksum tests do not raise this runtime compatibility level.
 
 ### `Format Compatible`
 
@@ -282,7 +282,8 @@ The adapter architecture is acceptable when:
 - compatibility levels cannot be inferred from format validation alone;
 - public-preview platform behavior is treated as versioned and revalidated;
 - rollback affects only the dedicated adapter installation;
-- implementation can proceed without a core behavior refactor.
+- the implemented adapter remains a projection of the portable core rather than a behavioral fork;
+- deterministic packaging evidence is not presented as real-host compatibility.
 
 ## Official References
 

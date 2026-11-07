@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
   "adapter": "github-copilot-vscode-readonly",
-  "adapter_version": "0.1.0",
+  "adapter_version": "0.2.0",
   "core_skill": "research-material-writer",
-  "core_version": "0.3.0-preview.1",
+  "core_version": "0.4.0-preview.1",
   "target": {
     "host": "GitHub Copilot",
     "surface": "Visual Studio Code Agent Mode",
@@ -19,6 +19,8 @@
       "references/open-source-onboarding.md",
       "references/project-analysis.md",
       "references/project-research-contract.md",
+      "references/project-type-profiles.md",
+      "references/learning-validation-feedback.md",
       "references/research-workflow.md",
       "references/source-and-verification.md",
       "references/tutorial-writing.md"

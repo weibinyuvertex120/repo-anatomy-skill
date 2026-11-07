@@ -2,11 +2,12 @@
 
 Verification date: 2026-11-01
 
-This pack records the manual host evaluation for the approved `research-material-writer` Copilot trial. It does not install an adapter and it does not claim compatibility before the recorded runs pass.
+This frozen pack records the manual host evaluation design for the historical `research-material-writer` core `0.2.0-preview.1` and Copilot adapter `0.1.0` trial. Its version fields are evidence identity and must not be rewritten to match later releases. It does not claim compatibility before the recorded runs pass; current core and adapter status are documented separately.
 
 ## Fixed Trial Scope
 
-- core Skill: `research-material-writer` `0.2.0-preview.1`;
+- historical core Skill: `research-material-writer` `0.2.0-preview.1`;
+- historical adapter: `github-copilot-vscode-readonly` `0.1.0`;
 - target host: GitHub Copilot in Visual Studio Code Agent Mode;
 - invocation: explicit `/research-material-writer` selection;
 - output language: Chinese;

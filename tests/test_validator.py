@@ -60,7 +60,7 @@ def remove_chinese_readme(repository: Path) -> None:
 def mismatch_version(repository: Path) -> None:
     path = repository / "evals/research-trigger-cases.json"
     text = path.read_text(encoding="utf-8")
-    path.write_text(text.replace('"version": "0.3.0-preview.1"', '"version": "9.9.9"', 1), encoding="utf-8")
+    path.write_text(text.replace('"version": "0.4.0-preview.1"', '"version": "9.9.9"', 1), encoding="utf-8")
 
 
 def corrupt_json(repository: Path) -> None:
@@ -109,6 +109,27 @@ def empty_functional_cases(repository: Path) -> None:
     (repository / "evals/research-functional-cases.md").write_text("\n", encoding="utf-8")
 
 
+def remove_project_type_reference(repository: Path) -> None:
+    (repository / "skills/research-material-writer/references/project-type-profiles.md").unlink()
+
+
+def drift_current_copilot_document_version(repository: Path) -> None:
+    path = repository / "docs/copilot-readonly-adapter-and-version-contract.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(text.replace("core `0.4.0-preview.1`", "core `9.9.9`", 1), encoding="utf-8")
+
+
+
+def remove_historical_evidence_marker(repository: Path) -> None:
+    path = repository / "evals/copilot-readonly-manual/README.md"
+    text = path.read_text(encoding="utf-8")
+    path.write_text(
+        text.replace("version fields are evidence identity and must not be rewritten", "version fields", 1),
+        encoding="utf-8",
+    )
+
+
+
 def use_floating_action_tag(repository: Path) -> None:
     path = repository / ".github/workflows/release.yml"
     text = path.read_text(encoding="utf-8")
@@ -147,6 +168,17 @@ def main() -> int:
     expect_failure("duplicate-prompt", duplicate_prompt, "duplicate prompt")
     expect_failure("external-symlink", replace_reference_with_symlink, "symlink is not allowed")
     expect_failure("empty-functional-cases", empty_functional_cases, "missing required section")
+    expect_failure("missing-project-type-reference", remove_project_type_reference, "Missing skill resource")
+    expect_failure(
+        "current-copilot-doc-version-drift",
+        drift_current_copilot_document_version,
+        "missing current compatibility marker core `0.4.0-preview.1`",
+    )
+    expect_failure(
+        "missing-historical-evidence-marker",
+        remove_historical_evidence_marker,
+        "missing historical evidence marker version fields are evidence identity and must not be rewritten",
+    )
     expect_failure("floating-action-tag", use_floating_action_tag, "action is not pinned to a full commit SHA")
     expect_failure("missing-release-environment", remove_release_environment, "missing release gate environment: release")
     print("Validator regression tests passed")

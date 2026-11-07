@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/weibinyuvertex120/repo-anatomy-skill/evals/user-run-record.schema.json",
+  "title": "Research Material Writer User Run Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract",
+    "skill_version",
+    "project_type",
+    "reader_profile",
+    "interaction_mode",
+    "verification_scope",
+    "orientation_check",
+    "boundary_check",
+    "transfer_task",
+    "task_result",
+    "feedback"
+  ],
+  "properties": {
+    "contract": {
+      "const": "portable-project-learning-v1"
+    },
+    "skill_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_type": {
+      "$ref": "#/$defs/projectType"
+    },
+    "secondary_project_type": {
+      "$ref": "#/$defs/projectType"
+    },
+    "reader_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "experience", "target_task"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "experience": {"type": "string", "minLength": 1},
+        "target_task": {"type": "string", "minLength": 1}
+      }
+    },
+    "interaction_mode": {
+      "enum": ["one_shot", "guided_run"]
+    },
+    "verification_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["environment", "version_scope", "executed", "blocked_checks"],
+      "properties": {
+        "environment": {"type": "string", "minLength": 1},
+        "version_scope": {"type": "string", "minLength": 1},
+        "executed": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "blocked_checks": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "orientation_check": {
+      "$ref": "#/$defs/checkResult"
+    },
+    "boundary_check": {
+      "$ref": "#/$defs/checkResult"
+    },
+    "transfer_task": {
+      "$ref": "#/$defs/checkResult"
+    },
+    "task_result": {
+      "enum": ["completed", "partially_completed", "blocked", "not_verified"]
+    },
+    "failed_step": {
+      "type": "string"
+    },
+    "completion_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "help_requests": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "confidence_before": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "confidence_after": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "adoption_decision": {
+      "enum": ["adopt", "trial", "defer", "reject", "undecided"]
+    },
+    "feedback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["category", "detail"],
+        "properties": {
+          "category": {
+            "enum": [
+              "factual_error",
+              "missing_step",
+              "environment_difference",
+              "hard_to_understand",
+              "hard_to_find",
+              "project_failure",
+              "insufficient_evidence",
+              "other"
+            ]
+          },
+          "detail": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": ["secondary_project_type"]
+      },
+      "then": {
+        "not": {
+          "anyOf": [
+            {
+              "properties": {
+                "project_type": {"const": "cli_or_local_tool"},
+                "secondary_project_type": {"const": "cli_or_local_tool"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "library_or_sdk"},
+                "secondary_project_type": {"const": "library_or_sdk"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "api_or_hosted_service"},
+                "secondary_project_type": {"const": "api_or_hosted_service"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "plugin_or_extension"},
+                "secondary_project_type": {"const": "plugin_or_extension"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "agent_skill_or_mcp"},
+                "secondary_project_type": {"const": "agent_skill_or_mcp"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "model"},
+                "secondary_project_type": {"const": "model"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "dataset_or_resource_collection"},
+                "secondary_project_type": {"const": "dataset_or_resource_collection"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            },
+            {
+              "properties": {
+                "project_type": {"const": "service_application"},
+                "secondary_project_type": {"const": "service_application"}
+              },
+              "required": ["project_type", "secondary_project_type"]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "projectType": {
+      "enum": [
+        "cli_or_local_tool",
+        "library_or_sdk",
+        "api_or_hosted_service",
+        "plugin_or_extension",
+        "agent_skill_or_mcp",
+        "model",
+        "dataset_or_resource_collection",
+        "service_application"
+      ]
+    },
+    "checkResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt", "result", "evidence"],
+      "properties": {
+        "prompt": {"type": "string", "minLength": 1},
+        "result": {
+          "enum": ["passed", "failed", "blocked", "not_run"]
+        },
+        "evidence": {"type": "string"}
+      }
+    }
+  }
+}

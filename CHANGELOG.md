@@ -2,6 +2,28 @@
 
 All notable behavioral changes to the repository's Skills are recorded here.
 
+## research-material-writer 0.4.0-preview.1 - 2026-11-06
+
+### Added
+
+- Project-type routing for CLI/local tools, libraries/SDKs, APIs/hosted services, plugins/extensions, Agent Skills/MCP integrations, models, datasets/resource collections, and deployable service applications.
+- A shared understanding map covering problem, input, processing, output, core components, flow, responsibility boundary, and first observable success.
+- A practical learning protocol that separates understanding and practice, adds step verification cards, supports one-shot and guided-run interaction, and checks orientation, boundaries, and transfer beyond copied examples.
+- Structured user-run feedback records with explicit completed, partially completed, blocked, and not-verified outcomes.
+- Eight type-specific learning cases plus deterministic contract validation in local tests and CI.
+
+### Changed
+
+- Expanded the operating workflow from generic comprehensive coverage to type-aware evidence collection, reader paths, process review, and feedback capture.
+- Updated tutorial, project analysis, onboarding, research workflow, quality, and comprehensive research references to apply the new learning protocol only when practical understanding or adoption is in scope.
+- Updated the GitHub Copilot read-only adapter to package the new portable references while retaining its unverified compatibility status and read-only boundary.
+
+### Known Limitations
+
+- The new deterministic checks validate the presence and consistency of the learning contract; they do not prove that a real reader understood the project or completed the transfer task.
+- Real-user completion, efficiency, satisfaction, and repeated host behavior still require observed runs and must not be inferred from generated material.
+- Codex, Doubao, and GitHub Copilot host-specific behavior remains limited to the separately recorded compatibility evidence.
+
 ## Documentation - 2026-11-05
 
 ### Added

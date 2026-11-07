@@ -21,7 +21,7 @@ Skill behavior follows Semantic Versioning:
 
 The current preview candidate is research-only and contains:
 
-- `research-material-writer` `0.3.0-preview.1`;
+- `research-material-writer` `0.4.0-preview.1`;
 - WorkBuddy and open-spec variants of that Skill only.
 
 The historical `v0.2.0-preview.2` release contained both Skills. It remains immutable historical evidence and is not the scope of the current candidate. `workspace-file-maintainer` is paused and must not be added to a new release without an explicit scope decision.

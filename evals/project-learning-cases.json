@@ -1,0 +1,111 @@
+{
+  "contract": "portable-project-learning-v1",
+  "skill": "research-material-writer",
+  "version": "0.4.0-preview.1",
+  "cases": [
+    {
+      "id": "cli-local-tool",
+      "project_type": "cli_or_local_tool",
+      "prompt": "研究一个命令行工具，让初学者理解它在工作流中的位置并独立完成一次受控操作。",
+      "required_understanding": [
+        "input_processing_output",
+        "installation_scope",
+        "filesystem_or_process_side_effects"
+      ],
+      "required_practice": "Run one pinned command against controlled input and inspect the output artifact or status.",
+      "required_boundary": "Verify cleanup, refusal, exit status, or another material failure boundary.",
+      "required_transfer": "Change one input or option and predict then verify the changed result."
+    },
+    {
+      "id": "library-sdk",
+      "project_type": "library_or_sdk",
+      "prompt": "研究一个库或 SDK，解释公开接口和兼容性，并让读者完成一次最小调用。",
+      "required_understanding": [
+        "public_api",
+        "data_and_error_contracts",
+        "version_compatibility"
+      ],
+      "required_practice": "Call one public API with a controlled input and inspect the returned value or exception.",
+      "required_boundary": "Verify one invalid input, documented exception, or compatibility limit.",
+      "required_transfer": "Modify the input or compose a second public API without copying the original example verbatim."
+    },
+    {
+      "id": "http-api-service",
+      "project_type": "api_or_hosted_service",
+      "prompt": "研究一个 HTTP API 或托管服务，说明认证和数据契约，并完成一次最小权限调用。",
+      "required_understanding": [
+        "authentication_and_authorization",
+        "request_response_contract",
+        "rate_limits_and_data_flow"
+      ],
+      "required_practice": "Send one bounded request with the minimum required authorization and inspect status, headers, and body.",
+      "required_boundary": "Verify one documented error, permission denial, pagination, or rate-limit behavior without causing harm.",
+      "required_transfer": "Change one request parameter or endpoint and explain the expected response before calling it."
+    },
+    {
+      "id": "plugin-extension",
+      "project_type": "plugin_or_extension",
+      "prompt": "研究一个编辑器插件，说明宿主兼容、激活和贡献点，并验证它在目标宿主中可被发现和使用。",
+      "required_understanding": [
+        "host_compatibility",
+        "activation_and_entry_points",
+        "contribution_points_and_trust"
+      ],
+      "required_practice": "Install or load the extension in a bounded host profile, trigger one contribution point, and observe the result.",
+      "required_boundary": "Verify an unsupported host version, restricted workspace, disabled state, or permission boundary.",
+      "required_transfer": "Use the same contribution point in a second representative file or workspace context."
+    },
+    {
+      "id": "agent-mcp-integration",
+      "project_type": "agent_skill_or_mcp",
+      "prompt": "研究一个 Agent Skill 或 MCP 集成，说明角色、能力和授权边界，并验证一次显式加载与受控调用。",
+      "required_understanding": [
+        "host_client_server_or_skill_roles",
+        "capability_discovery_and_negotiation",
+        "tool_data_and_consent_boundaries"
+      ],
+      "required_practice": "Confirm discovery or explicit loading, invoke one read-only capability, and preserve the observable trace.",
+      "required_boundary": "Verify one denied, unavailable, or consent-gated action and distinguish instructions from enforcement.",
+      "required_transfer": "Apply the capability to a second bounded task while preserving the same permission constraints."
+    },
+    {
+      "id": "machine-learning-model",
+      "project_type": "model",
+      "prompt": "研究一个模型项目，说明用途、数据、评估和限制，并完成一次可复核推理。",
+      "required_understanding": [
+        "intended_and_out_of_scope_uses",
+        "training_data_and_license_scope",
+        "evaluation_bias_and_human_review"
+      ],
+      "required_practice": "Run or inspect one version-pinned inference with recorded input, configuration, and output.",
+      "required_boundary": "Test or disclose one known failure mode, uncovered population, unsafe use, or evaluation gap.",
+      "required_transfer": "Use a second input from the intended domain and compare the result against an explicit acceptance criterion."
+    },
+    {
+      "id": "dataset-resource-collection",
+      "project_type": "dataset_or_resource_collection",
+      "prompt": "研究一个数据集或资源集合，说明来源、组成、许可和推荐用途，并验证一个真实消费任务。",
+      "required_understanding": [
+        "motivation_and_composition",
+        "collection_processing_and_license",
+        "recommended_uses_coverage_and_maintenance"
+      ],
+      "required_practice": "Inspect representative records or entries, validate the schema or classification, and use one item in a bounded task.",
+      "required_boundary": "Verify one coverage gap, prohibited use, missing field, stale entry, or licensing constraint.",
+      "required_transfer": "Select a new item using the documented classification and justify why it fits the target task."
+    },
+    {
+      "id": "deployed-service-application",
+      "project_type": "service_application",
+      "prompt": "研究一个可部署服务，解释配置、依赖和运行模型，并完成一次可回滚的本地或隔离环境启动。",
+      "required_understanding": [
+        "build_release_run_contract",
+        "configuration_and_backing_services",
+        "health_logs_and_operational_ownership"
+      ],
+      "required_practice": "Start one pinned deployment in an isolated environment and verify health, logs, and one useful request.",
+      "required_boundary": "Verify graceful failure, missing configuration, shutdown, rollback, or dependency unavailability.",
+      "required_transfer": "Change one non-secret configuration value and verify the documented operational effect."
+    }
+  ]
+}

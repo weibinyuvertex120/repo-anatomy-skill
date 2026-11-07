@@ -44,7 +44,7 @@ def main() -> int:
         release_assets: list[Path] = []
         expected = (
             ("workspace-file-maintainer", "0.1.0", 5),
-            ("research-material-writer", "0.3.0-preview.1", 10),
+            ("research-material-writer", "0.4.0-preview.1", 12),
         )
         rebuilt_assets: list[Path] = []
         for skill_name, expected_version, expected_count in expected:

@@ -15,6 +15,15 @@
 - Inference and recommendation are identified as such.
 - Failed or partial verification is disclosed.
 
+## Project Type And Learning Fit
+
+- One primary project type is explicit when the subject is a project, with at most one justified secondary type.
+- The type follows the reader-facing interface rather than every repository component.
+- The understanding map covers problem, input, processing, output, flow, responsibility boundary, and first observable success when explanation or adoption is in scope.
+- The practice path uses the type-specific evidence, minimum operation, and boundary from `project-type-profiles.md`.
+- Practical learning includes orientation, boundary, and transfer checks, or explicitly states why they were not run.
+- Example reproduction is not described as independent use.
+
 ## Task Completeness
 
 For tutorials:
@@ -58,7 +67,8 @@ For comparisons:
 - Actions appear before deep theory.
 - One main path is visibly primary.
 - Commands are copyable and include execution context.
-- Verification defines observable success.
+- Consequential actions state expected observations, actual results or `not run`, failure signals, and recovery.
+- Verification defines observable success plus one material boundary.
 - Common mistakes are placed near the relevant action.
 - Advanced options do not interrupt the beginner path.
 - The ending gives a bounded conclusion or next decision, not a generic summary.
@@ -69,4 +79,4 @@ For comparisons:
 - Confirm the requested path and filename.
 - Confirm no unrelated file was changed.
 - Run `scripts/check_draft.py` and investigate warnings.
-- Report research date, output path, verification performed, and remaining uncertainty.
+- Report research date, output path, project type, interaction mode, verification performed, learning checks, blocked checks, and remaining uncertainty.

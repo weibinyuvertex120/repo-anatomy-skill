@@ -1,13 +1,13 @@
 # Acceptance Results
 
-Verification date: 2026-11-03
-Current preview scope: `research-material-writer` 0.3.0-preview.1 only
+Verification date: 2026-11-06
+Current preview scope: `research-material-writer` 0.4.0-preview.1 only
 Historical scope: `workspace-file-maintainer` 0.1.0 and `research-material-writer` 0.2.0-preview.1 were validated in the earlier two-Skill preview
 Host scope: local repository validation on macOS plus credential-free repository CI designed for Ubuntu; Codex and 豆包 runtime acceptance remains pending
 
 ## Verification Record
 
-- skill_versions: `research-material-writer` 0.3.0-preview.1 (current); historical `workspace-file-maintainer` 0.1.0 and research 0.2.0-preview.1 remain archived
+- skill_versions: `research-material-writer` 0.4.0-preview.1 (current); historical `workspace-file-maintainer` 0.1.0 and research 0.2.0-preview.1 remain archived
 - host: local WorkBuddy validation environment; exact application build was not recorded; Codex and 豆包 host runs are not yet verified
 - source_revision: release manifests are authoritative for the exact source commit and clean-tree state of generated archives
 - evidence_scope: deterministic checks for the current core are reproducible; fresh-agent, Copilot, and real-project observations are historical or separately scoped unless explicitly rerun
@@ -23,6 +23,7 @@ Host scope: local repository validation on macOS plus credential-free repository
 | Trigger datasets | Pass: 14 workspace cases and 16 research cases; structural coverage is not a routing metric |
 | Validator regression | Pass: baseline plus missing reference, version mismatch, invalid JSON, invalid field types, empty values, unknown group, duplicate prompt, external symlink, and empty functional evidence failures |
 | Draft-checker regression | Pass: clean input and 14 defect/boundary cases including fence forms, repeated content, table scope, heading defects, and placeholders |
+| Project learning contract | Pass: eight project types, one-shot and guided-run modes, understanding/practice separation, orientation/boundary/transfer checks, and structured feedback schema |
 | Packaging regression | Pass: rejects external symlinks; explicitly builds both Skills for regression coverage; repeated builds are byte-identical. Default release packaging emits only two research Skill variants |
 | Stable-installation regression | Pass: versioned copy, both variants, duplicate-install rejection, and checksum rejection |
 | WorkBuddy quick validation | Pass for the historical source Skills in the recorded local host environment; current research core has passed repository-level checks, while Codex and 豆包 runtime behavior remains pending |
@@ -35,6 +36,7 @@ Run the current deterministic suite from the repository root:
 python3 tests/validate_repository.py
 python3 tests/test_validator.py
 python3 tests/test_draft_checker.py
+python3 tests/test_project_learning_contract.py
 python3 tests/test_packaging.py
 python3 tests/test_installation.py
 git diff --check
@@ -57,10 +59,13 @@ Validated when explicitly invoked:
 - primary-source research and dynamic-fact verification;
 - fact, source claim, reproduced behavior, inference, conflict, and unknown separation;
 - beginner tutorial, project analysis, comparison, and open-source onboarding modes;
+- project-type routing for eight reader-facing interfaces;
+- understanding maps, practice paths, step verification cards, one-shot and guided-run interaction, and orientation/boundary/transfer learning checks;
+- structured user-run feedback records without storing secrets or inventing user completion;
 - established-style continuation without inheriting stale facts;
 - structural Markdown review with disclosed heuristic limits.
 
-The checker does not prove factual accuracy, source quality, command correctness, or end-to-end success. Those remain manual evidence-review responsibilities.
+The checker and learning-contract tests do not prove factual accuracy, source quality, command correctness, real-reader understanding, transfer-task success, or end-to-end adoption. Those require evidence review and observed user or host runs.
 
 ### Workspace File Maintainer (historical, paused)
 
