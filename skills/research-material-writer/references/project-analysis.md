@@ -6,9 +6,9 @@ Use this order when applicable:
 
 1. Conclusion and decision guidance.
 2. Verified project identity and current status.
-3. Problem solved and capability map.
-4. Architecture or content organization.
-5. Practical workflows and adoption path.
+3. Primary project type, problem solved, understanding map, and capability map.
+4. Architecture or content organization needed for the reader's decision.
+5. Practical workflows, boundary evidence, and adoption path.
 6. Maintenance, ecosystem, and compatibility.
 7. Security, privacy, license, and operational risks.
 8. Suitable and unsuitable scenarios.
@@ -37,9 +37,9 @@ When analyzing a repository, verify as relevant:
 
 Attach an exact date to volatile metrics. Prefer qualitative maintenance conclusions over decorative star counts.
 
-## Capability Map
+## Understanding And Capability Maps
 
-Group capabilities by user workflow, not by README order. For a resource collection, classify entries by the job they help complete. For a software project, map setup, core operation, integration, observability, safety, and maintenance.
+Use the shared understanding map from `project-type-profiles.md` before the detailed capability list when the reader needs to learn how the project works. Group capabilities by user workflow, not by README order. Apply only the selected type profile: for a resource collection, classify entries by the job they help complete; for software, map the type-specific setup, core operation, integration, observability, safety, and maintenance concerns.
 
 ## Risk Review
 

@@ -2,7 +2,7 @@
 
 This project was designed from its own requirements and evaluation results. The repositories below were reviewed for reusable open-source practices; no source code, project structure, or documentation was copied wholesale.
 
-Verification date: 2026-10-30.
+Verification date: 2026-11-06.
 
 ## Primary Standards And Platform Guidance
 
@@ -35,6 +35,24 @@ Verification date: 2026-10-30.
 - Adopted: a short opening position, a real result near the top, followed by capability, usage, installation, and explicit limits.
 - Not adopted: upstream wording, badges, showcase data, sponsorship content, roadmap, scripts catalog, project structure, or implementation details.
 
+### Diátaxis
+
+- Source: [Diátaxis documentation framework](https://diataxis.fr/)
+- Adopted: separate tutorial, how-to, reference, and explanation intents; keep the first learning path action-led; show expected observations early and often; move deep explanation outside the uninterrupted tutorial path.
+- Not adopted: requiring every deliverable to become a four-site documentation system. The Skill uses the intent boundaries inside the output channel available to the host.
+
+### Project-Type Standards
+
+- Sources: [OpenAPI Specification](https://spec.openapis.org/oas/latest.html), [Semantic Versioning](https://semver.org/), [Model Context Protocol](https://modelcontextprotocol.io/specification/latest), [VS Code extension manifest](https://code.visualstudio.com/api/references/extension-manifest), [Hugging Face model cards](https://huggingface.co/docs/hub/model-cards), [Datasheets for Datasets](https://arxiv.org/abs/1803.09010), and [The Twelve-Factor App](https://www.12factor.net/).
+- Adopted: type-specific questions and evidence for API contracts, public API compatibility, Agent capability and consent boundaries, extension activation and trust, model use/data/evaluation limits, dataset provenance and recommended uses, and service configuration and operations.
+- Not adopted: treating these sources as universal certification. Their fields are applied only to the matching project type and target workflow.
+
+### Technical Documentation User Experience
+
+- Source: [T/CAS 852-2024 technical documentation user-experience evaluation guidance](https://www.china-tca.com/standards/doc-ux-evaluation/).
+- Adopted: evaluate documentation against real users and key tasks; distinguish content quality, task effectiveness and efficiency, and subjective experience; record completion, errors, time, and feedback when observed.
+- Not adopted: claiming a formal standard grade without the required evaluation design, participants, data, and report.
+
 ## Mature Project Comparisons
 
 ### Microsoft Agent Framework
@@ -60,6 +78,30 @@ Verification date: 2026-10-30.
 - Source: [Aider-AI/aider](https://github.com/Aider-AI/aider)
 - Reused idea: keep local setup, exact test commands, behavior-test requirements, and release history visible to contributors.
 - Deliberately omitted: Python package release mechanics, model benchmarks, and a contributor license agreement. The repository uses the MIT contribution rule in `CONTRIBUTING.md`.
+
+### Anthropic Agent Engineering
+
+- Sources: [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents), [Writing effective tools for agents](https://www.anthropic.com/engineering/writing-tools-for-agents), and [Demystifying evals for AI agents](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents).
+- Reused idea: prefer the simplest predictable workflow; route clear categories before adding autonomy; design interfaces around real tasks; inspect transcripts and outcomes separately; turn real failures into regression cases.
+- Deliberately omitted: vendor-specific runtime APIs and any assumption that hidden reasoning must be captured.
+
+### OpenAI Agent Evaluation
+
+- Sources: [OpenAI Agents SDK tracing](https://openai.github.io/openai-agents-python/tracing/), [Trace grading](https://platform.openai.com/docs/guides/trace-grading), and [Evals](https://platform.openai.com/docs/guides/evals).
+- Reused idea: preserve observable traces, distinguish process from final output, use representative datasets and explicit graders, and rerun the same baseline after changes.
+- Deliberately omitted: dependency on OpenAI-hosted trace storage or a deprecated evaluation product.
+
+### Google And Microsoft Agent Evaluation
+
+- Sources: [Google ADK evaluation](https://google.github.io/adk-docs/evaluate/), [Google ADK sessions and memory](https://google.github.io/adk-docs/sessions/), and [Microsoft Foundry Agent evaluators](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/agent-evaluators).
+- Reused idea: evaluate trajectory and final response separately; distinguish session state from cross-session memory; check tool selection, input, success, result utilization, task adherence, completion, and navigation efficiency.
+- Deliberately omitted: requiring an exact tool trajectory when multiple safe strategies are valid, and relying on preview evaluators as the only release gate.
+
+### GitHub Agent Instructions
+
+- Source: [GitHub Copilot repository custom instructions](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot).
+- Reused idea: separate stable repository context, path-specific rules, task prompts, and Agent working instructions; verify commands and check whether instructions were actually referenced.
+- Deliberately omitted: treating repository instructions as permissions or assuming every Copilot surface supports the same discovery behavior.
 
 ## Community Document Attribution
 

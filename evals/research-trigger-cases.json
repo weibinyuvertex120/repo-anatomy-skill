@@ -1,6 +1,6 @@
 {
   "skill": "research-material-writer",
-  "version": "0.3.0-preview.1",
+  "version": "0.4.0-preview.1",
   "cases": [
     {
       "id": "research-tutorial-github-project",
@@ -64,6 +64,20 @@
       "prompt": "梳理这个开发者资源清单，按实际工作流程分类并给出采用建议和风险。",
       "expected_skill": true,
       "expected_behavior": "Build a capability map and decision-oriented resource analysis rather than restating entries."
+    },
+    {
+      "id": "research-type-aware-learning-path",
+      "group": "must_trigger",
+      "prompt": "先判断这个项目属于 CLI、SDK、API、插件、MCP、模型、数据集还是服务，再设计一条让我真正理解并能独立使用的实践路径。",
+      "expected_skill": true,
+      "expected_behavior": "Route by primary project type, build an understanding map and practice path, then include orientation, boundary, and transfer checks."
+    },
+    {
+      "id": "research-guided-run-feedback",
+      "group": "paraphrase",
+      "prompt": "不要一次把所有步骤都扔给我，请分阶段带我试用这个项目，根据我的实际结果继续，并记录我卡住的位置。",
+      "expected_skill": true,
+      "expected_behavior": "Use guided-run interaction, stop on blocking results, diagnose observed evidence, and capture structured feedback without inventing completion."
     },
     {
       "id": "negative-simple-file",

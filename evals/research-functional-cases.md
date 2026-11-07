@@ -142,6 +142,70 @@ Create notes.md with the exact text supplied by the user.
 
 Expected: do not invoke research or restructure the content; route to the file-maintenance workflow.
 
+## R09 - Project-Type Routing And Understanding Map
+
+Prompt:
+
+```text
+Analyze an unfamiliar project, determine whether its primary type is a CLI, library or SDK, API or hosted service, plugin or extension, Agent Skill or MCP integration, model, dataset or resource collection, or deployable service. Explain the type-specific information a reader must understand before trying it.
+```
+
+Expected:
+
+- one primary project type is selected, with at most one secondary type when the project is genuinely mixed;
+- the result includes an understanding map covering the problem, input, processing, output, core components, data or control flow, responsibility boundary, and first observable success;
+- the type-specific evidence and adoption risks from `references/project-type-profiles.md` are applied;
+- unrelated type templates are not stacked into the result;
+- uncertain classification is disclosed or resolved with one targeted question.
+
+## R10 - Practice Path And Step Verification Cards
+
+Prompt:
+
+```text
+Turn the researched project into a first-use path that a beginner can execute safely. Every consequential step must state the environment, action, expected observation, failure signal, smallest correction, and cleanup or rollback.
+```
+
+Expected:
+
+- the practice path follows one recommended route and begins only after relevant risk gates;
+- consequential actions use the verification-card fields from `references/learning-validation-feedback.md`;
+- documented expected behavior and actually observed results are kept separate;
+- the path includes existence, functionality, and at least one material boundary check;
+- blocked execution produces a bounded self-check rather than fabricated results.
+
+## R11 - Orientation, Boundary, And Transfer Checks
+
+Prompt:
+
+```text
+After the first successful example, verify that the reader understands the project's role and can use it beyond the copied example.
+```
+
+Expected:
+
+- an orientation check asks the reader to explain what the project does and does not own in the larger workflow;
+- a boundary check tests recognition of one unsuitable, unsupported, or unsafe scenario;
+- a transfer task changes an input, option, endpoint, environment, or target while keeping the task safe and reversible;
+- outcomes are recorded as completed, partially completed, blocked, or not verified;
+- reproducing the original example alone is not reported as independent use.
+
+## R12 - Guided Run And User Feedback Record
+
+Prompt:
+
+```text
+Guide a user through trying the project one stage at a time, diagnose the actual result they report, and capture structured feedback for improving the material.
+```
+
+Expected:
+
+- guided-run mode separates brief, preflight, first practice, boundary verification, transfer task, and adoption decision;
+- the Agent does not advance past a blocking result or invent a user outcome;
+- the record follows `evals/user-run-record.schema.json` when persistence is available;
+- feedback distinguishes factual error, missing step, environment difference, hard-to-understand, hard-to-find, project failure, and insufficient evidence;
+- the final response states which checks were executed, blocked, or left to the user.
+
 ## Release Record
 
 ```text

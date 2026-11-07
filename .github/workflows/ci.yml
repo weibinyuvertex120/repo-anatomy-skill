@@ -57,6 +57,10 @@ jobs:
         env:
           PYTHONDONTWRITEBYTECODE: "1"
         run: python3 tests/test_draft_checker.py
+      - name: Run project learning contract tests
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+        run: python3 tests/test_project_learning_contract.py
       - name: Run packaging regression tests
         env:
           PYTHONDONTWRITEBYTECODE: "1"
@@ -147,8 +151,8 @@ jobs:
 
           root = Path("dist")
           name = "research-material-writer"
-          version = "0.3.0-preview.1"
-          count = 10
+          version = "0.4.0-preview.1"
+          count = 12
           expected_assets = {"SHA256SUMS"}
           for variant in ("workbuddy", "open-spec"):
               archive = root / f"{name}-{variant}.zip"

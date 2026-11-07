@@ -25,6 +25,7 @@ python3 tests/validate_repository.py
 python3 tests/test_validator.py
 python3 tests/test_readme_languages.py
 python3 tests/test_draft_checker.py
+python3 tests/test_project_learning_contract.py
 python3 tests/test_packaging.py
 ```
 

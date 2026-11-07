@@ -1,22 +1,24 @@
 # Research Material Writer Copilot Read-Only Capability Baseline
 
-Verification date: 2026-11-01
+Verification date: 2026-11-06
 
-This document records the behavior that must remain stable before creating a GitHub Copilot VS Code Agent adapter for `research-material-writer`. It is an architecture baseline, not a compatibility claim and not an implementation specification.
+This document records the current read-only behavior baseline projected into the implemented GitHub Copilot VS Code Agent adapter for `research-material-writer`. It is a capability baseline, not a real-host compatibility claim.
 
 ## Decision Scope
 
 The first compatibility trial is intentionally limited to:
 
-- Skill: `research-material-writer` `0.2.0-preview.1`;
+- Skill: `research-material-writer` `0.4.0-preview.1`;
+- adapter: `github-copilot-vscode-readonly` `0.2.0`;
 - host surface: GitHub Copilot Agent Mode in Visual Studio Code;
 - invocation: explicit user request to use the installed Skill;
 - output language: Chinese;
 - operation class: read-only research, analysis, planning, and response generation;
 - evidence: official or user-provided sources;
 - persistence: no local file creation or modification;
-- distribution: a future independent Copilot adapter package;
-- compatibility promise: none until the defined host evaluation passes.
+- distribution: an implemented independent deterministic Copilot adapter package;
+- structural evidence: package projection, reproducibility, manifest, checksum, and read-only boundary tests;
+- compatibility promise: none until the defined real-host evaluation passes; current level remains `Untested`.
 
 The trial does not include automatic semantic routing, local draft persistence, shell execution, multi-language output, `workspace-file-maintainer`, Copilot CLI, Copilot cloud agent, Copilot code review, Claude Code, Codex, or a new public release.
 
@@ -88,16 +90,29 @@ The Skill must convert the request into decision-relevant questions covering app
 
 It must research in source order but present conclusions in reader order. A tutorial or onboarding response should prioritize the problem, successful outcome, prerequisites, shortest reliable path, observable verification, workflow fit, explanation, limits, and troubleshooting rather than reproduce README order.
 
-### Document Modes
+### Project Types, Learning Loop, And Document Modes
 
-The existing Skill supports four modes:
+The current Skill routes the reader-facing interface through one primary project type and, only when necessary, one distinct secondary type:
+
+- CLI or local tool;
+- library or SDK;
+- API or hosted service;
+- plugin or extension;
+- Agent Skill or MCP integration;
+- model;
+- dataset or resource collection;
+- service application.
+
+For applicable tutorial and onboarding work, the response should move through `understand -> reproduce -> verify -> transfer -> decide`, using an understanding map, one main practice path, observable verification, a boundary check, and a transfer task. In `guided_run`, the Agent must wait for the user's actual result and must not invent completion past a blocked step.
+
+The Skill continues to support four document modes:
 
 - beginner technical tutorial;
 - project or resource analysis;
 - open-source project onboarding;
 - comparison or selection guidance.
 
-The trial must preserve the mode-specific quality rules that apply to the request. It must not add a new document mode.
+The adapter must preserve the applicable type and mode rules without turning project type into a new document mode.
 
 ### Command And Runtime Claims
 
@@ -153,7 +168,7 @@ A polished answer is not sufficient if the evidence scope is misleading.
 
 ## Allowed Host Variation
 
-A future Copilot adapter may vary in these areas without changing the core capability:
+The Copilot adapter may vary in these areas without changing the core capability:
 
 - native tool names and parameter schemas;
 - exact order of independent read-only searches;
@@ -189,9 +204,11 @@ The repository currently records:
 - structural validation of the source Skill and open-spec package;
 - explicit-invocation WorkBuddy observations;
 - trigger-case schema coverage;
-- eight functional evaluation definitions;
+- twelve functional evaluation definitions;
+- eight project-type learning cases and a user-run record Schema;
 - project-analysis and onboarding narrative evaluations;
-- deterministic packaging and installation checks;
+- deterministic core and Copilot adapter packaging checks;
+- Copilot projection, manifest, checksum, and read-only boundary checks;
 - Markdown checker regression tests.
 
 ### Not Yet Verified For Copilot
@@ -213,15 +230,15 @@ No Copilot compatibility level above untested may be claimed from this baseline 
 
 ## Architecture Consequences
 
-The remaining architecture work must use this baseline to define:
+The implemented architecture now provides:
 
 1. canonical host-independent capabilities and failure states;
 2. a Copilot-specific mapping that exposes only the approved read-only subset;
 3. separate core and adapter versions;
-4. an evaluation schema that tests results and normalized tool behavior;
-5. compatibility levels that distinguish structural installation from repeated behavioral success.
+4. evaluation Schemas for normalized results and tool behavior;
+5. compatibility levels that distinguish deterministic package evidence from repeated real-host success.
 
-Any proposal that requires changing the existing core behavior or package contract is outside this phase and requires a separately approved scope.
+The remaining work is real-host evaluation and evidence-based compatibility classification. Any proposal that broadens permissions, changes the portable core contract, or rewrites historical acceptance identities requires separate review.
 
 ## Official References
 

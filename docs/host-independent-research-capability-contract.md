@@ -2,15 +2,17 @@
 
 Verification date: 2026-11-01
 
-This contract defines the observable behavior required from a host adapter that exposes the approved read-only subset of `research-material-writer`. It describes capabilities, results, and failure semantics without requiring a specific model, tool name, API, or private chain of thought.
+Historical contract identity: core `0.2.0-preview.1`, initial Copilot adapter trial `0.1.0`.
+
+This frozen contract defines the observable behavior required from a host adapter that exposes the approved read-only subset of `research-material-writer`. It describes capabilities, results, and failure semantics without requiring a specific model, tool name, API, or private chain of thought. It remains as historical architecture and evaluation evidence; the current core and adapter versions are recorded in `docs/copilot-readonly-adapter-and-version-contract.md` and `adapters/github-copilot/research-material-writer/adapter.json`.
 
 ## Contract Status
 
 - core Skill: `research-material-writer` `0.2.0-preview.1`;
 - contract scope: Chinese, explicit invocation, read-only research and response generation;
 - initial target adapter: GitHub Copilot Agent Mode in Visual Studio Code;
-- status: architecture contract only;
-- compatibility status: untested until host evaluation completes.
+- status: frozen historical architecture contract;
+- compatibility status: no current compatibility claim; use only with the recorded historical trial identity.
 
 This contract does not modify the source Skill. If the contract conflicts with the current Skill, the source Skill and the approved capability baseline remain authoritative until a separate behavior-change proposal is reviewed.
 

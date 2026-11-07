@@ -60,6 +60,8 @@ SKILLS = (
                 "references/tutorial-writing.md",
                 "references/project-analysis.md",
                 "references/project-research-contract.md",
+                "references/project-type-profiles.md",
+                "references/learning-validation-feedback.md",
                 "references/comparison-writing.md",
                 "references/open-source-onboarding.md",
                 "references/quality-checklist.md",
@@ -81,6 +83,9 @@ REQUIRED_SHARED_FILES = {
     "tests/test_validator.py",
     "tests/test_readme_languages.py",
     "tests/test_draft_checker.py",
+    "tests/test_project_learning_contract.py",
+    "evals/project-learning-cases.json",
+    "evals/user-run-record.schema.json",
     "tests/validate_copilot_evals.py",
     "tests/test_copilot_evals.py",
     "evals/copilot-readonly-cases.json",
@@ -233,13 +238,17 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
             "## R01 - Beginner Tutorial From Primary Sources",
             "## R02 - Open-Source Project Onboarding",
             "## R08 - Negative Simple File Task",
+            "## R09 - Project-Type Routing And Understanding Map",
+            "## R10 - Practice Path And Step Verification Cards",
+            "## R11 - Orientation, Boundary, And Transfer Checks",
+            "## R12 - Guided Run And User Feedback Record",
             "## Release Record",
         )
         for heading in required_sections:
             if heading not in functional_text:
                 fail(errors, f"{config.functional_file}: missing required section {heading}")
-        if len(re.findall(r"^## R\d{2} - ", functional_text, re.MULTILINE)) < 8:
-            fail(errors, f"{config.functional_file}: expected at least 8 functional cases")
+        if len(re.findall(r"^## R\d{2} - ", functional_text, re.MULTILINE)) < 12:
+            fail(errors, f"{config.functional_file}: expected at least 12 functional cases")
 
     try:
         data = json.loads(trigger_path.read_text(encoding="utf-8"))
@@ -249,8 +258,8 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
 
     if data.get("skill") != config.name:
         fail(errors, f"{config.trigger_file}: skill does not match {config.name}")
-    if config.name == "research-material-writer" and data.get("version") != "0.3.0-preview.1":
-        fail(errors, f"{config.trigger_file}: expected research core version 0.3.0-preview.1")
+    if config.name == "research-material-writer" and data.get("version") != "0.4.0-preview.1":
+        fail(errors, f"{config.trigger_file}: expected research core version 0.4.0-preview.1")
     if version and data.get("version") != version:
         fail(errors, f"{config.trigger_file}: version does not match {version}")
 
@@ -300,6 +309,20 @@ def validate_evaluations(config: SkillConfig, version: str, errors: list[str]) -
             fail(errors, f"{config.trigger_file}: group '{group}' needs at least {minimum} cases")
 
 
+def validate_project_learning_contract(errors: list[str]) -> None:
+    result = subprocess.run(
+        [sys.executable, str(ROOT / "tests/test_project_learning_contract.py")],
+        cwd=ROOT,
+        env={"PYTHONDONTWRITEBYTECODE": "1"},
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        output = (result.stdout + result.stderr).strip()
+        fail(errors, f"Project learning contract validation failed: {output}")
+
+
 def validate_copilot_evaluations(errors: list[str]) -> None:
     result = subprocess.run(
         [sys.executable, str(ROOT / "tests/validate_copilot_evals.py")],
@@ -326,6 +349,66 @@ def validate_copilot_adapter(errors: list[str]) -> None:
     if result.returncode != 0:
         output = (result.stdout + result.stderr).strip()
         fail(errors, f"Copilot adapter validation failed: {output}")
+
+
+def validate_compatibility_document_versions(core_version: str, errors: list[str]) -> None:
+    adapter_path = ROOT / "adapters/github-copilot/research-material-writer/adapter.json"
+    try:
+        adapter = json.loads(adapter_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        fail(errors, f"Cannot read Copilot adapter version contract: {exc}")
+        return
+
+    adapter_core_version = adapter.get("core_version")
+    adapter_version = adapter.get("adapter_version")
+    if adapter_core_version != core_version:
+        fail(errors, f"Copilot adapter core version does not match {core_version}")
+    if not isinstance(adapter_version, str) or not adapter_version:
+        fail(errors, "Copilot adapter version is missing")
+        return
+
+    current_documents = {
+        "docs/copilot-readonly-adapter-and-version-contract.md": (
+            f"core `{core_version}`",
+            f"adapter `{adapter_version}`",
+            "remains `Untested`",
+        ),
+        "docs/copilot-readonly-capability-baseline.md": (
+            f"`research-material-writer` `{core_version}`",
+            f"`github-copilot-vscode-readonly` `{adapter_version}`",
+            "current level remains `Untested`",
+        ),
+    }
+    for relative, markers in current_documents.items():
+        path = ROOT / relative
+        if not path.is_file():
+            fail(errors, f"Missing repository file: {relative}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                fail(errors, f"{relative}: missing current compatibility marker {marker}")
+
+    historical_documents = {
+        "docs/host-independent-research-capability-contract.md": (
+            "Historical contract identity: core `0.2.0-preview.1`, initial Copilot adapter trial `0.1.0`.",
+            "frozen historical architecture contract",
+        ),
+        "evals/copilot-readonly-manual/README.md": (
+            "historical `research-material-writer` core `0.2.0-preview.1` and Copilot adapter `0.1.0` trial",
+            "version fields are evidence identity and must not be rewritten",
+        ),
+    }
+    for relative, markers in historical_documents.items():
+        path = ROOT / relative
+        if not path.is_file():
+            fail(errors, f"Missing repository file: {relative}")
+            continue
+        text = path.read_text(encoding="utf-8")
+        for marker in markers:
+            if marker not in text:
+                fail(errors, f"{relative}: missing historical evidence marker {marker}")
+
 
 
 def validate_license(errors: list[str]) -> None:
@@ -444,8 +527,10 @@ def main() -> int:
     for config in SKILLS:
         versions[config.name] = validate_skill(config, errors)
         validate_evaluations(config, versions[config.name], errors)
+    validate_project_learning_contract(errors)
     validate_copilot_evaluations(errors)
     validate_copilot_adapter(errors)
+    validate_compatibility_document_versions(versions["research-material-writer"], errors)
     validate_license(errors)
     validate_changelog(versions, errors)
     validate_shared_files(errors)

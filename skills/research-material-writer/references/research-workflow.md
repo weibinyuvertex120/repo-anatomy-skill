@@ -5,23 +5,30 @@
 Record:
 
 - Reader and existing knowledge.
-- Intended outcome or decision.
-- Document mode and expected depth.
+- Intended outcome, target task, or decision.
+- Primary and optional secondary project type.
+- Document mode, interaction mode, and expected depth.
 - Required platforms, versions, or environments.
+- First observable success and material risk boundary.
 - Output path and style baseline.
 - Facts that are likely to change.
 
+## Classify The Project
+
+Use `project-type-profiles.md` to select one primary type by the interface the reader operates. Add one secondary type only when it changes evidence, setup, safety, or verification. Record the bounded assumption if classification remains uncertain.
+
 ## Build Research Questions
 
-Use these categories as applicable:
+Use shared questions plus the selected type profile as applicable:
 
 - What problem does the subject solve?
 - What does success look like?
 - Who should and should not use it?
 - What must be installed, configured, or authorized?
 - What is the shortest reliable path to a working result?
-- How is success verified?
-- Where does it fit in a real workflow?
+- How is success verified, and what failure signal is observable?
+- Where does it fit in a real workflow, and what responsibility remains outside it?
+- What safe boundary and transfer task demonstrate more than copied example success?
 - What are the security, privacy, compatibility, and maintenance limits?
 - What commonly fails and how is it diagnosed?
 
@@ -43,13 +50,16 @@ Source order often follows repository history, API taxonomy, or product ownershi
 
 ```text
 problem or decision
+-> understanding map
 -> successful outcome
 -> prerequisites
 -> shortest path
--> verification
+-> verification and boundary
 -> real workflow
--> explanation
+-> transfer task
+-> explanation and reference
 -> limitations and troubleshooting
+-> adoption decision and feedback
 ```
 
 ## Use Existing Drafts Correctly

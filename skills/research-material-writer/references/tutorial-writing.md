@@ -4,28 +4,33 @@
 
 1. Name the practical problem in language the reader recognizes.
 2. Show what the tool changes and the observable successful result.
-3. Explain the core concept with one concrete analogy.
-4. State who the tutorial is for and when the tool is unnecessary.
-5. List prerequisites and a preflight check.
-6. Choose one primary installation or setup path.
-7. Walk through the first successful use.
-8. Provide an Agent prompt when the product is used through an Agent.
-9. Explain where the tool fits in real work.
-10. Explain the mechanism only after the reader can use it.
-11. Cover privacy, security, compatibility, maintenance, and limitations.
-12. Add symptom-based troubleshooting and source verification notes.
+3. Present a compact understanding map of input, processing, output, workflow position, and responsibility boundary.
+4. Explain one core concept with a concrete analogy only when it helps the next action.
+5. State who the tutorial is for and when the tool is unnecessary.
+6. List prerequisites and a preflight check.
+7. Choose one primary installation or setup path.
+8. Walk through the first successful use with expected observations and failure signals.
+9. Verify one material boundary and cleanup or rollback.
+10. Provide an Agent prompt when the product is used through an Agent.
+11. Explain where the tool fits in real work.
+12. Add an orientation check and one bounded transfer task.
+13. Explain the mechanism only after the reader can use it.
+14. Cover privacy, security, compatibility, maintenance, and limitations.
+15. Add symptom-based troubleshooting, adoption guidance, and source verification notes.
 
 ## Operational Unit
 
 For each important operation, use:
 
 ```text
-操作目标
--> 操作入口
+操作目标与为什么现在做
+-> 环境和操作入口
 -> 填写内容或动作
 -> 可复制示例
--> 验证方法
--> 常见错误
+-> 预期现象与实际结果
+-> 失败信号与最小纠正
+-> 清理或回滚
+-> 证据类型与适用范围
 ```
 
 Do not force all six labels into tiny steps. Preserve the information even when a compact format reads better.
@@ -46,7 +51,7 @@ A verification step must define an observable result:
 - A controlled test is allowed or denied as expected.
 - A status command reports the expected state.
 
-“没有报错” is insufficient when a stronger check exists.
+“没有报错” is insufficient when a stronger check exists. Expected behavior from documentation is not an actual result. When the reader must learn to use the project, add orientation, boundary, and transfer checks from `learning-validation-feedback.md`.
 
 ## Agent Prompts
 
@@ -76,8 +81,9 @@ Reject a draft that:
 
 - Mirrors README headings.
 - Lists features before explaining the reader's problem.
-- Provides commands without prerequisites or expected results.
-- Claims successful execution when only documentation was reviewed.
+- Provides commands without prerequisites, expected results, failure signals, or recovery.
+- Claims successful execution or user completion when only documentation was reviewed.
+- Treats copied example success as proof that the reader can transfer the skill.
 - Omits Agent usage for an Agent-oriented tool.
 - Omits limitations, security, update guidance, or troubleshooting.
 - Includes every advanced option in the main path.

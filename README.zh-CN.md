@@ -17,14 +17,18 @@
 `research-material-writer` 可以：
 
 - 分析任意软件项目、代码仓库、类库、工具或服务；
-- 从官方文档、官方仓库、发布页面、源代码和包管理器元数据等一手来源核验重要事实；
-- 解释项目目标、核心能力、仓库结构、安装配置、典型工作流和采用建议；
+- 按主要项目类型路由研究：CLI/本地工具、类库/SDK、API/托管服务、插件/扩展、Agent Skill/MCP 集成、模型、数据集/资源集合或可部署服务应用；
+- 从官方文档、官方仓库、发布页面、源代码、规范、清单、模型卡、数据卡和包管理器元数据等一手来源核验重要事实；
+- 建立项目的**理解地图**：问题、输入、处理、输出、核心组件、流程、责任边界和首次可观察成功；
+- 建立一条**实践路径**：单一推荐安装路线、逐步预期现象、失败信号、最小纠正、边界验证和清理方式；
+- 通过定位检查、边界检查和迁移任务验证读者能否超越复制示例，实际理解并使用项目；
+- 输出完整的一次性交付，或使用分阶段 **guided run**，等待用户返回实际结果后再继续；
 - 输出项目分析、首次使用指南、入门教程或项目比较指南；
 - 区分已核验事实、项目方声明、已复现行为、合理推断、编辑建议、信息冲突和未知项；
-- 在证据支持时提供准确命令、可观察的验证步骤和来源说明；
+- 在允许持久化时记录完成、部分完成、阻断和未验证结果，以及结构化用户反馈；
 - 检查技术草稿中的当前事实依据、任务流程、结构问题和术语一致性。
 
-这个 Skill 会围绕读者的决策和实际工作路径组织内容，而不是简单复述项目 README。
+这个 Skill 会围绕读者的决策和实际工作路径组织内容，而不是简单复述项目 README，也不会在没有观察证据时声称读者已经成功完成操作。
 
 <a id="quick-start"></a>
 
@@ -66,6 +70,24 @@ ln -s "$PWD/skills/research-material-writer" \
 先定义比较维度。在可能的情况下使用同等范围和版本的证据，按场景说明取舍，并标明哪些结论已经核验、实际复现或属于推断。
 ```
 
+如果目标是让读者真正理解并实际试用项目：
+
+```text
+请使用 research-material-writer 分析 [项目地址]，读者是 [目标读者]，目标任务是 [实际任务]。
+
+先判断主要项目类型，再用简洁的理解地图说明输入、处理、输出、核心组件、工作流位置和责任边界。随后提供一条安全的实践主路径，写清每一步的预期现象、失败信号、清理方式，并加入一个边界检查和一个改变原始示例的迁移任务。请分别标明文档描述、研究中实际复现、用户反馈和未验证的部分。
+```
+
+如果希望由 Agent 分阶段陪同操作，而不是一次收到长教程：
+
+```text
+请使用 research-material-writer 的 guided-run 模式，带我完成 [项目和目标任务]。
+
+每次只给下一个有边界的阶段。先确认目标和环境，再做前置检查；等待我返回真实输出或错误后，再给最小纠正。遇到阻断结果时不要继续，也不要在没有证据时声称我已经完成。最后进行定位、边界、迁移和采用判断。
+```
+
+Portable Core 不会自行获得网络、Shell、文件系统、凭据、记忆或 trace 能力；这些必须由宿主适配器明确提供。仓库中的确定性测试验证协议和包的一致性，不证明真实读者已经理解，也不证明特定宿主已经兼容。`evals/copilot-readonly-*` 资产和手工运行模板保留其历史 core/adapter 身份，它们是验收证据夹具，不是当前 adapter 的运行兼容结论。
+
 <a id="verified-example"></a>
 
 ## 已验证示例：MarkItDown
@@ -105,6 +127,7 @@ python3 tests/validate_repository.py
 python3 tests/test_validator.py
 python3 tests/test_readme_languages.py
 python3 tests/test_draft_checker.py
+python3 tests/test_project_learning_contract.py
 python3 tests/test_packaging.py
 python3 tests/test_installation.py
 ```
@@ -122,10 +145,10 @@ python3 skills/research-material-writer/scripts/check_draft.py path/to/draft.md
 [English](README.md#project-layout)
 
 ```text
-skills/research-material-writer/       Skill 定义和研究参考资料
+skills/research-material-writer/       Skill 定义以及研究/学习参考资料
 demos/                                 带来源的项目研究示例
-evals/                                 功能案例和验收记录
-tests/                                 仓库和打包检查
+evals/                                 功能、类型化学习和反馈契约
+tests/                                 仓库、学习协议和打包检查
 docs/                                  宿主与兼容性文档
 ```
 
